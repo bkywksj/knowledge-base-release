@@ -2,13 +2,13 @@
 
 本地优先的知识库桌面应用（Tauri 2.x + React 19）的安装包与自动更新端点仓库。
 
-## 最新版本: v0.2.0
+## 最新版本: v1.0.0
 
 | 平台 | 下载链接 |
 |------|---------|
-| Windows x64 | [Knowledge.Base_0.2.0_x64-setup.exe](releases/v0.2.0/Knowledge.Base_0.2.0_x64-setup.exe) |
-| macOS Apple Silicon | [Knowledge.Base_0.2.0_aarch64.dmg](releases/v0.2.0/Knowledge.Base_0.2.0_aarch64.dmg) |
-| macOS Intel | [Knowledge.Base_0.2.0_x64.dmg](releases/v0.2.0/Knowledge.Base_0.2.0_x64.dmg) |
+| Windows x64 | [Knowledge.Base_1.0.0_x64-setup.exe](releases/v1.0.0/Knowledge.Base_1.0.0_x64-setup.exe) |
+| macOS Apple Silicon | [Knowledge.Base_1.0.0_aarch64.dmg](releases/v1.0.0/Knowledge.Base_1.0.0_aarch64.dmg) |
+| macOS Intel | [Knowledge.Base_1.0.0_x64.dmg](releases/v1.0.0/Knowledge.Base_1.0.0_x64.dmg) |
 
 ## 自动更新
 
@@ -20,6 +20,22 @@
 | 2 (备) | `https://github.com/bkywksj/knowledge-base-release/raw/main/update.json` | GitHub raw 兜底 |
 
 ## 版本历史
+
+### v1.0.0 (2026-04-21)
+
+**新增**
+- 系统托盘右键菜单大扩展：新建笔记（Ctrl+N）/ 打开今日每日笔记 / 全局搜索（Ctrl+K）/ 立即同步到云端 / 窗口置顶 / 开机自启 / 检查更新
+- 右上角标题栏新增"窗口置顶"图钉按钮（PushpinOutlined / PushpinFilled），与托盘 CheckMenuItem 双向同步
+- 窗口置顶状态跨应用重启持久化（tauri-plugin-store）
+- 文档站下载页改造：构建时从 R2 `versions.json` 注入版本列表（消除运行时 GitHub API 限流 + CORS 问题）
+
+**修复**
+- 修复托盘左键再次点击不能最小化回托盘（改为 toggle 可见性）
+- 补全 Capabilities 权限 `core:window:allow-set-always-on-top`，置顶功能实际生效
+
+**改进**
+- 托盘"立即同步"复用 `sync_scheduler::push_once`，新独立事件 `sync:manual-push-result` 避免与设置页 toast 冲突
+- release-publish skill 文档扩展：新增"更新 R2 versions.json" + "触发文档站重建"两步
 
 ### v0.2.0 (2026-04-19)
 
@@ -67,12 +83,14 @@ releases/
 │   └── ...
 ├── v0.1.1/
 │   └── ...
-└── v0.2.0/
-    ├── Knowledge.Base_0.2.0_x64-setup.exe         # Windows 安装包
-    ├── Knowledge.Base_0.2.0_x64-setup.exe.sig     # Windows 签名
-    ├── Knowledge.Base_0.2.0_x64-setup.nsis.zip    # Windows updater 压缩包
-    ├── Knowledge.Base_0.2.0_aarch64.dmg           # macOS ARM 安装镜像
-    ├── Knowledge.Base_0.2.0_x64.dmg               # macOS Intel 安装镜像
+├── v0.2.0/
+│   └── ...
+└── v1.0.0/
+    ├── Knowledge.Base_1.0.0_x64-setup.exe         # Windows 安装包
+    ├── Knowledge.Base_1.0.0_x64-setup.exe.sig     # Windows 签名
+    ├── Knowledge.Base_1.0.0_x64-setup.nsis.zip    # Windows updater 压缩包
+    ├── Knowledge.Base_1.0.0_aarch64.dmg           # macOS ARM 安装镜像
+    ├── Knowledge.Base_1.0.0_x64.dmg               # macOS Intel 安装镜像
     ├── Knowledge.Base_aarch64.app.tar.gz          # macOS ARM updater
     ├── Knowledge.Base_aarch64.app.tar.gz.sig      # macOS ARM updater 签名
     ├── Knowledge.Base_x64.app.tar.gz              # macOS Intel updater
