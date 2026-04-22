@@ -2,13 +2,13 @@
 
 本地优先的知识库桌面应用（Tauri 2.x + React 19）的安装包与自动更新端点仓库。
 
-## 最新版本: v1.0.0
+## 最新版本: v1.1.0
 
 | 平台 | 下载链接 |
 |------|---------|
-| Windows x64 | [Knowledge.Base_1.0.0_x64-setup.exe](releases/v1.0.0/Knowledge.Base_1.0.0_x64-setup.exe) |
-| macOS Apple Silicon | [Knowledge.Base_1.0.0_aarch64.dmg](releases/v1.0.0/Knowledge.Base_1.0.0_aarch64.dmg) |
-| macOS Intel | [Knowledge.Base_1.0.0_x64.dmg](releases/v1.0.0/Knowledge.Base_1.0.0_x64.dmg) |
+| Windows x64 | [Knowledge.Base_1.1.0_x64-setup.exe](releases/v1.1.0/Knowledge.Base_1.1.0_x64-setup.exe) |
+| macOS Apple Silicon | [Knowledge.Base_1.1.0_aarch64.dmg](releases/v1.1.0/Knowledge.Base_1.1.0_aarch64.dmg) |
+| macOS Intel | [Knowledge.Base_1.1.0_x64.dmg](releases/v1.1.0/Knowledge.Base_1.1.0_x64.dmg) |
 
 ## 自动更新
 
@@ -20,6 +20,29 @@
 | 2 (备) | `https://github.com/bkywksj/knowledge-base-release/raw/main/update.json` | GitHub raw 兜底 |
 
 ## 版本历史
+
+### v1.1.0 (2026-04-22)
+
+**性能优化（大知识库下尤为明显）**
+- SQLite 补齐 PRAGMA：`synchronous=NORMAL` + `cache_size=64MB` + `mmap_size=32MB` + `temp_store=MEMORY` + `busy_timeout=5s`
+- 新增索引 `idx_note_links_source` — 保存笔记时删除旧链接的 DELETE 走索引，10k 笔记下保存速度大幅提升
+- 新增 `notes.title_normalized` 列 + 部分索引（v17 迁移，Rust 侧批量回填）— wiki 链接匹配从全表扫 O(n) 降到索引 O(log n)
+- `get_dashboard_stats` 6 次 query_row 合并为 2 条 SQL + `substr` 替换 `LIKE` 前缀匹配
+- `get_graph_data` 相关子查询改为 `LEFT JOIN ... GROUP BY`，消除 N+1
+- `reqwest::Client` 用 `OnceLock` 做进程级单例（AI 流式 / WebDAV 都复用），消除每次请求重建连接池和 TLS 会话的开销
+- 孤儿图片扫描去除 GB 级 haystack 字符串拼接，改用手写状态机 + `HashSet`，大库下内存占用和扫描时间都显著下降
+- `export_notes` 把数据读取和文件写入分离，文件 I/O 前主动释放 DB 锁，导出期间不再阻塞其他 Command
+
+**前端渲染**
+- TipTap 编辑器 `onUpdate` 加 300ms 防抖 + `onBlur` / unmount 强制 flush，长笔记打字不再卡顿
+- 搜索结果页、标签笔记列表接入 `@tanstack/react-virtual` 虚拟滚动，千级结果也不卡
+
+**UI / 交互**
+- 笔记编辑页目录切换升级为"面包屑 + Popover Tree 选择"（Notion / Obsidian 风格）
+- 笔记列表"目录"列改成可点击修改所属文件夹（就地 Popover，保留"筛选此文件夹"快捷入口）
+- 侧边栏文件夹区：顶部间距 + 箭头右移 + "再次点击已选文件夹 → 取消筛选回到全部笔记"
+- 修复文件夹右键菜单点击外部不关闭的问题（补全 mousedown / Esc 全局监听）
+- 设置页 & 关于页新增"作者 & 社区"卡片（B 站主页 + 知识星球）
 
 ### v1.0.0 (2026-04-21)
 
@@ -85,12 +108,14 @@ releases/
 │   └── ...
 ├── v0.2.0/
 │   └── ...
-└── v1.0.0/
-    ├── Knowledge.Base_1.0.0_x64-setup.exe         # Windows 安装包
-    ├── Knowledge.Base_1.0.0_x64-setup.exe.sig     # Windows 签名
-    ├── Knowledge.Base_1.0.0_x64-setup.nsis.zip    # Windows updater 压缩包
-    ├── Knowledge.Base_1.0.0_aarch64.dmg           # macOS ARM 安装镜像
-    ├── Knowledge.Base_1.0.0_x64.dmg               # macOS Intel 安装镜像
+├── v1.0.0/
+│   └── ...
+└── v1.1.0/
+    ├── Knowledge.Base_1.1.0_x64-setup.exe         # Windows 安装包
+    ├── Knowledge.Base_1.1.0_x64-setup.exe.sig     # Windows 签名
+    ├── Knowledge.Base_1.1.0_x64-setup.nsis.zip    # Windows updater 压缩包
+    ├── Knowledge.Base_1.1.0_aarch64.dmg           # macOS ARM 安装镜像
+    ├── Knowledge.Base_1.1.0_x64.dmg               # macOS Intel 安装镜像
     ├── Knowledge.Base_aarch64.app.tar.gz          # macOS ARM updater
     ├── Knowledge.Base_aarch64.app.tar.gz.sig      # macOS ARM updater 签名
     ├── Knowledge.Base_x64.app.tar.gz              # macOS Intel updater
