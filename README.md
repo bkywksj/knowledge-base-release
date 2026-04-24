@@ -2,13 +2,13 @@
 
 本地优先的知识库桌面应用（Tauri 2.x + React 19）的安装包与自动更新端点仓库。
 
-## 最新版本: v1.1.0
+## 最新版本: v1.2.0
 
 | 平台 | 下载链接 |
 |------|---------|
-| Windows x64 | [Knowledge.Base_1.1.0_x64-setup.exe](releases/v1.1.0/Knowledge.Base_1.1.0_x64-setup.exe) |
-| macOS Apple Silicon | [Knowledge.Base_1.1.0_aarch64.dmg](releases/v1.1.0/Knowledge.Base_1.1.0_aarch64.dmg) |
-| macOS Intel | [Knowledge.Base_1.1.0_x64.dmg](releases/v1.1.0/Knowledge.Base_1.1.0_x64.dmg) |
+| Windows x64 | [Knowledge.Base_1.2.0_x64-setup.exe](releases/v1.2.0/Knowledge.Base_1.2.0_x64-setup.exe) |
+| macOS Apple Silicon | [Knowledge.Base_1.2.0_aarch64.dmg](releases/v1.2.0/Knowledge.Base_1.2.0_aarch64.dmg) |
+| macOS Intel | [Knowledge.Base_1.2.0_x64.dmg](releases/v1.2.0/Knowledge.Base_1.2.0_x64.dmg) |
 
 ## 自动更新
 
@@ -20,6 +20,47 @@
 | 2 (备) | `https://github.com/bkywksj/knowledge-base-release/raw/main/update.json` | GitHub raw 兜底 |
 
 ## 版本历史
+
+### v1.2.0 (2026-04-24)
+
+**侧边栏大改造（方案 C：Activity Bar 模式）**
+- 主侧栏拆成左 48px 图标栏 + 右 240px 视图面板，仿 VS Code / Obsidian
+- 笔记 / 标签 / 每日 / 搜索 / 待办 5 个视图统一"左选分组 + 右看内容"范式
+- URL 驱动：每个筛选条件都能直达、可书签（`/tasks?filter=overdue`、`/tags?tagId=5` 等）
+- SidePanel 宽度与可见性持久化；`Ctrl/⌘` + 点当前图标 = 折叠/展开面板（VS Code 行为）
+
+**待办视图重写**
+- 11 维度 4 分组的智能列表：进行中 / 逾期 / 今天 / 本周 / 无日期 / 紧急 / 普通 / 低 / 循环 / 有关联 / 已完成
+- Badge 数字实时从后端 stats 派生；主区标题动态跟随选中项（"今天的任务" / "逾期任务" …）
+- AI 规划今日：基于今日笔记 + 待办产出 3~7 条行动建议（T-005）
+
+**笔记列表批量操作**
+- 多选复选框 + 浮出工具条：批量移动文件夹、批量打标签（不清除原有）、批量移到回收站
+- 一次 IPC + 一条 SQL，原子性 + 性能；不改 `updated_at` 避免冒到最前
+
+**AI Skills 工具框架（T-004）**
+- 模型可调 5 个只读工具（读取笔记 / 搜索 / 列文件夹 / 列标签 / 统计）
+- tool_calls 解析 + dispatch，状态机 ok/error/running 规范化
+
+**隐藏与加密（T-003 / T-007）**
+- 笔记"隐藏"标记：主列表/搜索隐藏但能从 wiki 链接打开；独立"隐藏笔记"视图
+- Vault：主密码保护整个库，支持一键加密/解密单条笔记
+
+**编辑器 & 产物**
+- 附件拖拽落库；文本 / Markdown / 图片分支路径
+- 长文档工具栏吸顶（修 `.tiptap-wrapper` 的 overflow:hidden 打断 sticky）
+- 每日笔记：URL `?date=` 驱动 + 拖图按需建档 + SidePanel 日期列表
+- 图片保存文件名加进程内原子计数器，避免同毫秒覆盖
+
+**PDF 原文件预览**
+- 标题栏加"最大化"和"用系统应用打开"按钮
+- 老旧 WebView2 拦截 asset 协议时用户仍能一键切系统阅读器
+
+**Bug 修复**
+- AI 提示词编辑内置模板时表单全空（Form 懒挂载 + setFieldsValue 时序坑）
+- 虚拟列表 `contain: strict` 致容器 0 高度（tags 笔记列表）
+- image.rs 同毫秒文件名冲突
+- 笔记列表分页条与行白底割裂 / 表格行分隔线冗余 / 加绝对索引列
 
 ### v1.1.0 (2026-04-22)
 
@@ -110,12 +151,14 @@ releases/
 │   └── ...
 ├── v1.0.0/
 │   └── ...
-└── v1.1.0/
-    ├── Knowledge.Base_1.1.0_x64-setup.exe         # Windows 安装包
-    ├── Knowledge.Base_1.1.0_x64-setup.exe.sig     # Windows 签名
-    ├── Knowledge.Base_1.1.0_x64-setup.nsis.zip    # Windows updater 压缩包
-    ├── Knowledge.Base_1.1.0_aarch64.dmg           # macOS ARM 安装镜像
-    ├── Knowledge.Base_1.1.0_x64.dmg               # macOS Intel 安装镜像
+├── v1.1.0/
+│   └── ...
+└── v1.2.0/
+    ├── Knowledge.Base_1.2.0_x64-setup.exe         # Windows 安装包
+    ├── Knowledge.Base_1.2.0_x64-setup.exe.sig     # Windows 签名
+    ├── Knowledge.Base_1.2.0_x64-setup.nsis.zip    # Windows updater 压缩包
+    ├── Knowledge.Base_1.2.0_aarch64.dmg           # macOS ARM 安装镜像
+    ├── Knowledge.Base_1.2.0_x64.dmg               # macOS Intel 安装镜像
     ├── Knowledge.Base_aarch64.app.tar.gz          # macOS ARM updater
     ├── Knowledge.Base_aarch64.app.tar.gz.sig      # macOS ARM updater 签名
     ├── Knowledge.Base_x64.app.tar.gz              # macOS Intel updater
