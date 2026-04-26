@@ -2,15 +2,15 @@
 
 本地优先的知识库桌面应用（Tauri 2.x + React 19）的安装包与自动更新端点仓库。
 
-## 最新版本: v1.3.0
+## 最新版本: v1.3.1
 
 | 平台 | 下载链接 |
 |------|---------|
-| Windows x64 | [Knowledge.Base_1.3.0_x64-setup.exe](releases/v1.3.0/Knowledge.Base_1.3.0_x64-setup.exe) |
-| macOS Apple Silicon | [Knowledge.Base_1.3.0_aarch64.dmg](releases/v1.3.0/Knowledge.Base_1.3.0_aarch64.dmg) |
-| macOS Intel | [Knowledge.Base_1.3.0_x64.dmg](releases/v1.3.0/Knowledge.Base_1.3.0_x64.dmg) |
-| Linux x64 (deb) | [Knowledge.Base_1.3.0_amd64.deb](releases/v1.3.0/Knowledge.Base_1.3.0_amd64.deb) |
-| Linux x64 (AppImage) | [Knowledge.Base_1.3.0_amd64.AppImage](releases/v1.3.0/Knowledge.Base_1.3.0_amd64.AppImage) |
+| Windows x64 | [Knowledge.Base_1.3.1_x64-setup.exe](releases/v1.3.1/Knowledge.Base_1.3.1_x64-setup.exe) |
+| macOS Apple Silicon | [Knowledge.Base_1.3.1_aarch64.dmg](releases/v1.3.1/Knowledge.Base_1.3.1_aarch64.dmg) |
+| macOS Intel | [Knowledge.Base_1.3.1_x64.dmg](releases/v1.3.1/Knowledge.Base_1.3.1_x64.dmg) |
+| Linux x64 (deb) | [Knowledge.Base_1.3.1_amd64.deb](releases/v1.3.1/Knowledge.Base_1.3.1_amd64.deb) |
+| Linux x64 (AppImage) | [Knowledge.Base_1.3.1_amd64.AppImage](releases/v1.3.1/Knowledge.Base_1.3.1_amd64.AppImage) |
 
 ## 自动更新
 
@@ -22,6 +22,15 @@
 | 2 (备) | `https://github.com/bkywksj/knowledge-base-release/raw/main/update.json` | GitHub raw 兜底 |
 
 ## 版本历史
+
+### v1.3.1 (2026-04-27)
+
+**Windows 同步恢复 1224 错误紧急修复**
+
+- 修复 WebDAV 从云端拉取 / 从本地 ZIP 导入时报 "IO 错误：请求的操作无法在使用用户映射区域打开的文件上执行 (os error 1224)" 的问题
+- 根因：SQLite 默认 mmap 持有 `app.db` 文件，apply 阶段 `fs::File::create(app.db)` 撞上 Windows 的 `ERROR_USER_MAPPED_FILE`
+- 解决：Database 新增 `release()` 方法，在 apply 前临时把 connection 切到 `:memory:` 释放 mmap，apply 完无论成败都 reopen 回真实路径
+- 顺手修：拉取/导入完成后 "数据已重载" toast 重复出现两次（前端 `useEffect` cleanup 在 React 严格模式下踩到 async listen 注册竞态，导致 listener 泄漏）
 
 ### v1.3.0 (2026-04-26)
 
@@ -205,20 +214,22 @@ releases/
 │   └── ...
 ├── v1.2.0/
 │   └── ...
-└── v1.3.0/
-    ├── Knowledge.Base_1.3.0_x64-setup.exe         # Windows 安装包
-    ├── Knowledge.Base_1.3.0_x64-setup.exe.sig     # Windows 签名
-    ├── Knowledge.Base_1.3.0_x64-setup.nsis.zip    # Windows updater 压缩包
-    ├── Knowledge.Base_1.3.0_aarch64.dmg           # macOS ARM 安装镜像
-    ├── Knowledge.Base_1.3.0_x64.dmg               # macOS Intel 安装镜像
+├── v1.3.0/
+│   └── ...
+└── v1.3.1/
+    ├── Knowledge.Base_1.3.1_x64-setup.exe         # Windows 安装包
+    ├── Knowledge.Base_1.3.1_x64-setup.exe.sig     # Windows 签名
+    ├── Knowledge.Base_1.3.1_x64-setup.nsis.zip    # Windows updater 压缩包
+    ├── Knowledge.Base_1.3.1_aarch64.dmg           # macOS ARM 安装镜像
+    ├── Knowledge.Base_1.3.1_x64.dmg               # macOS Intel 安装镜像
     ├── Knowledge.Base_aarch64.app.tar.gz          # macOS ARM updater
     ├── Knowledge.Base_aarch64.app.tar.gz.sig      # macOS ARM updater 签名
     ├── Knowledge.Base_x64.app.tar.gz              # macOS Intel updater
     ├── Knowledge.Base_x64.app.tar.gz.sig          # macOS Intel updater 签名
-    ├── Knowledge.Base_1.3.0_amd64.deb             # Linux Debian/Ubuntu 包
-    ├── Knowledge.Base_1.3.0_amd64.AppImage        # Linux 通用 AppImage
-    ├── Knowledge.Base_1.3.0_amd64.AppImage.tar.gz # Linux updater
-    └── Knowledge.Base_1.3.0_amd64.AppImage.tar.gz.sig # Linux updater 签名
+    ├── Knowledge.Base_1.3.1_amd64.deb             # Linux Debian/Ubuntu 包
+    ├── Knowledge.Base_1.3.1_amd64.AppImage        # Linux 通用 AppImage
+    ├── Knowledge.Base_1.3.1_amd64.AppImage.tar.gz # Linux updater
+    └── Knowledge.Base_1.3.1_amd64.AppImage.tar.gz.sig # Linux updater 签名
 update.json                                         # 自动更新元数据（GitHub 版）
 update-r2.json                                      # 自动更新元数据（R2 版，备档）
 ```
