@@ -2,13 +2,15 @@
 
 本地优先的知识库桌面应用（Tauri 2.x + React 19）的安装包与自动更新端点仓库。
 
-## 最新版本: v1.2.0
+## 最新版本: v1.3.0
 
 | 平台 | 下载链接 |
 |------|---------|
-| Windows x64 | [Knowledge.Base_1.2.0_x64-setup.exe](releases/v1.2.0/Knowledge.Base_1.2.0_x64-setup.exe) |
-| macOS Apple Silicon | [Knowledge.Base_1.2.0_aarch64.dmg](releases/v1.2.0/Knowledge.Base_1.2.0_aarch64.dmg) |
-| macOS Intel | [Knowledge.Base_1.2.0_x64.dmg](releases/v1.2.0/Knowledge.Base_1.2.0_x64.dmg) |
+| Windows x64 | [Knowledge.Base_1.3.0_x64-setup.exe](releases/v1.3.0/Knowledge.Base_1.3.0_x64-setup.exe) |
+| macOS Apple Silicon | [Knowledge.Base_1.3.0_aarch64.dmg](releases/v1.3.0/Knowledge.Base_1.3.0_aarch64.dmg) |
+| macOS Intel | [Knowledge.Base_1.3.0_x64.dmg](releases/v1.3.0/Knowledge.Base_1.3.0_x64.dmg) |
+| Linux x64 (deb) | [Knowledge.Base_1.3.0_amd64.deb](releases/v1.3.0/Knowledge.Base_1.3.0_amd64.deb) |
+| Linux x64 (AppImage) | [Knowledge.Base_1.3.0_amd64.AppImage](releases/v1.3.0/Knowledge.Base_1.3.0_amd64.AppImage) |
 
 ## 自动更新
 
@@ -20,6 +22,54 @@
 | 2 (备) | `https://github.com/bkywksj/knowledge-base-release/raw/main/update.json` | GitHub raw 兜底 |
 
 ## 版本历史
+
+### v1.3.0 (2026-04-26)
+
+**多端同步 V1 自动调度（双向）**
+- 新增 `sync_v1_scheduler` 后台任务：每分钟扫一遍 enabled+auto_sync 的 backend，到期跑 `pull → push` 双向同步（git workflow 习惯）
+- pull 失败跳过 push 避免把过期数据推回去；失败 `emit sync_v1:auto-triggered` 让前端弹 toast
+- SyncV1Section "自动同步" Switch 解禁（之前是「待实现」占位）
+- 仅默认实例启动 scheduler，避免多实例对同一远端竞速覆盖
+
+**关闭按钮行为可配置**
+- 设置 → 启动设置 新增「关闭窗口时」三选一：每次询问 / 最小化到托盘 / 直接退出
+- 默认「每次询问」：弹出三按钮 Modal（最小化 / 退出 / 取消 X）+ Checkbox「记住我的选择」自动写回配置
+- "直接退出"分支转发 `tray:request-exit`，复用 `ExitConfirmListener` 的脏数据保存检查
+- on_window_event 加主窗判断，子窗口（紧急提醒 / 迁移 splash）的关闭走系统默认不被拦截
+
+**允许多开实例开关**
+- 设置 → 启动设置 新增「允许多开实例」开关；默认禁止，再次启动会唤起已有窗口
+- 后端 flag 文件存于 framework_app_data_dir，启动早期一次 `Path::exists()` 决策
+- `--instance N` 命令行仍可绕开（开发/调试逃生口）
+
+**新建笔记支持 TXT 导入**
+- 下拉菜单新增「导入 Markdown / TXT…」，dialog filter 一次接受 `[md, markdown, txt]` 可批量混选（业界 VS Code / Bear / Apple Notes 同质合并模式）
+- 后端 `read_text_auto_encoding` 工具：UTF-8 优先 → 失败用 chardetng 嗅探（覆盖 GBK / GB18030 / Big5 / Shift_JIS 等老 .txt）→ encoding_rs 解码
+- 命令行 / 双击 .txt 也能投递到本应用（`extract_md_paths_from_args` 加 .txt）
+
+**导入后智能跳转**
+- 后端 `ImportResult` 新增 `noteIds` / `existingNoteIds`：分别记录新建 ID 和被 Skip 命中的现有 ID
+- 前端按总数分流：1 篇直开编辑器 / 0 新+1 命中已有也跳那篇（"我导入是为了打开它"）/ 多篇跳列表
+- PDF / Word 流程同样套用，行为统一
+
+**同步源管理 UI 优化**
+- "新增 backend" → "新增同步源"全面中文化（含表格空态、删除确认、Modal 标题）
+- 弹窗加固定高度 + 内部滚动，S3 字段多也不会撑出视口
+- WebDAV 子表单加「复用「备份与恢复」配置」按钮，从 V0 解密密码自动填充
+
+**布局微调**
+- 折叠按钮按需渲染（首页/设置/关于这类无 SidePanel 的页面整体不显示）
+- 后退/前进按钮接 React Router history.state.idx 智能禁用，刚启动时两按钮 disabled
+- 折叠按钮图标换 lucide PanelLeft 系列（与 VS Code / Cursor 一致）
+- ActivityBar 加 height: 100% 修复底部三项（隐藏笔记 / 回收站 / 关于）未钉到左下角的 bug
+
+**笔记列表样式微调**
+- 序号列 width 36 + cell padding 4，更紧凑
+- 标题列 paddingRight 24，与右侧"目录"列拉开呼吸空间
+
+**编辑器 / 紧急提醒**
+- WikiLink 全角双括号 【【 自动转半角 [[
+- 紧急待办独立提醒窗口流程优化（关闭决策 + 重弹机制）
 
 ### v1.2.0 (2026-04-24)
 
@@ -153,16 +203,22 @@ releases/
 │   └── ...
 ├── v1.1.0/
 │   └── ...
-└── v1.2.0/
-    ├── Knowledge.Base_1.2.0_x64-setup.exe         # Windows 安装包
-    ├── Knowledge.Base_1.2.0_x64-setup.exe.sig     # Windows 签名
-    ├── Knowledge.Base_1.2.0_x64-setup.nsis.zip    # Windows updater 压缩包
-    ├── Knowledge.Base_1.2.0_aarch64.dmg           # macOS ARM 安装镜像
-    ├── Knowledge.Base_1.2.0_x64.dmg               # macOS Intel 安装镜像
+├── v1.2.0/
+│   └── ...
+└── v1.3.0/
+    ├── Knowledge.Base_1.3.0_x64-setup.exe         # Windows 安装包
+    ├── Knowledge.Base_1.3.0_x64-setup.exe.sig     # Windows 签名
+    ├── Knowledge.Base_1.3.0_x64-setup.nsis.zip    # Windows updater 压缩包
+    ├── Knowledge.Base_1.3.0_aarch64.dmg           # macOS ARM 安装镜像
+    ├── Knowledge.Base_1.3.0_x64.dmg               # macOS Intel 安装镜像
     ├── Knowledge.Base_aarch64.app.tar.gz          # macOS ARM updater
     ├── Knowledge.Base_aarch64.app.tar.gz.sig      # macOS ARM updater 签名
     ├── Knowledge.Base_x64.app.tar.gz              # macOS Intel updater
-    └── Knowledge.Base_x64.app.tar.gz.sig          # macOS Intel updater 签名
+    ├── Knowledge.Base_x64.app.tar.gz.sig          # macOS Intel updater 签名
+    ├── Knowledge.Base_1.3.0_amd64.deb             # Linux Debian/Ubuntu 包
+    ├── Knowledge.Base_1.3.0_amd64.AppImage        # Linux 通用 AppImage
+    ├── Knowledge.Base_1.3.0_amd64.AppImage.tar.gz # Linux updater
+    └── Knowledge.Base_1.3.0_amd64.AppImage.tar.gz.sig # Linux updater 签名
 update.json                                         # 自动更新元数据（GitHub 版）
 update-r2.json                                      # 自动更新元数据（R2 版，备档）
 ```
