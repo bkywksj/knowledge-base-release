@@ -2,15 +2,15 @@
 
 本地优先的知识库桌面应用（Tauri 2.x + React 19）的安装包与自动更新端点仓库。
 
-## 最新版本: v1.3.1
+## 最新版本: v1.4.0
 
 | 平台 | 下载链接 |
 |------|---------|
-| Windows x64 | [Knowledge.Base_1.3.1_x64-setup.exe](releases/v1.3.1/Knowledge.Base_1.3.1_x64-setup.exe) |
-| macOS Apple Silicon | [Knowledge.Base_1.3.1_aarch64.dmg](releases/v1.3.1/Knowledge.Base_1.3.1_aarch64.dmg) |
-| macOS Intel | [Knowledge.Base_1.3.1_x64.dmg](releases/v1.3.1/Knowledge.Base_1.3.1_x64.dmg) |
-| Linux x64 (deb) | [Knowledge.Base_1.3.1_amd64.deb](releases/v1.3.1/Knowledge.Base_1.3.1_amd64.deb) |
-| Linux x64 (AppImage) | [Knowledge.Base_1.3.1_amd64.AppImage](releases/v1.3.1/Knowledge.Base_1.3.1_amd64.AppImage) |
+| Windows x64 | [Knowledge.Base_1.4.0_x64-setup.exe](releases/v1.4.0/Knowledge.Base_1.4.0_x64-setup.exe) |
+| macOS Apple Silicon | [Knowledge.Base_1.4.0_aarch64.dmg](releases/v1.4.0/Knowledge.Base_1.4.0_aarch64.dmg) |
+| macOS Intel | [Knowledge.Base_1.4.0_x64.dmg](releases/v1.4.0/Knowledge.Base_1.4.0_x64.dmg) |
+| Linux x64 (deb) | [Knowledge.Base_1.4.0_amd64.deb](releases/v1.4.0/Knowledge.Base_1.4.0_amd64.deb) |
+| Linux x64 (AppImage) | [Knowledge.Base_1.4.0_amd64.AppImage](releases/v1.4.0/Knowledge.Base_1.4.0_amd64.AppImage) |
 
 ## 自动更新
 
@@ -22,6 +22,40 @@
 | 2 (备) | `https://github.com/bkywksj/knowledge-base-release/raw/main/update.json` | GitHub raw 兜底 |
 
 ## 版本历史
+
+### v1.4.0 (2026-04-27)
+
+**编辑器工具栏全面升级 + 多项 BUG 修复**
+
+新增编辑器功能：
+- **段落格式 H1–H6 下拉**（替代旧 H1/H2/H3 三按钮，支持完整六级标题，Notion 风视觉层级）
+- **字体颜色 / 背景颜色** ColorPicker（12 色预设）
+- **字号下拉**（11 档 12px–48px）+ **行间距下拉**（6 档 1.0–2.0）
+- **上标 / 下标** 按钮（公式/化学式场景）
+- **段落缩进 / 减少缩进** 按钮
+- **清除格式** 按钮
+- **Callout 提示框**（4 种类型：信息 / 提示 / 警告 / 危险，块内 emoji 切类型）
+- **Toggle 折叠块**（▶ 标题 + 可折叠多行内容，标准 HTML `<details>` 兼容）
+- **字数统计**（工具栏右浮，hover 弹层看字数 / 字符 / 段落 / 阅读时长）
+- **Emoji 选择器**（10 类约 280 个常用 emoji，水平分类条 + 网格）
+- **工具栏插入视频 / 视频时间戳 / 附件** 按钮（与"插入图片"对称）
+
+孤儿素材清理升级：
+- 一次扫描覆盖 5 类素材（images / videos / attachments / pdfs / sources），按类别分组展示
+- 修复旧版"撤回笔记图片消失"和"加密笔记图片误删"两个 BUG
+
+更新策略 & 兜底：
+- updater 端点 R2 → Gitee → GitHub 三级容错（Gitee 优先国内体验更稳）
+- 自动更新失败时显示"手动下载页"链接（Gitee / GitHub Releases）
+
+BUG 修复：
+- 浏览器复制图片粘贴 → 自动保存到本地（之前显示破图）
+- 附件 / 链接点击用系统应用打开（不再跳浏览器；解决 Tauri WebView anchor navigation 旁路问题）
+- markdown-it `validateLink` 放行 `file://` 协议（之前二次打开附件链接降级成纯文本）
+- Link mark 渲染 / 解析双向支持 `<span data-href>` + `<a href>`（避免序列化往返破坏）
+- 行内代码 `<code>` 不再排斥其他 mark，可同时设字号 / 颜色 / 高亮
+- 默认字号 / 行高 unset 命令链恢复（之前点击无反应）
+- 工具栏紧凑化（删两端对齐 + 独立移除链接按钮，按钮间距/divider 微调）
 
 ### v1.3.1 (2026-04-27)
 
@@ -216,18 +250,20 @@ releases/
 │   └── ...
 ├── v1.3.0/
 │   └── ...
-└── v1.3.1/
-    ├── Knowledge.Base_1.3.1_x64-setup.exe         # Windows 安装包
-    ├── Knowledge.Base_1.3.1_x64-setup.exe.sig     # Windows 签名
-    ├── Knowledge.Base_1.3.1_x64-setup.nsis.zip    # Windows updater 压缩包
-    ├── Knowledge.Base_1.3.1_aarch64.dmg           # macOS ARM 安装镜像
-    ├── Knowledge.Base_1.3.1_x64.dmg               # macOS Intel 安装镜像
+├── v1.3.1/
+│   └── ...
+└── v1.4.0/
+    ├── Knowledge.Base_1.4.0_x64-setup.exe         # Windows 安装包
+    ├── Knowledge.Base_1.4.0_x64-setup.exe.sig     # Windows 签名
+    ├── Knowledge.Base_1.4.0_x64-setup.nsis.zip    # Windows updater 压缩包
+    ├── Knowledge.Base_1.4.0_aarch64.dmg           # macOS ARM 安装镜像
+    ├── Knowledge.Base_1.4.0_x64.dmg               # macOS Intel 安装镜像
     ├── Knowledge.Base_aarch64.app.tar.gz          # macOS ARM updater
     ├── Knowledge.Base_aarch64.app.tar.gz.sig      # macOS ARM updater 签名
     ├── Knowledge.Base_x64.app.tar.gz              # macOS Intel updater
     ├── Knowledge.Base_x64.app.tar.gz.sig          # macOS Intel updater 签名
-    ├── Knowledge.Base_1.3.1_amd64.deb             # Linux Debian/Ubuntu 包
-    ├── Knowledge.Base_1.3.1_amd64.AppImage        # Linux 通用 AppImage
+    ├── Knowledge.Base_1.4.0_amd64.deb             # Linux Debian/Ubuntu 包
+    ├── Knowledge.Base_1.4.0_amd64.AppImage        # Linux 通用 AppImage
     ├── Knowledge.Base_1.3.1_amd64.AppImage.tar.gz # Linux updater
     └── Knowledge.Base_1.3.1_amd64.AppImage.tar.gz.sig # Linux updater 签名
 update.json                                         # 自动更新元数据（GitHub 版）
