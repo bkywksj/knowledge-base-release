@@ -2,15 +2,15 @@
 
 本地优先的知识库桌面应用（Tauri 2.x + React 19）的安装包与自动更新端点仓库。
 
-## 最新版本: v1.4.0
+## 最新版本: v1.5.0
 
 | 平台 | 下载链接 |
 |------|---------|
-| Windows x64 | [Knowledge.Base_1.4.0_x64-setup.exe](releases/v1.4.0/Knowledge.Base_1.4.0_x64-setup.exe) |
-| macOS Apple Silicon | [Knowledge.Base_1.4.0_aarch64.dmg](releases/v1.4.0/Knowledge.Base_1.4.0_aarch64.dmg) |
-| macOS Intel | [Knowledge.Base_1.4.0_x64.dmg](releases/v1.4.0/Knowledge.Base_1.4.0_x64.dmg) |
-| Linux x64 (deb) | [Knowledge.Base_1.4.0_amd64.deb](releases/v1.4.0/Knowledge.Base_1.4.0_amd64.deb) |
-| Linux x64 (AppImage) | [Knowledge.Base_1.4.0_amd64.AppImage](releases/v1.4.0/Knowledge.Base_1.4.0_amd64.AppImage) |
+| Windows x64 | [Knowledge.Base_1.5.0_x64-setup.exe](releases/v1.5.0/Knowledge.Base_1.5.0_x64-setup.exe) |
+| macOS Apple Silicon | [Knowledge.Base_1.5.0_aarch64.dmg](releases/v1.5.0/Knowledge.Base_1.5.0_aarch64.dmg) |
+| macOS Intel | [Knowledge.Base_1.5.0_x64.dmg](releases/v1.5.0/Knowledge.Base_1.5.0_x64.dmg) |
+| Linux x64 (deb) | [Knowledge.Base_1.5.0_amd64.deb](releases/v1.5.0/Knowledge.Base_1.5.0_amd64.deb) |
+| Linux x64 (AppImage) | [Knowledge.Base_1.5.0_amd64.AppImage](releases/v1.5.0/Knowledge.Base_1.5.0_amd64.AppImage) |
 
 ## 自动更新
 
@@ -22,6 +22,32 @@
 | 2 (备) | `https://github.com/bkywksj/knowledge-base-release/raw/main/update.json` | GitHub raw 兜底 |
 
 ## 版本历史
+
+### v1.5.0 (2026-04-28)
+
+**待办分类、全局搜索覆盖待办、首页搜索 dropdown、搜索高亮精准化**
+
+新增功能：
+- **待办一级分类**（`task_categories` 表 + `tasks.category_id` 外键）：彩色圆点 + 自定义名称 + 排序，支持「未分类」虚拟节点；侧栏 TasksPanel 加分类 section（点击筛选 + 计数徽章 + 管理弹窗）；任务行内显示分类色点 + 名字；新建/编辑表单含分类下拉
+- **全局搜索覆盖待办**：新增 `search_tasks` Command（按 title/description LIKE，按状态/优先级/截止日排序）；Ctrl+K 命令面板加待办分组 + 命中跳 `/tasks?taskId=N` 自动开编辑 Modal
+- **首页搜索 dropdown**：输入即并发拉笔记 + 待办（200ms 防抖），点击直跳详情；回车保留原行为去 `/search?q=` 看完整结果
+- **`/search` 全量结果页**：加 `Segmented` Tab「全部 / 笔记 / 待办」+ URL `?type=` 持久化；笔记 Tab 保留虚拟滚动；待办点击跳编辑 Modal
+- **跳到笔记自动展开侧栏文件树**：进入 `/notes/:id` 时 NotesPanel 自动收集祖先文件夹路径并展开，高亮目标笔记
+
+搜索体验升级：
+- **标题字符级高亮**：用户搜「本地」只高亮「本地」两字，不会因 unicode61 长 token 把整个 token 段（如「本地优先的知识库桌面应用」）一整块染色
+- **标题命中优先排序**：FTS5 路径 `bm25(notes_fts, 5.0, 1.0)` 让 title 权重 5×；LIKE fallback 加 `_title_score` 计算列让标题命中排前
+- **召回率提升**：FTS5 改 prefix 查询 `本地*`，解决 unicode61 中文长 token 漏命中（搜「本地」能命中「本地仓库说明」标题）
+- **snippet 双行 line-clamp**：避免单行 truncate 把高亮关键词推到右边截掉
+- **FTS5 路径补 is_hidden 过滤**：与 LIKE fallback 行为一致，隐藏笔记不再泄露到主搜索结果
+- **顶栏命令面板加「待办」页面跳转**：Ctrl+K 输入"待办"可直跳 `/tasks`
+
+BUG 修复：
+- `get_task` SELECT 漏 `category_id` 列导致命中"任务不存在"误报；`.ok()` 静默吞错改为 `.optional()?` 让真实 SQL 错误暴露
+- 创建分类时 UNIQUE 冲突错误从「数据库错误: UNIQUE constraint failed」改为友好的「分类名称「xxx」已存在」+ 前端预校验 disable 按钮
+
+UI：
+- "添加待办"按钮统一改主题色（与"新建笔记"对齐）
 
 ### v1.4.0 (2026-04-27)
 
@@ -252,20 +278,22 @@ releases/
 │   └── ...
 ├── v1.3.1/
 │   └── ...
-└── v1.4.0/
-    ├── Knowledge.Base_1.4.0_x64-setup.exe         # Windows 安装包
-    ├── Knowledge.Base_1.4.0_x64-setup.exe.sig     # Windows 签名
-    ├── Knowledge.Base_1.4.0_x64-setup.nsis.zip    # Windows updater 压缩包
-    ├── Knowledge.Base_1.4.0_aarch64.dmg           # macOS ARM 安装镜像
-    ├── Knowledge.Base_1.4.0_x64.dmg               # macOS Intel 安装镜像
+├── v1.4.0/
+│   └── ...
+└── v1.5.0/
+    ├── Knowledge.Base_1.5.0_x64-setup.exe         # Windows 安装包
+    ├── Knowledge.Base_1.5.0_x64-setup.exe.sig     # Windows 签名
+    ├── Knowledge.Base_1.5.0_x64-setup.nsis.zip    # Windows updater 压缩包
+    ├── Knowledge.Base_1.5.0_aarch64.dmg           # macOS ARM 安装镜像
+    ├── Knowledge.Base_1.5.0_x64.dmg               # macOS Intel 安装镜像
     ├── Knowledge.Base_aarch64.app.tar.gz          # macOS ARM updater
     ├── Knowledge.Base_aarch64.app.tar.gz.sig      # macOS ARM updater 签名
     ├── Knowledge.Base_x64.app.tar.gz              # macOS Intel updater
     ├── Knowledge.Base_x64.app.tar.gz.sig          # macOS Intel updater 签名
-    ├── Knowledge.Base_1.4.0_amd64.deb             # Linux Debian/Ubuntu 包
-    ├── Knowledge.Base_1.4.0_amd64.AppImage        # Linux 通用 AppImage
-    ├── Knowledge.Base_1.3.1_amd64.AppImage.tar.gz # Linux updater
-    └── Knowledge.Base_1.3.1_amd64.AppImage.tar.gz.sig # Linux updater 签名
+    ├── Knowledge.Base_1.5.0_amd64.deb             # Linux Debian/Ubuntu 包
+    ├── Knowledge.Base_1.5.0_amd64.AppImage        # Linux 通用 AppImage
+    ├── Knowledge.Base_1.5.0_amd64.AppImage.tar.gz # Linux updater
+    └── Knowledge.Base_1.5.0_amd64.AppImage.tar.gz.sig # Linux updater 签名
 update.json                                         # 自动更新元数据（GitHub 版）
 update-r2.json                                      # 自动更新元数据（R2 版，备档）
 ```
