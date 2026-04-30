@@ -2,15 +2,15 @@
 
 本地优先的知识库桌面应用（Tauri 2.x + React 19）的安装包与自动更新端点仓库。
 
-## 最新版本: v1.5.0
+## 最新版本: v1.6.0
 
 | 平台 | 下载链接 |
 |------|---------|
-| Windows x64 | [Knowledge.Base_1.5.0_x64-setup.exe](releases/v1.5.0/Knowledge.Base_1.5.0_x64-setup.exe) |
-| macOS Apple Silicon | [Knowledge.Base_1.5.0_aarch64.dmg](releases/v1.5.0/Knowledge.Base_1.5.0_aarch64.dmg) |
-| macOS Intel | [Knowledge.Base_1.5.0_x64.dmg](releases/v1.5.0/Knowledge.Base_1.5.0_x64.dmg) |
-| Linux x64 (deb) | [Knowledge.Base_1.5.0_amd64.deb](releases/v1.5.0/Knowledge.Base_1.5.0_amd64.deb) |
-| Linux x64 (AppImage) | [Knowledge.Base_1.5.0_amd64.AppImage](releases/v1.5.0/Knowledge.Base_1.5.0_amd64.AppImage) |
+| Windows x64 | [Knowledge.Base_1.6.0_x64-setup.exe](releases/v1.6.0/Knowledge.Base_1.6.0_x64-setup.exe) |
+| macOS Apple Silicon | [Knowledge.Base_1.6.0_aarch64.dmg](releases/v1.6.0/Knowledge.Base_1.6.0_aarch64.dmg) |
+| macOS Intel | [Knowledge.Base_1.6.0_x64.dmg](releases/v1.6.0/Knowledge.Base_1.6.0_x64.dmg) |
+| Linux x64 (deb) | [Knowledge.Base_1.6.0_amd64.deb](releases/v1.6.0/Knowledge.Base_1.6.0_amd64.deb) |
+| Linux x64 (AppImage) | [Knowledge.Base_1.6.0_amd64.AppImage](releases/v1.6.0/Knowledge.Base_1.6.0_amd64.AppImage) |
 
 ## 自动更新
 
@@ -22,6 +22,23 @@
 | 2 (备) | `https://github.com/bkywksj/knowledge-base-release/raw/main/update.json` | GitHub raw 兜底 |
 
 ## 版本历史
+
+### v1.6.0 (2026-04-30)
+
+**思维导图视图 + pop-out 多窗口分屏 + 任务子步骤 + 任务详情 Modal + 赞赏页**
+
+新增功能：
+- **思维导图视图（基于 markmap）**：笔记编辑器顶栏 🧠 按钮把 markdown 标题层级实时渲染为思维导图，与编辑器并排嵌入式分栏（真分屏，不是浮层）；可拖拽 splitter 调宽（320–1200px，宽度持久化），打开时大纲自动隐藏；支持放大/缩小/自适应/导出 SVG（经 Tauri save 对话框 + Rust 写盘）
+- **笔记 pop-out 多窗口**：编辑器顶栏 ↗ 按钮把当前笔记弹到独立 OS 窗口（精简模式无侧栏/Tabs），用于双显示器对照、两笔记对比；同 note_id 已存在窗口直接前置
+- **任务子步骤（参考 MS To Do 模型）**：单层不嵌套；列表行 ▶ 行内展开勾选；进度徽章 `done/total` 实时更新（局部 patch 不刷新整列表）；主任务完成不强制勾选子任务（与业界主流一致）
+- **任务详情 Modal（只读）**：点任务行不再直接进编辑态，改为弹只读详情 Modal（与首页今日待办一致），含子任务区；左下「编辑」按钮 / hover 铅笔图标 / 右键菜单"编辑任务"才进编辑 Modal；首页今日待办卡片定高 280px + 内部滚动
+- **赞赏支持页**：关于页加「赞赏支持」锚点 + 微信赞赏码；「作者 & 社区」加 QQ 交流群（群号 1090770702）；文档站新建 sponsor.md 收纳所有支持方式
+
+修复 / 优化：
+- 笔记列表 / 侧边栏树拖动排序（含拖到顶部 / 闪烁优化）
+- .md 导入保留行内 / fence 外缩进、段内单换行渲染为 `<br>`
+- 图文混合粘贴本地化（含 Office Word file:// 临时图）
+- 截图粘贴去重（`items` 优先 + `files` 兜底）
 
 ### v1.5.0 (2026-04-28)
 
@@ -280,20 +297,22 @@ releases/
 │   └── ...
 ├── v1.4.0/
 │   └── ...
-└── v1.5.0/
-    ├── Knowledge.Base_1.5.0_x64-setup.exe         # Windows 安装包
-    ├── Knowledge.Base_1.5.0_x64-setup.exe.sig     # Windows 签名
-    ├── Knowledge.Base_1.5.0_x64-setup.nsis.zip    # Windows updater 压缩包
-    ├── Knowledge.Base_1.5.0_aarch64.dmg           # macOS ARM 安装镜像
-    ├── Knowledge.Base_1.5.0_x64.dmg               # macOS Intel 安装镜像
+├── v1.5.0/
+│   └── ...
+└── v1.6.0/
+    ├── Knowledge.Base_1.6.0_x64-setup.exe         # Windows 安装包
+    ├── Knowledge.Base_1.6.0_x64-setup.exe.sig     # Windows 签名
+    ├── Knowledge.Base_1.6.0_x64-setup.nsis.zip    # Windows updater 压缩包
+    ├── Knowledge.Base_1.6.0_aarch64.dmg           # macOS ARM 安装镜像
+    ├── Knowledge.Base_1.6.0_x64.dmg               # macOS Intel 安装镜像
     ├── Knowledge.Base_aarch64.app.tar.gz          # macOS ARM updater
     ├── Knowledge.Base_aarch64.app.tar.gz.sig      # macOS ARM updater 签名
     ├── Knowledge.Base_x64.app.tar.gz              # macOS Intel updater
     ├── Knowledge.Base_x64.app.tar.gz.sig          # macOS Intel updater 签名
-    ├── Knowledge.Base_1.5.0_amd64.deb             # Linux Debian/Ubuntu 包
-    ├── Knowledge.Base_1.5.0_amd64.AppImage        # Linux 通用 AppImage
-    ├── Knowledge.Base_1.5.0_amd64.AppImage.tar.gz # Linux updater
-    └── Knowledge.Base_1.5.0_amd64.AppImage.tar.gz.sig # Linux updater 签名
+    ├── Knowledge.Base_1.6.0_amd64.deb             # Linux Debian/Ubuntu 包
+    ├── Knowledge.Base_1.6.0_amd64.AppImage        # Linux 通用 AppImage
+    ├── Knowledge.Base_1.6.0_amd64.AppImage.tar.gz # Linux updater
+    └── Knowledge.Base_1.6.0_amd64.AppImage.tar.gz.sig # Linux updater 签名
 update.json                                         # 自动更新元数据（GitHub 版）
 update-r2.json                                      # 自动更新元数据（R2 版，备档）
 ```
