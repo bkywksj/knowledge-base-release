@@ -2,15 +2,15 @@
 
 本地优先的知识库桌面应用（Tauri 2.x + React 19）的安装包与自动更新端点仓库。
 
-## 最新版本: v1.6.0
+## 最新版本: v1.7.0
 
 | 平台 | 下载链接 |
 |------|---------|
-| Windows x64 | [Knowledge.Base_1.6.0_x64-setup.exe](releases/v1.6.0/Knowledge.Base_1.6.0_x64-setup.exe) |
-| macOS Apple Silicon | [Knowledge.Base_1.6.0_aarch64.dmg](releases/v1.6.0/Knowledge.Base_1.6.0_aarch64.dmg) |
-| macOS Intel | [Knowledge.Base_1.6.0_x64.dmg](releases/v1.6.0/Knowledge.Base_1.6.0_x64.dmg) |
-| Linux x64 (deb) | [Knowledge.Base_1.6.0_amd64.deb](releases/v1.6.0/Knowledge.Base_1.6.0_amd64.deb) |
-| Linux x64 (AppImage) | [Knowledge.Base_1.6.0_amd64.AppImage](releases/v1.6.0/Knowledge.Base_1.6.0_amd64.AppImage) |
+| Windows x64 | [Knowledge.Base_1.7.0_x64-setup.exe](releases/v1.7.0/Knowledge.Base_1.7.0_x64-setup.exe) |
+| macOS Apple Silicon | [Knowledge.Base_1.7.0_aarch64.dmg](releases/v1.7.0/Knowledge.Base_1.7.0_aarch64.dmg) |
+| macOS Intel | [Knowledge.Base_1.7.0_x64.dmg](releases/v1.7.0/Knowledge.Base_1.7.0_x64.dmg) |
+| Linux x64 (deb) | [Knowledge.Base_1.7.0_amd64.deb](releases/v1.7.0/Knowledge.Base_1.7.0_amd64.deb) |
+| Linux x64 (AppImage) | [Knowledge.Base_1.7.0_amd64.AppImage](releases/v1.7.0/Knowledge.Base_1.7.0_amd64.AppImage) |
 
 ## 自动更新
 
@@ -22,6 +22,21 @@
 | 2 (备) | `https://github.com/bkywksj/knowledge-base-release/raw/main/update.json` | GitHub raw 兜底 |
 
 ## 版本历史
+
+### v1.7.0 (2026-05-02)
+
+**Linux 启动 BUG 修复 + 中文资产路径加载修复 + 录音音量波形 + 多输入框语音**
+
+修复：
+- **Linux 单实例锁残留导致打不开窗口（高优先级）**：旧实现用 `create_new(true)` 当锁，进程退出锁文件不删，下次启动永远被误判成"已运行"——要么 ping 默认实例后直接退出（用户看不到窗口），要么不停往后分配 instance-2/3/.../99 形成 zombie 实例。改为 Unix 一律走 `flock(LOCK_EX|LOCK_NB)`，内核在 fd 关闭时自动释放（含 panic / SIGKILL），锁文件即使残留也不再误判
+- **中文资产文件名加载失败**：tiptap-markdown 序列化会把 `![](kb-asset://中文.png)` 编码成 `%E4%B8%AD%E6%96%87.png` 写入 .md，重新加载后按字面值在磁盘里找文件直接 404。`parseKbAsset` 增加 `decodeURIComponent`，失败回退原值避免崩溃
+
+新增 / 优化：
+- **录音按钮加实时音量波形**：新增 `useAudioLevel` Hook 通过 Web Audio AnalyserNode 60fps 采集分频段强度；MicButton 录音时把 Square 图标换成 3 条柱实时跳动 + 按音量放大红环 box-shadow（脉动反馈），QuickCaptureAsrModal 同款放大版
+- **更多输入框接入语音**：把 MicButton 铺到笔记标题 / 笔记编辑器标题 / 笔记列表搜索 / 任务搜索 / Prompt 标题与说明 / 标签筛选 / 全局搜索 / 日记标题等多处入口
+- **AI 对话页麦克风按钮位置调整**：从 TextArea 前换到后，避免和发送键挤一起
+- **输入框统一 allowClear**：HomeSearchInput / DraftNoteModal 标题 / CommandPalette 输入都补带 X 按钮一键清空
+- **Rust 全量 cargo fmt 格式化**：跨 commands / database / services / kb-core / mcp / tray，零业务逻辑变化
 
 ### v1.6.0 (2026-04-30)
 
@@ -299,20 +314,22 @@ releases/
 │   └── ...
 ├── v1.5.0/
 │   └── ...
-└── v1.6.0/
-    ├── Knowledge.Base_1.6.0_x64-setup.exe         # Windows 安装包
-    ├── Knowledge.Base_1.6.0_x64-setup.exe.sig     # Windows 签名
-    ├── Knowledge.Base_1.6.0_x64-setup.nsis.zip    # Windows updater 压缩包
-    ├── Knowledge.Base_1.6.0_aarch64.dmg           # macOS ARM 安装镜像
-    ├── Knowledge.Base_1.6.0_x64.dmg               # macOS Intel 安装镜像
+├── v1.6.0/
+│   └── ...
+└── v1.7.0/
+    ├── Knowledge.Base_1.7.0_x64-setup.exe         # Windows 安装包
+    ├── Knowledge.Base_1.7.0_x64-setup.exe.sig     # Windows 签名
+    ├── Knowledge.Base_1.7.0_x64-setup.nsis.zip    # Windows updater 压缩包
+    ├── Knowledge.Base_1.7.0_aarch64.dmg           # macOS ARM 安装镜像
+    ├── Knowledge.Base_1.7.0_x64.dmg               # macOS Intel 安装镜像
     ├── Knowledge.Base_aarch64.app.tar.gz          # macOS ARM updater
     ├── Knowledge.Base_aarch64.app.tar.gz.sig      # macOS ARM updater 签名
     ├── Knowledge.Base_x64.app.tar.gz              # macOS Intel updater
     ├── Knowledge.Base_x64.app.tar.gz.sig          # macOS Intel updater 签名
-    ├── Knowledge.Base_1.6.0_amd64.deb             # Linux Debian/Ubuntu 包
-    ├── Knowledge.Base_1.6.0_amd64.AppImage        # Linux 通用 AppImage
-    ├── Knowledge.Base_1.6.0_amd64.AppImage.tar.gz # Linux updater
-    └── Knowledge.Base_1.6.0_amd64.AppImage.tar.gz.sig # Linux updater 签名
+    ├── Knowledge.Base_1.7.0_amd64.deb             # Linux Debian/Ubuntu 包
+    ├── Knowledge.Base_1.7.0_amd64.AppImage        # Linux 通用 AppImage
+    ├── Knowledge.Base_1.7.0_amd64.AppImage.tar.gz # Linux updater
+    └── Knowledge.Base_1.7.0_amd64.AppImage.tar.gz.sig # Linux updater 签名
 update.json                                         # 自动更新元数据（GitHub 版）
 update-r2.json                                      # 自动更新元数据（R2 版，备档）
 ```
