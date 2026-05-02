@@ -30,6 +30,7 @@
 修复：
 - **Linux 单实例锁残留导致打不开窗口（高优先级）**：旧实现用 `create_new(true)` 当锁，进程退出锁文件不删，下次启动永远被误判成"已运行"——要么 ping 默认实例后直接退出（用户看不到窗口），要么不停往后分配 instance-2/3/.../99 形成 zombie 实例。改为 Unix 一律走 `flock(LOCK_EX|LOCK_NB)`，内核在 fd 关闭时自动释放（含 panic / SIGKILL），锁文件即使残留也不再误判
 - **中文资产文件名加载失败**：tiptap-markdown 序列化会把 `![](kb-asset://中文.png)` 编码成 `%E4%B8%AD%E6%96%87.png` 写入 .md，重新加载后按字面值在磁盘里找文件直接 404。`parseKbAsset` 增加 `decodeURIComponent`，失败回退原值避免崩溃
+- **输入框内点麦克风光标消失**：Button mousedown 默认抢焦点导致 Input 失焦光标停闪。加 `onMouseDown preventDefault` 阻断焦点转移，转写完拼接文本无需重新聚焦
 
 新增 / 优化：
 - **录音按钮加实时音量波形**：新增 `useAudioLevel` Hook 通过 Web Audio AnalyserNode 60fps 采集分频段强度；MicButton 录音时把 Square 图标换成 3 条柱实时跳动 + 按音量放大红环 box-shadow（脉动反馈），QuickCaptureAsrModal 同款放大版
