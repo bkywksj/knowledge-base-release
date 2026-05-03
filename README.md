@@ -2,15 +2,15 @@
 
 本地优先的知识库桌面应用（Tauri 2.x + React 19）的安装包与自动更新端点仓库。
 
-## 最新版本: v1.7.0
+## 最新版本: v1.7.1
 
 | 平台 | 下载链接 |
 |------|---------|
-| Windows x64 | [Knowledge.Base_1.7.0_x64-setup.exe](releases/v1.7.0/Knowledge.Base_1.7.0_x64-setup.exe) |
-| macOS Apple Silicon | [Knowledge.Base_1.7.0_aarch64.dmg](releases/v1.7.0/Knowledge.Base_1.7.0_aarch64.dmg) |
-| macOS Intel | [Knowledge.Base_1.7.0_x64.dmg](releases/v1.7.0/Knowledge.Base_1.7.0_x64.dmg) |
-| Linux x64 (deb) | [Knowledge.Base_1.7.0_amd64.deb](releases/v1.7.0/Knowledge.Base_1.7.0_amd64.deb) |
-| Linux x64 (AppImage) | [Knowledge.Base_1.7.0_amd64.AppImage](releases/v1.7.0/Knowledge.Base_1.7.0_amd64.AppImage) |
+| Windows x64 | [Knowledge.Base_1.7.1_x64-setup.exe](releases/v1.7.1/Knowledge.Base_1.7.1_x64-setup.exe) |
+| macOS Apple Silicon | [Knowledge.Base_1.7.1_aarch64.dmg](releases/v1.7.1/Knowledge.Base_1.7.1_aarch64.dmg) |
+| macOS Intel | [Knowledge.Base_1.7.1_x64.dmg](releases/v1.7.1/Knowledge.Base_1.7.1_x64.dmg) |
+| Linux x64 (deb) | [Knowledge.Base_1.7.1_amd64.deb](releases/v1.7.1/Knowledge.Base_1.7.1_amd64.deb) |
+| Linux x64 (AppImage) | [Knowledge.Base_1.7.1_amd64.AppImage](releases/v1.7.1/Knowledge.Base_1.7.1_amd64.AppImage) |
 
 ## 自动更新
 
@@ -22,6 +22,21 @@
 | 2 (备) | `https://github.com/bkywksj/knowledge-base-release/raw/main/update.json` | GitHub raw 兜底 |
 
 ## 版本历史
+
+### v1.7.1 (2026-05-03)
+
+**语音录入体验优化 + 导入目录行为调整 + 编辑器大纲优化**
+
+新增 / 优化：
+- **语音录入快捷键体验优化**：全局快捷键降级为应用内快捷键，移除 `Ctrl+Shift+V`，减少与系统和其他软件快捷键冲突
+- **麦克风状态同步更清晰**：MicButton 镜像全局录音状态，工具条录音时同步变红，录音反馈更一致
+- **导入预览默认更贴近日常使用**：默认直接导入源目录内部内容，不额外包一层源根目录；仍可勾选「保留原目录文件夹」按旧方式导入
+- **编辑器大纲可隐藏**：右侧大纲增加隐藏入口，减少编辑时的常态视觉干扰
+- **大纲宽度可快速还原**：双击大纲分隔条恢复默认宽度，拖拽宽度继续持久化保存
+
+UI / 交互：
+- 大纲拖拽分隔条改为仅用光标提示，移除 hover 蓝色背景，编辑区视觉更安静
+- 清理侧栏与笔记面板导入入口的冗余默认参数，统一导入预览行为
 
 ### v1.7.0 (2026-05-02)
 
@@ -317,20 +332,22 @@ releases/
 │   └── ...
 ├── v1.6.0/
 │   └── ...
-└── v1.7.0/
-    ├── Knowledge.Base_1.7.0_x64-setup.exe         # Windows 安装包
-    ├── Knowledge.Base_1.7.0_x64-setup.exe.sig     # Windows 签名
-    ├── Knowledge.Base_1.7.0_x64-setup.nsis.zip    # Windows updater 压缩包
-    ├── Knowledge.Base_1.7.0_aarch64.dmg           # macOS ARM 安装镜像
-    ├── Knowledge.Base_1.7.0_x64.dmg               # macOS Intel 安装镜像
-    ├── Knowledge.Base_aarch64.app.tar.gz          # macOS ARM updater
-    ├── Knowledge.Base_aarch64.app.tar.gz.sig      # macOS ARM updater 签名
-    ├── Knowledge.Base_x64.app.tar.gz              # macOS Intel updater
-    ├── Knowledge.Base_x64.app.tar.gz.sig          # macOS Intel updater 签名
-    ├── Knowledge.Base_1.7.0_amd64.deb             # Linux Debian/Ubuntu 包
-    ├── Knowledge.Base_1.7.0_amd64.AppImage        # Linux 通用 AppImage
-    ├── Knowledge.Base_1.7.0_amd64.AppImage.tar.gz # Linux updater
-    └── Knowledge.Base_1.7.0_amd64.AppImage.tar.gz.sig # Linux updater 签名
+├── v1.7.0/
+│   └── ...
+└── v1.7.1/
+    ├── Knowledge.Base_1.7.1_x64-setup.exe         # Windows 安装包
+    ├── Knowledge.Base_1.7.1_x64-setup.exe.sig     # Windows 签名
+    ├── Knowledge.Base_1.7.1_x64-setup.nsis.zip    # Windows updater 压缩包
+    ├── Knowledge.Base_1.7.1_aarch64.dmg           # macOS ARM 安装镜像
+    ├── Knowledge.Base_1.7.1_x64.dmg               # macOS Intel 安装镜像
+    ├── Knowledge.Base_aarch64.app.tar.gz              # macOS ARM updater
+    ├── Knowledge.Base_aarch64.app.tar.gz.sig          # macOS ARM updater 签名
+    ├── Knowledge.Base_x64.app.tar.gz                  # macOS Intel updater
+    ├── Knowledge.Base_x64.app.tar.gz.sig              # macOS Intel updater 签名
+    ├── Knowledge.Base_1.7.1_amd64.deb             # Linux Debian/Ubuntu 包
+    ├── Knowledge.Base_1.7.1_amd64.AppImage        # Linux 通用 AppImage
+    ├── Knowledge.Base_1.7.1_amd64.AppImage.tar.gz # Linux updater
+    └── Knowledge.Base_1.7.1_amd64.AppImage.tar.gz.sig # Linux updater 签名
 update.json                                         # 自动更新元数据（GitHub 版）
 update-r2.json                                      # 自动更新元数据（R2 版，备档）
 ```
