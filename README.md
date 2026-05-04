@@ -2,15 +2,15 @@
 
 本地优先的知识库桌面应用（Tauri 2.x + React 19）的安装包与自动更新端点仓库。
 
-## 最新版本: v1.7.1
+## 最新版本: v1.8.0
 
 | 平台 | 下载链接 |
 |------|---------|
-| Windows x64 | [Knowledge.Base_1.7.1_x64-setup.exe](releases/v1.7.1/Knowledge.Base_1.7.1_x64-setup.exe) |
-| macOS Apple Silicon | [Knowledge.Base_1.7.1_aarch64.dmg](releases/v1.7.1/Knowledge.Base_1.7.1_aarch64.dmg) |
-| macOS Intel | [Knowledge.Base_1.7.1_x64.dmg](releases/v1.7.1/Knowledge.Base_1.7.1_x64.dmg) |
-| Linux x64 (deb) | [Knowledge.Base_1.7.1_amd64.deb](releases/v1.7.1/Knowledge.Base_1.7.1_amd64.deb) |
-| Linux x64 (AppImage) | [Knowledge.Base_1.7.1_amd64.AppImage](releases/v1.7.1/Knowledge.Base_1.7.1_amd64.AppImage) |
+| Windows x64 | [Knowledge.Base_1.8.0_x64-setup.exe](releases/v1.8.0/Knowledge.Base_1.8.0_x64-setup.exe) |
+| macOS Apple Silicon | [Knowledge.Base_1.8.0_aarch64.dmg](releases/v1.8.0/Knowledge.Base_1.8.0_aarch64.dmg) |
+| macOS Intel | [Knowledge.Base_1.8.0_x64.dmg](releases/v1.8.0/Knowledge.Base_1.8.0_x64.dmg) |
+| Linux x64 (deb) | [Knowledge.Base_1.8.0_amd64.deb](releases/v1.8.0/Knowledge.Base_1.8.0_amd64.deb) |
+| Linux x64 (AppImage) | [Knowledge.Base_1.8.0_amd64.AppImage](releases/v1.8.0/Knowledge.Base_1.8.0_amd64.AppImage) |
 
 ## 自动更新
 
@@ -22,6 +22,32 @@
 | 2 (备) | `https://github.com/bkywksj/knowledge-base-release/raw/main/update.json` | GitHub raw 兜底 |
 
 ## 版本历史
+
+### v1.8.0 (2026-05-04)
+
+**编辑体验稳定性升级 + 外链图片自动落库 + 老 WebView 兼容兜底 + 关于页联系作者**
+
+桌面端 BUG 修复（重要）：
+- **拦截 F5 / Ctrl+R 防误刷新丢草稿**：桌面应用不是浏览器，刷新会丢编辑器状态、Zustand 内存状态和未落库草稿。F5 单键尤其容易误触；在 main.tsx capture 阶段拦截 F5 / Ctrl+R / Ctrl+Shift+R / Ctrl+F5
+- **笔记编辑页 Ctrl+A 只选笔记内容**：焦点未落到正文时按 Ctrl+A 不再触发 WebView 原生「选中整个文档」把侧栏 / 工具栏 / 元属性都选上，转发到 editor.commands.selectAll
+- **粘贴外链图片走 Rust reqwest 绕开防盗链**：从公众号 / 微博 / 知乎复制带图文章，外链图片自动用 reqwest 下载落库（带 Referer 兜底），告别破图
+- **修保存内容比当前显示少一字的闭包陷阱**：NoteEditor / TaskDetail / QuickCapture 三处闭包陷阱，快速打字 → 立即返回保存路径会丢最后一字
+- **老 WebView 的 lookbehind 不兼容崩溃**：旧版 Edge / WebView2 不支持 RegExp lookbehind 语法，编辑器初始化加 try/catch 兜底，避免直接白屏
+- **MCP 容忍 LLM 把 id 传成字符串**：部分模型把 note id 误传成字符串导致 get_note 报错，加自动数字转换
+
+桌面端 UX 增强：
+- **关于页加作者介绍 + QQ/微信联系方式**：社区栏头部加作者标签（Java 全栈 AI 架构师 / Agent 架构师）；末尾 Descriptions 加联系作者 QQ/微信号（点击复制，提示备注「来自知识库」），方便从应用内直接联系作者反馈
+- **编辑器布局改 absolute+inset**：字数统计挪到元属性栏，长文档滚动 / 工具栏吸顶更稳
+- **子文件夹图标加中心小白点**：视觉区分层级，一眼能看出哪些文件夹是子级
+- **NewNoteButton 下拉菜单补齐「导入 Markdown 文件夹」**：之前只能导入单文件，现在与右键菜单入口对齐
+
+移动端（Android）—— 开发中预览，本版桌面端发布不含 APK：
+- Tauri Android target 接入 + 真机跑通
+- 大量 cfg gate 隔离桌面专属代码（rust-s3 / pdfium / calamine / docx-rs / autostart 等）
+- 移动版页面：笔记编辑 / 全文搜索 / 标签 / 回收站 / AI 聊天 / 任务详情 / 闪念捕获 / 我的 Tab / Dashboard 30 天写作热力图 / 闪卡复习 / 模型管理 / WebDAV 手动推拉 / 单文件导入 / 网页剪藏 / 桌面专属设置项隔离
+- 主页 Dashboard 与底部 Tab 4 格可定制
+- Android debug APK CI 工作流（暂不进 update.json，仅供内测）
+- 移动端 QA 核查清单 120+ 项跟踪中
 
 ### v1.7.1 (2026-05-03)
 
@@ -112,7 +138,7 @@ UI：
 - **Toggle 折叠块**（▶ 标题 + 可折叠多行内容，标准 HTML `<details>` 兼容）
 - **字数统计**（工具栏右浮，hover 弹层看字数 / 字符 / 段落 / 阅读时长）
 - **Emoji 选择器**（10 类约 280 个常用 emoji，水平分类条 + 网格）
-- **工具栏插入视频 / 视频时间戳 / 附件** 按钮（与"插入图片"对称）
+- **工具栏插入视频 / 视频时间戳 / 附件** 按钮(与"插入图片"对称)
 
 孤儿素材清理升级：
 - 一次扫描覆盖 5 类素材（images / videos / attachments / pdfs / sources），按类别分组展示
@@ -334,20 +360,22 @@ releases/
 │   └── ...
 ├── v1.7.0/
 │   └── ...
-└── v1.7.1/
-    ├── Knowledge.Base_1.7.1_x64-setup.exe         # Windows 安装包
-    ├── Knowledge.Base_1.7.1_x64-setup.exe.sig     # Windows 签名
-    ├── Knowledge.Base_1.7.1_x64-setup.nsis.zip    # Windows updater 压缩包
-    ├── Knowledge.Base_1.7.1_aarch64.dmg           # macOS ARM 安装镜像
-    ├── Knowledge.Base_1.7.1_x64.dmg               # macOS Intel 安装镜像
+├── v1.7.1/
+│   └── ...
+└── v1.8.0/
+    ├── Knowledge.Base_1.8.0_x64-setup.exe         # Windows 安装包
+    ├── Knowledge.Base_1.8.0_x64-setup.exe.sig     # Windows 签名
+    ├── Knowledge.Base_1.8.0_x64-setup.nsis.zip    # Windows updater 压缩包
+    ├── Knowledge.Base_1.8.0_aarch64.dmg           # macOS ARM 安装镜像
+    ├── Knowledge.Base_1.8.0_x64.dmg               # macOS Intel 安装镜像
     ├── Knowledge.Base_aarch64.app.tar.gz              # macOS ARM updater
     ├── Knowledge.Base_aarch64.app.tar.gz.sig          # macOS ARM updater 签名
     ├── Knowledge.Base_x64.app.tar.gz                  # macOS Intel updater
     ├── Knowledge.Base_x64.app.tar.gz.sig              # macOS Intel updater 签名
-    ├── Knowledge.Base_1.7.1_amd64.deb             # Linux Debian/Ubuntu 包
-    ├── Knowledge.Base_1.7.1_amd64.AppImage        # Linux 通用 AppImage
-    ├── Knowledge.Base_1.7.1_amd64.AppImage.tar.gz # Linux updater
-    └── Knowledge.Base_1.7.1_amd64.AppImage.tar.gz.sig # Linux updater 签名
+    ├── Knowledge.Base_1.8.0_amd64.deb             # Linux Debian/Ubuntu 包
+    ├── Knowledge.Base_1.8.0_amd64.AppImage        # Linux 通用 AppImage
+    ├── Knowledge.Base_1.8.0_amd64.AppImage.tar.gz # Linux updater
+    └── Knowledge.Base_1.8.0_amd64.AppImage.tar.gz.sig # Linux updater 签名
 update.json                                         # 自动更新元数据（GitHub 版）
 update-r2.json                                      # 自动更新元数据（R2 版，备档）
 ```
