@@ -2,15 +2,15 @@
 
 本地优先的知识库桌面应用（Tauri 2.x + React 19）的安装包与自动更新端点仓库。
 
-## 最新版本: v1.8.0
+## 最新版本: v1.8.1
 
 | 平台 | 下载链接 |
 |------|---------|
-| Windows x64 | [Knowledge.Base_1.8.0_x64-setup.exe](releases/v1.8.0/Knowledge.Base_1.8.0_x64-setup.exe) |
-| macOS Apple Silicon | [Knowledge.Base_1.8.0_aarch64.dmg](releases/v1.8.0/Knowledge.Base_1.8.0_aarch64.dmg) |
-| macOS Intel | [Knowledge.Base_1.8.0_x64.dmg](releases/v1.8.0/Knowledge.Base_1.8.0_x64.dmg) |
-| Linux x64 (deb) | [Knowledge.Base_1.8.0_amd64.deb](releases/v1.8.0/Knowledge.Base_1.8.0_amd64.deb) |
-| Linux x64 (AppImage) | [Knowledge.Base_1.8.0_amd64.AppImage](releases/v1.8.0/Knowledge.Base_1.8.0_amd64.AppImage) |
+| Windows x64 | [Knowledge.Base_1.8.1_x64-setup.exe](releases/v1.8.1/Knowledge.Base_1.8.1_x64-setup.exe) |
+| macOS Apple Silicon | [Knowledge.Base_1.8.1_aarch64.dmg](releases/v1.8.1/Knowledge.Base_1.8.1_aarch64.dmg) |
+| macOS Intel | [Knowledge.Base_1.8.1_x64.dmg](releases/v1.8.1/Knowledge.Base_1.8.1_x64.dmg) |
+| Linux x64 (deb) | [Knowledge.Base_1.8.1_amd64.deb](releases/v1.8.1/Knowledge.Base_1.8.1_amd64.deb) |
+| Linux x64 (AppImage) | [Knowledge.Base_1.8.1_amd64.AppImage](releases/v1.8.1/Knowledge.Base_1.8.1_amd64.AppImage) |
 
 ## 自动更新
 
@@ -22,6 +22,13 @@
 | 2 (备) | `https://github.com/bkywksj/knowledge-base-release/raw/main/update.json` | GitHub raw 兜底 |
 
 ## 版本历史
+
+### v1.8.1 (2026-05-07)
+
+**文件夹自定义颜色 + 编辑器查找替换**
+
+- **文件夹自定义图标颜色**：右键文件夹 → 弹出 20 色预设色板（与标签同款），一键设色或清除恢复默认主题色；树渲染按 color 实时上色，子文件夹保留中心小白点的层级标识
+- **编辑器内查找替换（Ctrl+F / Ctrl+H）**：自实现 Tiptap 3 兼容扩展（社区包仅支 Tiptap 2），浮条 UI 含大小写 / 全词 / 上一个 / 下一个 / 替换 / 全部替换 + n/m 计数；Enter 跳下一、Shift+Enter 跳上一、Esc 关闭
 
 ### v1.8.0 (2026-05-04)
 
@@ -362,20 +369,22 @@ releases/
 │   └── ...
 ├── v1.7.1/
 │   └── ...
-└── v1.8.0/
-    ├── Knowledge.Base_1.8.0_x64-setup.exe         # Windows 安装包
-    ├── Knowledge.Base_1.8.0_x64-setup.exe.sig     # Windows 签名
-    ├── Knowledge.Base_1.8.0_x64-setup.nsis.zip    # Windows updater 压缩包
-    ├── Knowledge.Base_1.8.0_aarch64.dmg           # macOS ARM 安装镜像
-    ├── Knowledge.Base_1.8.0_x64.dmg               # macOS Intel 安装镜像
+├── v1.8.0/
+│   └── ...
+└── v1.8.1/
+    ├── Knowledge.Base_1.8.1_x64-setup.exe         # Windows 安装包
+    ├── Knowledge.Base_1.8.1_x64-setup.exe.sig     # Windows 签名
+    ├── Knowledge.Base_1.8.1_x64-setup.nsis.zip    # Windows updater 压缩包
+    ├── Knowledge.Base_1.8.1_aarch64.dmg           # macOS ARM 安装镜像
+    ├── Knowledge.Base_1.8.1_x64.dmg               # macOS Intel 安装镜像
     ├── Knowledge.Base_aarch64.app.tar.gz              # macOS ARM updater
     ├── Knowledge.Base_aarch64.app.tar.gz.sig          # macOS ARM updater 签名
     ├── Knowledge.Base_x64.app.tar.gz                  # macOS Intel updater
     ├── Knowledge.Base_x64.app.tar.gz.sig              # macOS Intel updater 签名
-    ├── Knowledge.Base_1.8.0_amd64.deb             # Linux Debian/Ubuntu 包
-    ├── Knowledge.Base_1.8.0_amd64.AppImage        # Linux 通用 AppImage
-    ├── Knowledge.Base_1.8.0_amd64.AppImage.tar.gz # Linux updater
-    └── Knowledge.Base_1.8.0_amd64.AppImage.tar.gz.sig # Linux updater 签名
+    ├── Knowledge.Base_1.8.1_amd64.deb             # Linux Debian/Ubuntu 包
+    ├── Knowledge.Base_1.8.1_amd64.AppImage        # Linux 通用 AppImage
+    ├── Knowledge.Base_1.8.1_amd64.AppImage.tar.gz # Linux updater
+    └── Knowledge.Base_1.8.1_amd64.AppImage.tar.gz.sig # Linux updater 签名
 update.json                                         # 自动更新元数据（GitHub 版）
 update-r2.json                                      # 自动更新元数据（R2 版，备档）
 ```
