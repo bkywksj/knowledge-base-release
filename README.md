@@ -2,15 +2,16 @@
 
 本地优先的知识库桌面应用（Tauri 2.x + React 19）的安装包与自动更新端点仓库。
 
-## 最新版本: v1.8.1
+## 最新版本: v1.9.0
 
 | 平台 | 下载链接 |
 |------|---------|
-| Windows x64 | [Knowledge.Base_1.8.1_x64-setup.exe](releases/v1.8.1/Knowledge.Base_1.8.1_x64-setup.exe) |
-| macOS Apple Silicon | [Knowledge.Base_1.8.1_aarch64.dmg](releases/v1.8.1/Knowledge.Base_1.8.1_aarch64.dmg) |
-| macOS Intel | [Knowledge.Base_1.8.1_x64.dmg](releases/v1.8.1/Knowledge.Base_1.8.1_x64.dmg) |
-| Linux x64 (deb) | [Knowledge.Base_1.8.1_amd64.deb](releases/v1.8.1/Knowledge.Base_1.8.1_amd64.deb) |
-| Linux x64 (AppImage) | [Knowledge.Base_1.8.1_amd64.AppImage](releases/v1.8.1/Knowledge.Base_1.8.1_amd64.AppImage) |
+| Windows x64 | [Knowledge.Base_1.9.0_x64-setup.exe](releases/v1.9.0/Knowledge.Base_1.9.0_x64-setup.exe) |
+| macOS Apple Silicon | [Knowledge.Base_1.9.0_aarch64.dmg](releases/v1.9.0/Knowledge.Base_1.9.0_aarch64.dmg) |
+| macOS Intel | [Knowledge.Base_1.9.0_x64.dmg](releases/v1.9.0/Knowledge.Base_1.9.0_x64.dmg) |
+| Linux x64 (deb) | [Knowledge.Base_1.9.0_amd64.deb](releases/v1.9.0/Knowledge.Base_1.9.0_amd64.deb) |
+| Linux x64 (AppImage) | [Knowledge.Base_1.9.0_amd64.AppImage](releases/v1.9.0/Knowledge.Base_1.9.0_amd64.AppImage) |
+| Android arm64 (APK) | [Knowledge.Base_1.9.0_android-arm64.apk](releases/v1.9.0/Knowledge.Base_1.9.0_android-arm64.apk) |
 
 ## 自动更新
 
@@ -22,6 +23,27 @@
 | 2 (备) | `https://github.com/bkywksj/knowledge-base-release/raw/main/update.json` | GitHub raw 兜底 |
 
 ## 版本历史
+
+### v1.9.0 (2026-05-12)
+
+**移动端（Android）全面可用 + 桌面端笔记对比/合并 + 同步重构收官**
+
+移动端：
+- **跨设备配置分享**：WebDAV 同步源 / AI 模型 / 语音识别（ASR）配置可通过 JSON 文本、二维码、剪贴板分享到其他设备，可选 PIN 加密（PBKDF2 + AES-GCM-256）
+- **应用内"检查更新"**：「我的 → 检查更新」检测到新版本可直接下载安装 APK
+- **笔记编辑器升级**：新增 Markdown 预览切换（编辑源码 ↔ 渲染预览）+ AI 助手联动（一键针对当前笔记问 AI）
+- **Android 正式签名**：release APK/AAB 用固定 keystore 签名，CI 自动构建（侧载 APK + Google Play AAB）
+- 修复输入法不弹起、工具栏按钮失焦、剪贴板读取失败等移动端问题
+
+桌面端：
+- **笔记对比 / 合并**：IDEA 式双栏 diff —— 工具栏「对比剪贴板」、右键「与另一篇笔记对比」、批量栏「对比」、同步冲突手动合并；支持同步滚动开关、合并方向切换、按内容自动选 Markdown 源码 / 纯文本
+- **笔记导出 PDF**（走系统打印对话框）+ `Ctrl+Alt+E` 快速导出 Markdown
+- **同步重构收官**：UI 区分「多端实时同步 / 快照归档」；WebDAV 附件同步、孤儿附件 GC（宽限期标记 + 清理）、快照 V0 端到端加密、「后台同步」按钮（点了立刻返回，先拉后推后台跑）；推送分小批 + 自适应并发，进度条不再卡 0%
+- **任务分类支持拖拽排序**
+- **新增「翡翠白瓷」主题**（三栏浅灰 + 翡翠绿点缀）
+- **Ollama 支持 function calling**（解锁 MCP / Skills），并修复多个 Ollama 连接 / 系统代理相关问题
+- AI 多会话流式不再串台
+- 修复：编辑器空行二次保存不再丢失、AI 写作处理选区不再丢图片、若干 UI 细节
 
 ### v1.8.1 (2026-05-07)
 
