@@ -1,0 +1,6 @@
+{
+  "version": "0.1.0",
+  "notes": "移动端（Android）首个正式版。独立 APK 可侧载，App 内「检查更新」自助升级。功能：Markdown 编辑（源码↔渲染预览切换）/ 全文搜索 / 双向链接 / 标签 / 回收站 / AI 问答（含针对当前笔记问 AI）/ 闪卡复习 / 任务 / 闪念捕获 / 每日笔记热力图 / 相机扫码 / WebDAV 手动推拉 / 单文件导入 / 网页剪藏；跨设备配置分享（WebDAV 源 / AI 模型 / ASR 配置，可 PIN 加密）。",
+  "pub_date": "2026-05-12T00:36:28Z",
+  "url": "https://github.com/bkywksj/knowledge-base-release/raw/main/releases/mobile-v0.1.0/Knowledge.Base_0.1.0_android-arm64.apk"
+}

@@ -33,7 +33,7 @@ APK 用固定 keystore（`kb-release.jks`）正式签名，CI（`android.yml`，
 
 | 移动版本 | 下载 |
 |------|------|
-| _（首个版本 0.1.0 发布中）_ | — |
+| **0.1.0** (2026-05-12) | [Knowledge.Base_0.1.0_android-arm64.apk](releases/mobile-v0.1.0/Knowledge.Base_0.1.0_android-arm64.apk) ｜ [.aab](releases/mobile-v0.1.0/Knowledge.Base_0.1.0_android-arm64.aab) ｜ [R2 稳定链接（mobile-latest.apk）](https://pub-9d9e6c0cb6934fb0a0c505e3c64f39b2.r2.dev/knowledge-base/mobile-latest.apk) |
 
 应用内「检查更新」：「我的 → 检查更新」读 `update-mobile.json`，发现新版本给出 APK 直链 → 浏览器下载 → 点一下进系统安装器（首次需在系统设置里允许「安装未知应用」）。
 
@@ -41,7 +41,11 @@ APK 用固定 keystore（`kb-release.jks`）正式签名，CI（`android.yml`，
 
 ### 移动端版本历史
 
-_（首个版本 0.1.0 即将发布）_
+#### mobile-v0.1.0 (2026-05-12)
+
+**移动端（Android）首个正式版**
+
+独立 APK 可侧载，App 内「检查更新」自助升级（读 `update-mobile.json`）。功能覆盖：Markdown 编辑（源码 ↔ 渲染预览切换）/ 全文搜索 / 双向链接 / 标签 / 回收站 / AI 问答（含「针对当前笔记问 AI」）/ 闪卡复习 / 任务 / 闪念捕获 / 每日笔记热力图 / 相机扫码 / WebDAV 手动推拉 / 单文件导入 / 网页剪藏；跨设备配置分享（WebDAV 源 / AI 模型 / ASR 配置，可 PIN 加密 PBKDF2+AES-GCM-256）。kb-release.jks 正式签名，`android.yml` 自动构建。
 
 ## 版本历史
 
