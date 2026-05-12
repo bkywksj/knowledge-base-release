@@ -1,7 +1,7 @@
 {
   "version": "1.9.0",
-  "notes": "移动端（Android）正式发布——独立 APK 可侧载、App 内\"检查更新\"自助升级、相机扫码 / 剪贴板 / 软键盘 / Markdown 预览 / AI 问答带笔记上下文等移动端适配；配置分享新增语音识别（ASR）；对比弹窗加合并方向切换；多项移动端 bug 修复。",
-  "pub_date": "2026-05-11T18:34:09Z",
+  "notes": "桌面端笔记对比/合并 + 同步重构收官 + 翡翠白瓷主题 + Ollama function calling；多项 BUG 修复。（移动端 Android 走独立版本线，首个版本以 0.1.0 单独发布）",
+  "pub_date": "2026-05-12T00:18:30Z",
   "platforms": {
     "windows-x86_64": {
       "url": "https://github.com/bkywksj/knowledge-base-release/raw/main/releases/v1.9.0/Knowledge.Base_1.9.0_x64-setup.exe",
@@ -18,9 +18,6 @@
     "linux-x86_64": {
       "url": "https://github.com/bkywksj/knowledge-base-release/raw/main/releases/v1.9.0/Knowledge.Base_1.9.0_amd64.AppImage.tar.gz",
       "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVRYnFxUU55WW1IYS9PSjdQMWJGK1VwOE9INzNoTGMwa1FzMkdqMEVxbHpzZHZhTURNMC9UWXczd29CaFJjTGVrenlJdHpoZHRVbjVSczAvbjgybDFsaWNaVnlBdHZRbXdNPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzc4NTIxNDE2CWZpbGU6S25vd2xlZGdlIEJhc2VfMS45LjBfYW1kNjQuQXBwSW1hZ2UudGFyLmd6CjZEU2Nic1IzQmdFYzZjc01uRGV5c3VJNEZyaTdvOU9Gd3hNakREVVVYRk9VT1NCZm1XbUhRQ3FTR1RiVGgxaE0wRHNVZmM0Z2hnVDVudWM0UnNuQkFnPT0K"
-    },
-    "android-arm64": {
-      "url": "https://github.com/bkywksj/knowledge-base-release/raw/main/releases/v1.9.0/Knowledge.Base_1.9.0_android-arm64.apk"
     }
   }
 }

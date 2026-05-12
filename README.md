@@ -11,29 +11,47 @@
 | macOS Intel | [Knowledge.Base_1.9.0_x64.dmg](releases/v1.9.0/Knowledge.Base_1.9.0_x64.dmg) |
 | Linux x64 (deb) | [Knowledge.Base_1.9.0_amd64.deb](releases/v1.9.0/Knowledge.Base_1.9.0_amd64.deb) |
 | Linux x64 (AppImage) | [Knowledge.Base_1.9.0_amd64.AppImage](releases/v1.9.0/Knowledge.Base_1.9.0_amd64.AppImage) |
-| Android arm64 (APK) | [Knowledge.Base_1.9.0_android-arm64.apk](releases/v1.9.0/Knowledge.Base_1.9.0_android-arm64.apk) |
+
+> 📱 **Android（移动端）走独立版本线**（从 0.1.0 起，与桌面 1.x 解耦），下载与版本历史见下方「[移动端（Android）](#移动端android)」。
 
 ## 自动更新
 
-应用内自动更新走双端点容错：
+应用内自动更新走多端点容错（桌面 = `update.json`，移动端 = `update-mobile.json`）：
 
-| 优先级 | 端点 | 说明 |
+| 优先级 | 桌面端点（update.json） | 说明 |
 |-------|------|------|
 | 1 (主) | `https://pub-9d9e6c0cb6934fb0a0c505e3c64f39b2.r2.dev/knowledge-base/update.json` | Cloudflare R2 CDN，国内快 |
 | 2 (备) | `https://github.com/bkywksj/knowledge-base-release/raw/main/update.json` | GitHub raw 兜底 |
+| 3 (兜底) | `https://gitee.com/bkywksj/knowledge-base-release/raw/master/update.json` | Gitee raw |
+
+移动端把上表三个 URL 里的 `update.json` 换成 `update-mobile.json` 即可。
+
+## 移动端（Android）
+
+Android 版有**独立版本线**（从 0.1.0 起），与桌面 1.x 解耦——可单独发布、单独「检查更新」。
+APK 用固定 keystore（`kb-release.jks`）正式签名，CI（`android.yml`，推 `mobile-v*.*.*` tag 触发）自动构建（侧载 APK + Google Play AAB）。
+
+| 移动版本 | 下载 |
+|------|------|
+| _（首个版本 0.1.0 发布中）_ | — |
+
+应用内「检查更新」：「我的 → 检查更新」读 `update-mobile.json`，发现新版本给出 APK 直链 → 浏览器下载 → 点一下进系统安装器（首次需在系统设置里允许「安装未知应用」）。
+
+> ⚠️ 同一条版本线的 APK 必须用同一个签名 keystore，否则「检查更新→装新 APK」会因签名不匹配失败（`INSTALL_FAILED_UPDATE_INCOMPATIBLE`，只能卸载重装）。
+
+### 移动端版本历史
+
+_（首个版本 0.1.0 即将发布）_
 
 ## 版本历史
 
 ### v1.9.0 (2026-05-12)
 
-**移动端（Android）全面可用 + 桌面端笔记对比/合并 + 同步重构收官**
+**桌面端笔记对比/合并 + 同步重构收官 + 翡翠白瓷主题**
 
-移动端：
-- **跨设备配置分享**：WebDAV 同步源 / AI 模型 / 语音识别（ASR）配置可通过 JSON 文本、二维码、剪贴板分享到其他设备，可选 PIN 加密（PBKDF2 + AES-GCM-256）
-- **应用内"检查更新"**：「我的 → 检查更新」检测到新版本可直接下载安装 APK
-- **笔记编辑器升级**：新增 Markdown 预览切换（编辑源码 ↔ 渲染预览）+ AI 助手联动（一键针对当前笔记问 AI）
-- **Android 正式签名**：release APK/AAB 用固定 keystore 签名，CI 自动构建（侧载 APK + Google Play AAB）
-- 修复输入法不弹起、工具栏按钮失焦、剪贴板读取失败等移动端问题
+> 📱 移动端（Android）的适配工作也在此版周期完成，但 Android 走**独立版本线**，
+> 首个 Android 版以 **0.1.0** 单独发布（见下方「[移动端（Android）](#移动端android)」），
+> v1.9.0 本身只含桌面三平台安装包。
 
 桌面端：
 - **笔记对比 / 合并**：IDEA 式双栏 diff —— 工具栏「对比剪贴板」、右键「与另一篇笔记对比」、批量栏「对比」、同步冲突手动合并；支持同步滚动开关、合并方向切换、按内容自动选 Markdown 源码 / 纯文本
