@@ -2,15 +2,15 @@
 
 本地优先的知识库桌面应用（Tauri 2.x + React 19）的安装包与自动更新端点仓库。
 
-## 最新版本: v1.9.0
+## 最新版本: v1.10.0
 
 | 平台 | 下载链接 |
 |------|---------|
-| Windows x64 | [Knowledge.Base_1.9.0_x64-setup.exe](releases/v1.9.0/Knowledge.Base_1.9.0_x64-setup.exe) |
-| macOS Apple Silicon | [Knowledge.Base_1.9.0_aarch64.dmg](releases/v1.9.0/Knowledge.Base_1.9.0_aarch64.dmg) |
-| macOS Intel | [Knowledge.Base_1.9.0_x64.dmg](releases/v1.9.0/Knowledge.Base_1.9.0_x64.dmg) |
-| Linux x64 (deb) | [Knowledge.Base_1.9.0_amd64.deb](releases/v1.9.0/Knowledge.Base_1.9.0_amd64.deb) |
-| Linux x64 (AppImage) | [Knowledge.Base_1.9.0_amd64.AppImage](releases/v1.9.0/Knowledge.Base_1.9.0_amd64.AppImage) |
+| Windows x64 | [Knowledge.Base_1.10.0_x64-setup.exe](releases/v1.10.0/Knowledge.Base_1.10.0_x64-setup.exe) |
+| macOS Apple Silicon | [Knowledge.Base_1.10.0_aarch64.dmg](releases/v1.10.0/Knowledge.Base_1.10.0_aarch64.dmg) |
+| macOS Intel | [Knowledge.Base_1.10.0_x64.dmg](releases/v1.10.0/Knowledge.Base_1.10.0_x64.dmg) |
+| Linux x64 (deb) | [Knowledge.Base_1.10.0_amd64.deb](releases/v1.10.0/Knowledge.Base_1.10.0_amd64.deb) |
+| Linux x64 (AppImage) | [Knowledge.Base_1.10.0_amd64.AppImage](releases/v1.10.0/Knowledge.Base_1.10.0_amd64.AppImage) |
 
 > 📱 **Android（移动端）走独立版本线**（从 0.1.0 起，与桌面 1.x 解耦），下载与版本历史见下方「[移动端（Android）](#移动端android)」。
 
@@ -48,6 +48,17 @@ APK 用固定 keystore（`kb-release.jks`）正式签名，CI（`android.yml`，
 独立 APK 可侧载，App 内「检查更新」自助升级（读 `update-mobile.json`）。功能覆盖：Markdown 编辑（源码 ↔ 渲染预览切换）/ 全文搜索 / 双向链接 / 标签 / 回收站 / AI 问答（含「针对当前笔记问 AI」）/ 闪卡复习 / 任务 / 闪念捕获 / 每日笔记热力图 / 相机扫码 / WebDAV 手动推拉 / 单文件导入 / 网页剪藏；跨设备配置分享（WebDAV 源 / AI 模型 / ASR 配置，可 PIN 加密 PBKDF2+AES-GCM-256）。kb-release.jks 正式签名，`android.yml` 自动构建。
 
 ## 版本历史
+
+### v1.10.0 (2026-05-15)
+
+**编辑器体验全面提升 + 日记/快速记一笔**
+
+- **AI 写作工具栏**：从"跟随鼠标的浮窗"改为"钉顶 sticky bar"，与主工具栏视觉融合，不再被豆包/划词翻译这类系统级浮窗遮挡
+- **斜杠菜单新增「日期与时间」分组**：`/jt`（今天）、`/xz`（现在）、`/sj`（当前时间）、今天 + 星期等 4 个预设，纯前端、零延迟
+- **代码块文件名 / 自动换行 / 行号设置可随笔记保存**：Docusaurus 风格 fence info（```python title="X" wrap no-line-numbers），读回时自动拆分到对应 attr
+- **「未分类」不再混杂日记**：日记纯净走「每日笔记」面板（已有月历视图），未分类只显示真正手动散记
+- **「快速记一笔」**：`Ctrl+Alt+N` 弹小输入框，Enter 保存，每条作为带 🕐 时间戳的 callout 块追加到今天的日记 —— 一键速记 + 自动归档 + 日内时序回顾的闭环
+- AI 工具栏初版"锚定选区"试做也在本版（被 sticky 顶部 bar 方案替代，但锚定算法保留可参考）
 
 ### v1.9.0 (2026-05-12)
 
@@ -415,20 +426,24 @@ releases/
 │   └── ...
 ├── v1.8.0/
 │   └── ...
-└── v1.8.1/
-    ├── Knowledge.Base_1.8.1_x64-setup.exe         # Windows 安装包
-    ├── Knowledge.Base_1.8.1_x64-setup.exe.sig     # Windows 签名
-    ├── Knowledge.Base_1.8.1_x64-setup.nsis.zip    # Windows updater 压缩包
-    ├── Knowledge.Base_1.8.1_aarch64.dmg           # macOS ARM 安装镜像
-    ├── Knowledge.Base_1.8.1_x64.dmg               # macOS Intel 安装镜像
+├── v1.8.1/
+│   └── ...
+├── v1.9.0/
+│   └── ...
+└── v1.10.0/
+    ├── Knowledge.Base_1.10.0_x64-setup.exe         # Windows 安装包
+    ├── Knowledge.Base_1.10.0_x64-setup.exe.sig     # Windows 签名
+    ├── Knowledge.Base_1.10.0_x64-setup.nsis.zip    # Windows updater 压缩包
+    ├── Knowledge.Base_1.10.0_aarch64.dmg           # macOS ARM 安装镜像
+    ├── Knowledge.Base_1.10.0_x64.dmg               # macOS Intel 安装镜像
     ├── Knowledge.Base_aarch64.app.tar.gz              # macOS ARM updater
     ├── Knowledge.Base_aarch64.app.tar.gz.sig          # macOS ARM updater 签名
     ├── Knowledge.Base_x64.app.tar.gz                  # macOS Intel updater
     ├── Knowledge.Base_x64.app.tar.gz.sig              # macOS Intel updater 签名
-    ├── Knowledge.Base_1.8.1_amd64.deb             # Linux Debian/Ubuntu 包
-    ├── Knowledge.Base_1.8.1_amd64.AppImage        # Linux 通用 AppImage
-    ├── Knowledge.Base_1.8.1_amd64.AppImage.tar.gz # Linux updater
-    └── Knowledge.Base_1.8.1_amd64.AppImage.tar.gz.sig # Linux updater 签名
+    ├── Knowledge.Base_1.10.0_amd64.deb             # Linux Debian/Ubuntu 包
+    ├── Knowledge.Base_1.10.0_amd64.AppImage        # Linux 通用 AppImage
+    ├── Knowledge.Base_1.10.0_amd64.AppImage.tar.gz # Linux updater
+    └── Knowledge.Base_1.10.0_amd64.AppImage.tar.gz.sig # Linux updater 签名
 update.json                                         # 自动更新元数据（GitHub 版）
 update-r2.json                                      # 自动更新元数据（R2 版，备档）
 ```
