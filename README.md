@@ -2,15 +2,15 @@
 
 本地优先的知识库桌面应用（Tauri 2.x + React 19）的安装包与自动更新端点仓库。
 
-## 最新版本: v1.10.0
+## 最新版本: v1.11.0
 
 | 平台 | 下载链接 |
 |------|---------|
-| Windows x64 | [Knowledge.Base_1.10.0_x64-setup.exe](releases/v1.10.0/Knowledge.Base_1.10.0_x64-setup.exe) |
-| macOS Apple Silicon | [Knowledge.Base_1.10.0_aarch64.dmg](releases/v1.10.0/Knowledge.Base_1.10.0_aarch64.dmg) |
-| macOS Intel | [Knowledge.Base_1.10.0_x64.dmg](releases/v1.10.0/Knowledge.Base_1.10.0_x64.dmg) |
-| Linux x64 (deb) | [Knowledge.Base_1.10.0_amd64.deb](releases/v1.10.0/Knowledge.Base_1.10.0_amd64.deb) |
-| Linux x64 (AppImage) | [Knowledge.Base_1.10.0_amd64.AppImage](releases/v1.10.0/Knowledge.Base_1.10.0_amd64.AppImage) |
+| Windows x64 | [Knowledge.Base_1.11.0_x64-setup.exe](releases/v1.11.0/Knowledge.Base_1.11.0_x64-setup.exe) |
+| macOS Apple Silicon | [Knowledge.Base_1.11.0_aarch64.dmg](releases/v1.11.0/Knowledge.Base_1.11.0_aarch64.dmg) |
+| macOS Intel | [Knowledge.Base_1.11.0_x64.dmg](releases/v1.11.0/Knowledge.Base_1.11.0_x64.dmg) |
+| Linux x64 (deb) | [Knowledge.Base_1.11.0_amd64.deb](releases/v1.11.0/Knowledge.Base_1.11.0_amd64.deb) |
+| Linux x64 (AppImage) | [Knowledge.Base_1.11.0_amd64.AppImage](releases/v1.11.0/Knowledge.Base_1.11.0_amd64.AppImage) |
 
 > 📱 **Android（移动端）走独立版本线**（从 0.1.0 起，与桌面 1.x 解耦），下载与版本历史见下方「[移动端（Android）](#移动端android)」。
 
@@ -48,6 +48,41 @@ APK 用固定 keystore（`kb-release.jks`）正式签名，CI（`android.yml`，
 独立 APK 可侧载，App 内「检查更新」自助升级（读 `update-mobile.json`）。功能覆盖：Markdown 编辑（源码 ↔ 渲染预览切换）/ 全文搜索 / 双向链接 / 标签 / 回收站 / AI 问答（含「针对当前笔记问 AI」）/ 闪卡复习 / 任务 / 闪念捕获 / 每日笔记热力图 / 相机扫码 / WebDAV 手动推拉 / 单文件导入 / 网页剪藏；跨设备配置分享（WebDAV 源 / AI 模型 / ASR 配置，可 PIN 加密 PBKDF2+AES-GCM-256）。kb-release.jks 正式签名，`android.yml` 自动构建。
 
 ## 版本历史
+
+### v1.11.0 (2026-05-23)
+
+**任务管理大升级 + 编辑器富化 + 笔记跨端同步全量打通**
+
+任务管理：
+- **工作流看板**（按 todo / doing / done 三列）+ **四象限视图**（重要×紧急自动分组）+ **项目甘特图视图** —— `/tasks` 顶部一键切换列表/看板/四象限/日历/甘特
+- **AI 智能规划**：输入今日目标 → AI 按四象限自动拆分待办，弹 Modal 让你勾选/编辑/保存
+- **任务 + 项目 + 任务分类跨端同步**（同步 v44 schema 升级）：projects/tasks/task_categories 全部走 stable_uuid + tombstone 软删 + last-write-wins 仲裁，两台电脑改任务互不丢
+
+编辑器：
+- **思维导图增强**：PNG 导出 / 全屏 / 独立弹窗
+- **笔记内幻灯片演示模式**：用 `---` 分页，按方向键翻页，全屏黑底
+- **Dataview 块 v0.1**：笔记内嵌实时数据视图
+- **Word/Excel/文本附件应用内预览**（不用跳外部程序）
+- **树形标签**：标签支持父子层级，侧栏可折叠展开
+
+笔记 / 标签 / 同步：
+- **Obsidian 嵌套标签 + 行内 `#tag` 提取**：导入 Obsidian 库时不再丢标签层级
+- **WebDAV 同步**：7 项数据丢失/一致性缺陷修 + 2 项可感知性缺陷修 + sync_remote_state 死行 GC
+- **pull 后自动重建反向链接**（之前同步完反链不显示）
+- **AI 配置跨软件互通**：ai.profile 通用协议，与系列其他应用共享模型配置
+- **日记面板视图切换** + 文案统一「每日笔记 → 日记」
+
+性能 / UX：
+- **文件树 > 200 节点启用 virtual scroll**（千级笔记不再卡帧）
+- **外部 .md 首次打开弹引导**：让用户知道编辑会写回原文件 + 加入本地库
+- **默认窗口宽度 1330 → 1388**：编辑器顶部 toolbar 一行显示
+- 编辑器搜索 Ctrl+F 不再需要先点正文 + 工具栏入口
+
+Bug 修：
+- **AI 回复**：表格 / 删除线 / 任务列表不渲染（remark-gfm 接入）
+- **反向链接**：遇到 TaskItem 序列化转义时失效
+- **幻灯片**：之前永远 1/1 一页（DOMParser 解析 markdown 失败）
+- QQ 群反馈 4 个 bug 全部修复（zip 导入热重载 db / 文件夹层级递归 / 外部 md 引导 / 文件树性能）
 
 ### v1.10.0 (2026-05-15)
 
@@ -430,20 +465,22 @@ releases/
 │   └── ...
 ├── v1.9.0/
 │   └── ...
-└── v1.10.0/
-    ├── Knowledge.Base_1.10.0_x64-setup.exe         # Windows 安装包
-    ├── Knowledge.Base_1.10.0_x64-setup.exe.sig     # Windows 签名
-    ├── Knowledge.Base_1.10.0_x64-setup.nsis.zip    # Windows updater 压缩包
-    ├── Knowledge.Base_1.10.0_aarch64.dmg           # macOS ARM 安装镜像
-    ├── Knowledge.Base_1.10.0_x64.dmg               # macOS Intel 安装镜像
+├── v1.10.0/
+│   └── ...
+└── v1.11.0/
+    ├── Knowledge.Base_1.11.0_x64-setup.exe         # Windows 安装包
+    ├── Knowledge.Base_1.11.0_x64-setup.exe.sig     # Windows 签名
+    ├── Knowledge.Base_1.11.0_x64-setup.nsis.zip    # Windows updater 压缩包
+    ├── Knowledge.Base_1.11.0_aarch64.dmg           # macOS ARM 安装镜像
+    ├── Knowledge.Base_1.11.0_x64.dmg               # macOS Intel 安装镜像
     ├── Knowledge.Base_aarch64.app.tar.gz              # macOS ARM updater
     ├── Knowledge.Base_aarch64.app.tar.gz.sig          # macOS ARM updater 签名
     ├── Knowledge.Base_x64.app.tar.gz                  # macOS Intel updater
     ├── Knowledge.Base_x64.app.tar.gz.sig              # macOS Intel updater 签名
-    ├── Knowledge.Base_1.10.0_amd64.deb             # Linux Debian/Ubuntu 包
-    ├── Knowledge.Base_1.10.0_amd64.AppImage        # Linux 通用 AppImage
-    ├── Knowledge.Base_1.10.0_amd64.AppImage.tar.gz # Linux updater
-    └── Knowledge.Base_1.10.0_amd64.AppImage.tar.gz.sig # Linux updater 签名
+    ├── Knowledge.Base_1.11.0_amd64.deb             # Linux Debian/Ubuntu 包
+    ├── Knowledge.Base_1.11.0_amd64.AppImage        # Linux 通用 AppImage
+    ├── Knowledge.Base_1.11.0_amd64.AppImage.tar.gz # Linux updater
+    └── Knowledge.Base_1.11.0_amd64.AppImage.tar.gz.sig # Linux updater 签名
 update.json                                         # 自动更新元数据（GitHub 版）
 update-r2.json                                      # 自动更新元数据（R2 版，备档）
 ```
