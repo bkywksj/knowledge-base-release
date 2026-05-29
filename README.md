@@ -2,15 +2,15 @@
 
 本地优先的知识库桌面应用（Tauri 2.x + React 19）的安装包与自动更新端点仓库。
 
-## 最新版本: v1.11.0
+## 最新版本: v1.12.0
 
 | 平台 | 下载链接 |
 |------|---------|
-| Windows x64 | [Knowledge.Base_1.11.0_x64-setup.exe](releases/v1.11.0/Knowledge.Base_1.11.0_x64-setup.exe) |
-| macOS Apple Silicon | [Knowledge.Base_1.11.0_aarch64.dmg](releases/v1.11.0/Knowledge.Base_1.11.0_aarch64.dmg) |
-| macOS Intel | [Knowledge.Base_1.11.0_x64.dmg](releases/v1.11.0/Knowledge.Base_1.11.0_x64.dmg) |
-| Linux x64 (deb) | [Knowledge.Base_1.11.0_amd64.deb](releases/v1.11.0/Knowledge.Base_1.11.0_amd64.deb) |
-| Linux x64 (AppImage) | [Knowledge.Base_1.11.0_amd64.AppImage](releases/v1.11.0/Knowledge.Base_1.11.0_amd64.AppImage) |
+| Windows x64 | [Knowledge.Base_1.12.0_x64-setup.exe](releases/v1.12.0/Knowledge.Base_1.12.0_x64-setup.exe) |
+| macOS Apple Silicon | [Knowledge.Base_1.12.0_aarch64.dmg](releases/v1.12.0/Knowledge.Base_1.12.0_aarch64.dmg) |
+| macOS Intel | [Knowledge.Base_1.12.0_x64.dmg](releases/v1.12.0/Knowledge.Base_1.12.0_x64.dmg) |
+| Linux x64 (deb) | [Knowledge.Base_1.12.0_amd64.deb](releases/v1.12.0/Knowledge.Base_1.12.0_amd64.deb) |
+| Linux x64 (AppImage) | [Knowledge.Base_1.12.0_amd64.AppImage](releases/v1.12.0/Knowledge.Base_1.12.0_amd64.AppImage) |
 
 > 📱 **Android（移动端）走独立版本线**（从 0.1.0 起，与桌面 1.x 解耦），下载与版本历史见下方「[移动端（Android）](#移动端android)」。
 
@@ -48,6 +48,39 @@ APK 用固定 keystore（`kb-release.jks`）正式签名，CI（`android.yml`，
 独立 APK 可侧载，App 内「检查更新」自助升级（读 `update-mobile.json`）。功能覆盖：Markdown 编辑（源码 ↔ 渲染预览切换）/ 全文搜索 / 双向链接 / 标签 / 回收站 / AI 问答（含「针对当前笔记问 AI」）/ 闪卡复习 / 任务 / 闪念捕获 / 每日笔记热力图 / 相机扫码 / WebDAV 手动推拉 / 单文件导入 / 网页剪藏；跨设备配置分享（WebDAV 源 / AI 模型 / ASR 配置，可 PIN 加密 PBKDF2+AES-GCM-256）。kb-release.jks 正式签名，`android.yml` 自动构建。
 
 ## 版本历史
+
+### v1.12.0 (2026-05-29)
+
+**笔记推送/发布 + 快速记一笔 + AI 检索范围限定 + 编辑器交互打磨**
+
+笔记推送/发布：
+- 新增**推送页**（`/push`）+ 推送任务表单 + **定时推送**，可把笔记推送/发布出去
+- 定时推送结果**居中弹窗**展示，弹窗内容支持 **Markdown 渲染**（加粗/列表/标题等）
+
+效率工具：
+- **「快速记一笔」独立悬浮窗** —— 随手快速捕获，不打断当前工作
+- **编辑器高亮快捷键自定义** —— 在设置里自定义高亮快捷键
+
+AI 增强：
+- **AI 对话支持限定 RAG 检索范围到指定文件夹**（含子孙文件夹）
+- **AI 回答下方溯源展示引用笔记里的图片**
+- Ollama 走 OpenAI 兼容端点 + length 截断容错
+
+编辑器与界面：
+- 版面观感优化（阅读列宽 / 纸张质感 / 纹理 / 首行缩进）
+- 图片双击放大 + 粘贴 data URL 自动落盘 + 查找栏吸顶 + 分栏 HTML 导出
+- 表格交互增强 + 侧边栏多选 + 图片导入嗅探
+- AI 菜单改为贴近选区悬浮，一行展开所有提示词
+- 笔记面板：文件夹单击切换选中、双击才展开折叠
+- 日记：侧边栏列表显示标题、改标题后刷新
+- 任务：新建任务支持草稿子任务 + 紧凑模式子任务列表
+
+修复与其他：
+- 修复 Word 导出 HTML 内容丢失（只剩标题）
+- 单 .md 导入识别同级 `attachments/` 中的图片
+- 同步 V0 ZIP 导入加 ZIP slip 防护 + V1 远端删除改 edit-wins
+- 移除多开实例功能，仅保留单实例守护
+- rustc 线程栈调至 32MB 防 generate_handler 栈溢出
 
 ### v1.11.0 (2026-05-23)
 
@@ -467,20 +500,23 @@ releases/
 │   └── ...
 ├── v1.10.0/
 │   └── ...
-└── v1.11.0/
-    ├── Knowledge.Base_1.11.0_x64-setup.exe         # Windows 安装包
-    ├── Knowledge.Base_1.11.0_x64-setup.exe.sig     # Windows 签名
-    ├── Knowledge.Base_1.11.0_x64-setup.nsis.zip    # Windows updater 压缩包
-    ├── Knowledge.Base_1.11.0_aarch64.dmg           # macOS ARM 安装镜像
-    ├── Knowledge.Base_1.11.0_x64.dmg               # macOS Intel 安装镜像
+├── v1.11.0/
+│   └── ...
+└── v1.12.0/
+    ├── Knowledge.Base_1.12.0_x64-setup.exe         # Windows 安装包
+    ├── Knowledge.Base_1.12.0_x64-setup.exe.sig     # Windows 签名
+    ├── Knowledge.Base_1.12.0_x64-setup.nsis.zip    # Windows updater 压缩包
+    ├── Knowledge.Base_1.12.0_aarch64.dmg           # macOS ARM 安装镜像
+    ├── Knowledge.Base_1.12.0_x64.dmg               # macOS Intel 安装镜像
     ├── Knowledge.Base_aarch64.app.tar.gz              # macOS ARM updater
     ├── Knowledge.Base_aarch64.app.tar.gz.sig          # macOS ARM updater 签名
     ├── Knowledge.Base_x64.app.tar.gz                  # macOS Intel updater
     ├── Knowledge.Base_x64.app.tar.gz.sig              # macOS Intel updater 签名
-    ├── Knowledge.Base_1.11.0_amd64.deb             # Linux Debian/Ubuntu 包
-    ├── Knowledge.Base_1.11.0_amd64.AppImage        # Linux 通用 AppImage
-    ├── Knowledge.Base_1.11.0_amd64.AppImage.tar.gz # Linux updater
-    └── Knowledge.Base_1.11.0_amd64.AppImage.tar.gz.sig # Linux updater 签名
+    ├── Knowledge.Base_1.12.0_amd64.deb             # Linux Debian/Ubuntu 包
+    ├── Knowledge.Base_1.12.0_amd64.AppImage        # Linux 通用 AppImage
+    ├── Knowledge.Base_1.12.0_amd64.AppImage.tar.gz # Linux updater 压缩包
+    └── Knowledge.Base_1.12.0_amd64.AppImage.tar.gz.sig # Linux updater 签名
+
 update.json                                         # 自动更新元数据（GitHub 版）
 update-r2.json                                      # 自动更新元数据（R2 版，备档）
 ```
