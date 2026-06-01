@@ -2,15 +2,15 @@
 
 本地优先的知识库桌面应用（Tauri 2.x + React 19）的安装包与自动更新端点仓库。
 
-## 最新版本: v1.12.0
+## 最新版本: v1.13.0
 
 | 平台 | 下载链接 |
 |------|---------|
-| Windows x64 | [Knowledge.Base_1.12.0_x64-setup.exe](releases/v1.12.0/Knowledge.Base_1.12.0_x64-setup.exe) |
-| macOS Apple Silicon | [Knowledge.Base_1.12.0_aarch64.dmg](releases/v1.12.0/Knowledge.Base_1.12.0_aarch64.dmg) |
-| macOS Intel | [Knowledge.Base_1.12.0_x64.dmg](releases/v1.12.0/Knowledge.Base_1.12.0_x64.dmg) |
-| Linux x64 (deb) | [Knowledge.Base_1.12.0_amd64.deb](releases/v1.12.0/Knowledge.Base_1.12.0_amd64.deb) |
-| Linux x64 (AppImage) | [Knowledge.Base_1.12.0_amd64.AppImage](releases/v1.12.0/Knowledge.Base_1.12.0_amd64.AppImage) |
+| Windows x64 | [Knowledge.Base_1.13.0_x64-setup.exe](releases/v1.13.0/Knowledge.Base_1.13.0_x64-setup.exe) |
+| macOS Apple Silicon | [Knowledge.Base_1.13.0_aarch64.dmg](releases/v1.13.0/Knowledge.Base_1.13.0_aarch64.dmg) |
+| macOS Intel | [Knowledge.Base_1.13.0_x64.dmg](releases/v1.13.0/Knowledge.Base_1.13.0_x64.dmg) |
+| Linux x64 (deb) | [Knowledge.Base_1.13.0_amd64.deb](releases/v1.13.0/Knowledge.Base_1.13.0_amd64.deb) |
+| Linux x64 (AppImage) | [Knowledge.Base_1.13.0_amd64.AppImage](releases/v1.13.0/Knowledge.Base_1.13.0_amd64.AppImage) |
 
 > 📱 **Android（移动端）走独立版本线**（从 0.1.0 起，与桌面 1.x 解耦），下载与版本历史见下方「[移动端（Android）](#移动端android)」。
 
@@ -48,6 +48,19 @@ APK 用固定 keystore（`kb-release.jks`）正式签名，CI（`android.yml`，
 独立 APK 可侧载，App 内「检查更新」自助升级（读 `update-mobile.json`）。功能覆盖：Markdown 编辑（源码 ↔ 渲染预览切换）/ 全文搜索 / 双向链接 / 标签 / 回收站 / AI 问答（含「针对当前笔记问 AI」）/ 闪卡复习 / 任务 / 闪念捕获 / 每日笔记热力图 / 相机扫码 / WebDAV 手动推拉 / 单文件导入 / 网页剪藏；跨设备配置分享（WebDAV 源 / AI 模型 / ASR 配置，可 PIN 加密 PBKDF2+AES-GCM-256）。kb-release.jks 正式签名，`android.yml` 自动构建。
 
 ## 版本历史
+
+### v1.13.0 (2026-06-01)
+
+**自动更新后台预下载 + 待办项目管理 + 知识图谱文件夹层级 + 编辑器与交互打磨**
+
+- 后台预下载更新，秒装重启，重启弹窗展示更新内容
+- 新建待办的项目下拉支持内联新建 + 管理项目
+- 知识图谱纳入文件夹层级（folder 节点 + 层级边）
+- 笔记文件夹支持「启动默认收起」开关
+- 大纲默认变窄，隐藏大纲时正文自动补宽
+- 修复图片后空行无限增长、打开即提示保存
+- 修复粗体+高亮 markdown 往返后高亮丢失
+- 修复右键菜单过长时被窗口底部裁掉
 
 ### v1.12.0 (2026-05-29)
 
@@ -502,20 +515,22 @@ releases/
 │   └── ...
 ├── v1.11.0/
 │   └── ...
-└── v1.12.0/
-    ├── Knowledge.Base_1.12.0_x64-setup.exe         # Windows 安装包
-    ├── Knowledge.Base_1.12.0_x64-setup.exe.sig     # Windows 签名
-    ├── Knowledge.Base_1.12.0_x64-setup.nsis.zip    # Windows updater 压缩包
-    ├── Knowledge.Base_1.12.0_aarch64.dmg           # macOS ARM 安装镜像
-    ├── Knowledge.Base_1.12.0_x64.dmg               # macOS Intel 安装镜像
+├── v1.12.0/
+│   └── ...
+└── v1.13.0/
+    ├── Knowledge.Base_1.13.0_x64-setup.exe         # Windows 安装包
+    ├── Knowledge.Base_1.13.0_x64-setup.exe.sig     # Windows 签名
+    ├── Knowledge.Base_1.13.0_x64-setup.nsis.zip    # Windows updater 压缩包
+    ├── Knowledge.Base_1.13.0_aarch64.dmg           # macOS ARM 安装镜像
+    ├── Knowledge.Base_1.13.0_x64.dmg               # macOS Intel 安装镜像
     ├── Knowledge.Base_aarch64.app.tar.gz              # macOS ARM updater
     ├── Knowledge.Base_aarch64.app.tar.gz.sig          # macOS ARM updater 签名
     ├── Knowledge.Base_x64.app.tar.gz                  # macOS Intel updater
     ├── Knowledge.Base_x64.app.tar.gz.sig              # macOS Intel updater 签名
-    ├── Knowledge.Base_1.12.0_amd64.deb             # Linux Debian/Ubuntu 包
-    ├── Knowledge.Base_1.12.0_amd64.AppImage        # Linux 通用 AppImage
-    ├── Knowledge.Base_1.12.0_amd64.AppImage.tar.gz # Linux updater 压缩包
-    └── Knowledge.Base_1.12.0_amd64.AppImage.tar.gz.sig # Linux updater 签名
+    ├── Knowledge.Base_1.13.0_amd64.deb             # Linux Debian/Ubuntu 包
+    ├── Knowledge.Base_1.13.0_amd64.AppImage        # Linux 通用 AppImage
+    ├── Knowledge.Base_1.13.0_amd64.AppImage.tar.gz # Linux updater 压缩包
+    └── Knowledge.Base_1.13.0_amd64.AppImage.tar.gz.sig # Linux updater 签名
 
 update.json                                         # 自动更新元数据（GitHub 版）
 update-r2.json                                      # 自动更新元数据（R2 版，备档）
