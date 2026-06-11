@@ -2,15 +2,15 @@
 
 本地优先的知识库桌面应用（Tauri 2.x + React 19）的安装包与自动更新端点仓库。
 
-## 最新版本: v1.13.0
+## 最新版本: v1.14.0
 
 | 平台 | 下载链接 |
 |------|---------|
-| Windows x64 | [Knowledge.Base_1.13.0_x64-setup.exe](releases/v1.13.0/Knowledge.Base_1.13.0_x64-setup.exe) |
-| macOS Apple Silicon | [Knowledge.Base_1.13.0_aarch64.dmg](releases/v1.13.0/Knowledge.Base_1.13.0_aarch64.dmg) |
-| macOS Intel | [Knowledge.Base_1.13.0_x64.dmg](releases/v1.13.0/Knowledge.Base_1.13.0_x64.dmg) |
-| Linux x64 (deb) | [Knowledge.Base_1.13.0_amd64.deb](releases/v1.13.0/Knowledge.Base_1.13.0_amd64.deb) |
-| Linux x64 (AppImage) | [Knowledge.Base_1.13.0_amd64.AppImage](releases/v1.13.0/Knowledge.Base_1.13.0_amd64.AppImage) |
+| Windows x64 | [Knowledge.Base_1.14.0_x64-setup.exe](releases/v1.14.0/Knowledge.Base_1.14.0_x64-setup.exe) |
+| macOS Apple Silicon | [Knowledge.Base_1.14.0_aarch64.dmg](releases/v1.14.0/Knowledge.Base_1.14.0_aarch64.dmg) |
+| macOS Intel | [Knowledge.Base_1.14.0_x64.dmg](releases/v1.14.0/Knowledge.Base_1.14.0_x64.dmg) |
+| Linux x64 (deb) | [Knowledge.Base_1.14.0_amd64.deb](releases/v1.14.0/Knowledge.Base_1.14.0_amd64.deb) |
+| Linux x64 (AppImage) | [Knowledge.Base_1.14.0_amd64.AppImage](releases/v1.14.0/Knowledge.Base_1.14.0_amd64.AppImage) |
 
 > 📱 **Android（移动端）走独立版本线**（从 0.1.0 起，与桌面 1.x 解耦），下载与版本历史见下方「[移动端（Android）](#移动端android)」。
 
@@ -48,6 +48,23 @@ APK 用固定 keystore（`kb-release.jks`）正式签名，CI（`android.yml`，
 独立 APK 可侧载，App 内「检查更新」自助升级（读 `update-mobile.json`）。功能覆盖：Markdown 编辑（源码 ↔ 渲染预览切换）/ 全文搜索 / 双向链接 / 标签 / 回收站 / AI 问答（含「针对当前笔记问 AI」）/ 闪卡复习 / 任务 / 闪念捕获 / 每日笔记热力图 / 相机扫码 / WebDAV 手动推拉 / 单文件导入 / 网页剪藏；跨设备配置分享（WebDAV 源 / AI 模型 / ASR 配置，可 PIN 加密 PBKDF2+AES-GCM-256）。kb-release.jks 正式签名，`android.yml` 自动构建。
 
 ## 版本历史
+
+### v1.14.0 (2026-06-11)
+
+**编辑器公式 + 所见即所得打印 + 文件夹级联删除 + 布局/同步/AI 打磨**
+
+- 编辑器工具栏新增公式（LaTeX）下拉，一键插入行内 / 块级公式
+- 新增「所见即所得」打印 / 打印成 PDF
+- 标题填完按回车自动聚焦正文末尾，方便接着写
+- 修复图片未选中态超出编辑框（保存重进后宽图溢出）
+- 非空文件夹支持级联删除（笔记进回收站，可恢复）
+- 首页待办速览改 4 段，无截止日期 / 未来任务也显示
+- 首页推荐新增 Sigil / Reeve / AgileShot 三款工具卡片
+- 修复删任务后侧边栏红色角标不清零（待办统计排除软删墓碑）
+- WebDAV 对不支持 MOVE 的服务器降级直接 PUT
+- AI 智能模式下「附加文件夹」对工具调用同样生效，不再读到范围外笔记
+- 修复单击托盘图标不隐藏窗口（Windows is_focused 误判）
+- 桌面端忽略窗口宽度，竖屏 / 双屏 / 分屏不再误切移动界面
 
 ### v1.13.0 (2026-06-01)
 
@@ -517,20 +534,22 @@ releases/
 │   └── ...
 ├── v1.12.0/
 │   └── ...
-└── v1.13.0/
-    ├── Knowledge.Base_1.13.0_x64-setup.exe         # Windows 安装包
-    ├── Knowledge.Base_1.13.0_x64-setup.exe.sig     # Windows 签名
-    ├── Knowledge.Base_1.13.0_x64-setup.nsis.zip    # Windows updater 压缩包
-    ├── Knowledge.Base_1.13.0_aarch64.dmg           # macOS ARM 安装镜像
-    ├── Knowledge.Base_1.13.0_x64.dmg               # macOS Intel 安装镜像
+├── v1.13.0/
+│   └── ...
+└── v1.14.0/
+    ├── Knowledge.Base_1.14.0_x64-setup.exe         # Windows 安装包
+    ├── Knowledge.Base_1.14.0_x64-setup.exe.sig     # Windows 签名
+    ├── Knowledge.Base_1.14.0_x64-setup.nsis.zip    # Windows updater 压缩包
+    ├── Knowledge.Base_1.14.0_aarch64.dmg           # macOS ARM 安装镜像
+    ├── Knowledge.Base_1.14.0_x64.dmg               # macOS Intel 安装镜像
     ├── Knowledge.Base_aarch64.app.tar.gz              # macOS ARM updater
     ├── Knowledge.Base_aarch64.app.tar.gz.sig          # macOS ARM updater 签名
     ├── Knowledge.Base_x64.app.tar.gz                  # macOS Intel updater
     ├── Knowledge.Base_x64.app.tar.gz.sig              # macOS Intel updater 签名
-    ├── Knowledge.Base_1.13.0_amd64.deb             # Linux Debian/Ubuntu 包
-    ├── Knowledge.Base_1.13.0_amd64.AppImage        # Linux 通用 AppImage
-    ├── Knowledge.Base_1.13.0_amd64.AppImage.tar.gz # Linux updater 压缩包
-    └── Knowledge.Base_1.13.0_amd64.AppImage.tar.gz.sig # Linux updater 签名
+    ├── Knowledge.Base_1.14.0_amd64.deb             # Linux Debian/Ubuntu 包
+    ├── Knowledge.Base_1.14.0_amd64.AppImage        # Linux 通用 AppImage
+    ├── Knowledge.Base_1.14.0_amd64.AppImage.tar.gz # Linux updater 压缩包
+    └── Knowledge.Base_1.14.0_amd64.AppImage.tar.gz.sig # Linux updater 签名
 
 update.json                                         # 自动更新元数据（GitHub 版）
 update-r2.json                                      # 自动更新元数据（R2 版，备档）
