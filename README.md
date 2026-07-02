@@ -2,15 +2,15 @@
 
 本地优先的知识库桌面应用（Tauri 2.x + React 19）的安装包与自动更新端点仓库。
 
-## 最新版本: v1.14.0
+## 最新版本: v1.20.0
 
 | 平台 | 下载链接 |
 |------|---------|
-| Windows x64 | [Knowledge.Base_1.14.0_x64-setup.exe](releases/v1.14.0/Knowledge.Base_1.14.0_x64-setup.exe) |
-| macOS Apple Silicon | [Knowledge.Base_1.14.0_aarch64.dmg](releases/v1.14.0/Knowledge.Base_1.14.0_aarch64.dmg) |
-| macOS Intel | [Knowledge.Base_1.14.0_x64.dmg](releases/v1.14.0/Knowledge.Base_1.14.0_x64.dmg) |
-| Linux x64 (deb) | [Knowledge.Base_1.14.0_amd64.deb](releases/v1.14.0/Knowledge.Base_1.14.0_amd64.deb) |
-| Linux x64 (AppImage) | [Knowledge.Base_1.14.0_amd64.AppImage](releases/v1.14.0/Knowledge.Base_1.14.0_amd64.AppImage) |
+| Windows x64 | [Knowledge.Base_1.20.0_x64-setup.exe](releases/v1.20.0/Knowledge.Base_1.20.0_x64-setup.exe) |
+| macOS Apple Silicon | [Knowledge.Base_1.20.0_aarch64.dmg](releases/v1.20.0/Knowledge.Base_1.20.0_aarch64.dmg) |
+| macOS Intel | [Knowledge.Base_1.20.0_x64.dmg](releases/v1.20.0/Knowledge.Base_1.20.0_x64.dmg) |
+| Linux x64 (deb) | [Knowledge.Base_1.20.0_amd64.deb](releases/v1.20.0/Knowledge.Base_1.20.0_amd64.deb) |
+| Linux x64 (AppImage) | [Knowledge.Base_1.20.0_amd64.AppImage](https://pub-9d9e6c0cb6934fb0a0c505e3c64f39b2.r2.dev/knowledge-base/v1.20.0/Knowledge.Base_1.20.0_amd64.AppImage)（R2 CDN，>100MB 未入 git） |
 
 > 📱 **Android（移动端）走独立版本线**（从 0.1.0 起，与桌面 1.x 解耦），下载与版本历史见下方「[移动端（Android）](#移动端android)」。
 
@@ -48,6 +48,39 @@ APK 用固定 keystore（`kb-release.jks`）正式签名，CI（`android.yml`，
 独立 APK 可侧载，App 内「检查更新」自助升级（读 `update-mobile.json`）。功能覆盖：Markdown 编辑（源码 ↔ 渲染预览切换）/ 全文搜索 / 双向链接 / 标签 / 回收站 / AI 问答（含「针对当前笔记问 AI」）/ 闪卡复习 / 任务 / 闪念捕获 / 每日笔记热力图 / 相机扫码 / WebDAV 手动推拉 / 单文件导入 / 网页剪藏；跨设备配置分享（WebDAV 源 / AI 模型 / ASR 配置，可 PIN 加密 PBKDF2+AES-GCM-256）。kb-release.jks 正式签名，`android.yml` 自动构建。
 
 ## 版本历史
+
+### v1.20.0 (2026-07-02)
+
+**本地 OCR + MCP 插件系统 + 大量编辑器/待办改进**
+
+新功能：
+- 本地 OCR：内置 RapidOCR 离线识别图片 / 扫描件 PDF（Win/Linux sidecar，macOS 用 Apple Vision 零二进制）；导入扫描件 PDF 自动 OCR 兜底
+- MCP 插件系统：清单一键安装 + 脚手架生成（任意语言写插件，进程隔离）
+- kb-mcp CLI：search / get / tags / recent / tag 命令行查询，省 token
+- MCP 升级 v1.0：外部写入自动刷新列表 + 27 工具白名单裁剪
+- 单篇笔记导出为单文件 Markdown（图片内嵌，不生成文件夹）
+- 标题自动编号 + 彩虹色；复制为 Word（富文本）
+- 待办默认视图可持久化；新增 KIMI (Moonshot) AI provider
+
+编辑器改进：
+- 双链单击即跳转；有序 / 无序列表可转标题；右键复制笔记 ID
+- 插图不再打断有序列表序号；复制纯文本不再带 Markdown 标记（粘到记事本干净）
+- 代码块统一字号 + 布局预设 + 大纲左右位置；搜索跳转直达命中位置
+- tab 右键加「关闭全部」
+
+修复：
+- 根治静默闪退（全局 panic hook + 启动容错 + 前端四层兜底）
+- AI 流式解码改字节缓冲，修中文乱码 / 丢 token；取消映射防并发串键
+- 打印长笔记只出一页；幻灯片模式外链跳走；子任务连续录入丢焦点；紧急提醒响铃封顶 5 分钟
+- 日历视图自适应 + 首页 / 待办全屏宽度跟随
+
+### v1.15.0 (2026-06-23)
+
+**笔记侧栏搜索 + AI 附加日记 + 多项打磨**
+
+- 笔记侧栏就地搜索框；AI 对话可附加日记
+- 列表右键复制内容；同步源分享支持全部类型；预置小米 MiMo 模型
+- 优化：打开笔记提速、幻灯片表格不再显示成裸 HTML、日记日期时区统一、表格超宽横向滚动、退出同步不阻塞主窗口
 
 ### v1.14.0 (2026-06-11)
 

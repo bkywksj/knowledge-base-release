@@ -1,0 +1,7 @@
+# GitHub / Gitee 单文件硬限制 100MB。
+# 从 v1.20.0 起，Linux AppImage 因内置 OCR 引擎(+32MB)体积超过 100MB，
+# 无法推入 git 远端，只分发到 R2 CDN（下载 + 自动更新地址均指向 R2）。
+# 说明：.gitignore 不影响已被追踪的历史文件（v1.14.0 及更早的 AppImage 仍在版本库中）。
+# macOS 的 *.app.tar.gz（约 37MB）不受影响，仍入 git。
+releases/**/*.AppImage
+releases/**/*.AppImage.tar.gz
