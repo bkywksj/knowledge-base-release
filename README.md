@@ -2,15 +2,15 @@
 
 本地优先的知识库桌面应用（Tauri 2.x + React 19）的安装包与自动更新端点仓库。
 
-## 最新版本: v1.20.0
+## 最新版本: v1.30.0
 
 | 平台 | 下载链接 |
 |------|---------|
-| Windows x64 | [Knowledge.Base_1.20.0_x64-setup.exe](releases/v1.20.0/Knowledge.Base_1.20.0_x64-setup.exe) |
-| macOS Apple Silicon | [Knowledge.Base_1.20.0_aarch64.dmg](releases/v1.20.0/Knowledge.Base_1.20.0_aarch64.dmg) |
-| macOS Intel | [Knowledge.Base_1.20.0_x64.dmg](releases/v1.20.0/Knowledge.Base_1.20.0_x64.dmg) |
-| Linux x64 (deb) | [Knowledge.Base_1.20.0_amd64.deb](releases/v1.20.0/Knowledge.Base_1.20.0_amd64.deb) |
-| Linux x64 (AppImage) | [Knowledge.Base_1.20.0_amd64.AppImage](https://pub-9d9e6c0cb6934fb0a0c505e3c64f39b2.r2.dev/knowledge-base/v1.20.0/Knowledge.Base_1.20.0_amd64.AppImage)（R2 CDN，>100MB 未入 git） |
+| Windows x64 | [Knowledge.Base_1.30.0_x64-setup.exe](releases/v1.30.0/Knowledge.Base_1.30.0_x64-setup.exe) |
+| macOS Apple Silicon | [Knowledge.Base_1.30.0_aarch64.dmg](releases/v1.30.0/Knowledge.Base_1.30.0_aarch64.dmg) |
+| macOS Intel | [Knowledge.Base_1.30.0_x64.dmg](releases/v1.30.0/Knowledge.Base_1.30.0_x64.dmg) |
+| Linux x64 (deb) | [Knowledge.Base_1.30.0_amd64.deb](releases/v1.30.0/Knowledge.Base_1.30.0_amd64.deb) |
+| Linux x64 (AppImage) | [Knowledge.Base_1.30.0_amd64.AppImage](https://pub-9d9e6c0cb6934fb0a0c505e3c64f39b2.r2.dev/knowledge-base/v1.30.0/Knowledge.Base_1.30.0_amd64.AppImage)（R2 CDN，>100MB 未入 git） |
 
 > 📱 **Android（移动端）走独立版本线**（从 0.1.0 起，与桌面 1.x 解耦），下载与版本历史见下方「[移动端（Android）](#移动端android)」。
 
@@ -48,6 +48,28 @@ APK 用固定 keystore（`kb-release.jks`）正式签名，CI（`android.yml`，
 独立 APK 可侧载，App 内「检查更新」自助升级（读 `update-mobile.json`）。功能覆盖：Markdown 编辑（源码 ↔ 渲染预览切换）/ 全文搜索 / 双向链接 / 标签 / 回收站 / AI 问答（含「针对当前笔记问 AI」）/ 闪卡复习 / 任务 / 闪念捕获 / 每日笔记热力图 / 相机扫码 / WebDAV 手动推拉 / 单文件导入 / 网页剪藏；跨设备配置分享（WebDAV 源 / AI 模型 / ASR 配置，可 PIN 加密 PBKDF2+AES-GCM-256）。kb-release.jks 正式签名，`android.yml` 自动构建。
 
 ## 版本历史
+
+### v1.30.0 (2026-07-14)
+
+**编辑器自选字体 + 笔记切换体验优化 + 视频区间播放**
+
+新功能：
+- 编辑器正文可自选系统已安装的任意字体（可搜索下拉，每项用该字体自身预览；未装自动 fallback 防乱码）
+- 视频时间戳支持 A→B 区间：两次打点圈定片段，播到终点自动暂停
+- 笔记卡片模式显示图片缩略图；卡片预览剥离 Markdown 噪声更干净
+- 日记：桌面编辑器新增大纲面板；放开未来日期选择
+- 笔记列表右键新增「复制笔记 ID」；关于页赞赏码放大并支持点击全屏预览
+
+体验 / 性能：
+- 切换笔记保持浏览位置：切走再切回停在原来阅读处，不再回到开头
+- 消除切换时的整屏重载闪烁与卡顿（编辑器保持挂载、原地换内容 + 内容锚点式滚动恢复）
+
+修复：
+- 表格单元格含代码块保存后重开损坏（回退 HTML 序列化）
+- 附件文件名含空格导致链接渲染失败与漏同步
+- 坚果云 WebDAV MOVE 409 DuplicateName 降级直接 PUT
+- AI 对话发送后显示「正在分析」占位 + 防连点重复发送；流式解码防中文乱码 / 丢 token
+- pdf-extract 可恢复 panic 不再误报崩溃弹窗；打开笔记「Rendered more hooks」崩溃（TabBar hook 顺序）
 
 ### v1.20.0 (2026-07-02)
 
