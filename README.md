@@ -2,15 +2,15 @@
 
 本地优先的知识库桌面应用（Tauri 2.x + React 19）的安装包与自动更新端点仓库。
 
-## 最新版本: v1.30.0
+## 最新版本: v1.31.0
 
 | 平台 | 下载链接 |
 |------|---------|
-| Windows x64 | [Knowledge.Base_1.30.0_x64-setup.exe](releases/v1.30.0/Knowledge.Base_1.30.0_x64-setup.exe) |
-| macOS Apple Silicon | [Knowledge.Base_1.30.0_aarch64.dmg](releases/v1.30.0/Knowledge.Base_1.30.0_aarch64.dmg) |
-| macOS Intel | [Knowledge.Base_1.30.0_x64.dmg](releases/v1.30.0/Knowledge.Base_1.30.0_x64.dmg) |
-| Linux x64 (deb) | [Knowledge.Base_1.30.0_amd64.deb](releases/v1.30.0/Knowledge.Base_1.30.0_amd64.deb) |
-| Linux x64 (AppImage) | [Knowledge.Base_1.30.0_amd64.AppImage](https://pub-9d9e6c0cb6934fb0a0c505e3c64f39b2.r2.dev/knowledge-base/v1.30.0/Knowledge.Base_1.30.0_amd64.AppImage)（R2 CDN，>100MB 未入 git） |
+| Windows x64 | [Knowledge.Base_1.31.0_x64-setup.exe](releases/v1.31.0/Knowledge.Base_1.31.0_x64-setup.exe) |
+| macOS Apple Silicon | [Knowledge.Base_1.31.0_aarch64.dmg](releases/v1.31.0/Knowledge.Base_1.31.0_aarch64.dmg) |
+| macOS Intel | [Knowledge.Base_1.31.0_x64.dmg](releases/v1.31.0/Knowledge.Base_1.31.0_x64.dmg) |
+| Linux x64 (deb) | [Knowledge.Base_1.31.0_amd64.deb](releases/v1.31.0/Knowledge.Base_1.31.0_amd64.deb) |
+| Linux x64 (AppImage) | [Knowledge.Base_1.31.0_amd64.AppImage](https://pub-9d9e6c0cb6934fb0a0c505e3c64f39b2.r2.dev/knowledge-base/v1.31.0/Knowledge.Base_1.31.0_amd64.AppImage)（R2 CDN，>100MB 未入 git） |
 
 > 📱 **Android（移动端）走独立版本线**（从 0.1.0 起，与桌面 1.x 解耦），下载与版本历史见下方「[移动端（Android）](#移动端android)」。
 
@@ -48,6 +48,29 @@ APK 用固定 keystore（`kb-release.jks`）正式签名，CI（`android.yml`，
 独立 APK 可侧载，App 内「检查更新」自助升级（读 `update-mobile.json`）。功能覆盖：Markdown 编辑（源码 ↔ 渲染预览切换）/ 全文搜索 / 双向链接 / 标签 / 回收站 / AI 问答（含「针对当前笔记问 AI」）/ 闪卡复习 / 任务 / 闪念捕获 / 每日笔记热力图 / 相机扫码 / WebDAV 手动推拉 / 单文件导入 / 网页剪藏；跨设备配置分享（WebDAV 源 / AI 模型 / ASR 配置，可 PIN 加密 PBKDF2+AES-GCM-256）。kb-release.jks 正式签名，`android.yml` 自动构建。
 
 ## 版本历史
+
+### v1.31.0 (2026-07-28)
+
+**MCP HTTP 服务 + 笔记双树页签 + 文件夹自动导入 + 任务放弃状态**
+
+新功能：
+- MCP HTTP 服务：把自家知识库暴露给外部 agent 调用
+- 笔记面板加「文件夹 / 标签」页签，两棵树合并到一处
+- 文件夹自动导入：盯住一个目录，新落地的 `.md` 自动进库
+- 任务新增「放弃」状态（事情黄了但想留个记录）；日历支持跨天条 / 分类配色 / 子任务时间 / 日期段选择
+- AI 对话支持角色预设（复用提示词库）；上下文预算统一按模型窗口算，少截断多给上下文
+- 笔记工具栏「格式规整」、右键「在新窗口打开」、源文件下拉「打开所在文件夹」
+- 标题编号改用 JS 计算引擎（修复折叠后编号错乱）；自带手写编号的标题加跳号提示
+
+修复：
+- 同步健壮性加固：消灭「同步卡死」与「导入写坏库导致打不开」
+- 改过名的 PDF / `.doc` 附件预览失败
+- 表格单元格内代码 / 多行内容保存后被拆碎
+- 粘贴含 base64 内联图的 Markdown 显示成源码
+- 代码块命名存得进读不回，且会串进语言框
+- 大纲条目点不动 + 编辑区两侧空白过大
+- AI 问答存为笔记不再显示 Markdown 源码
+- 原生 title 悬停提示统一为深色气泡
 
 ### v1.30.0 (2026-07-14)
 
