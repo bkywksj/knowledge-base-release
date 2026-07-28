@@ -1,11 +1,11 @@
 {
-  "version": "1.31.0",
-  "notes": "新功能：MCP HTTP 服务（把知识库暴露给外部 agent）、笔记面板「文件夹 / 标签」双页签、文件夹自动导入（盯目录新 .md 自动进库）、任务「放弃」状态 + 日历跨天条/分类配色/子任务时间/日期段选择、AI 对话角色预设、AI 上下文预算按模型窗口算、笔记「格式规整」/「在新窗口打开」/「打开所在文件夹」、标题编号 JS 计算引擎 + 跳号提示。\n修复：同步卡死与导入写坏库、改过名的 PDF/.doc 附件预览失败、表格单元格代码被拆碎、粘贴 base64 内联图显示成源码、代码块命名读不回、大纲条目点不动、AI 问答存为笔记显示源码。",
-  "pub_date": "2026-07-27T17:00:10Z",
+  "version": "1.31.1",
+  "notes": "更换 Windows 代码签名证书：v1.31.0 所用证书被 ESET 等杀软列入证书黑名单（Win32/CertBL），会导致应用文件被误删、程序无法启动或 PDF 预览 / OCR 失效。本版已换用新证书重新签名，功能与 v1.31.0 完全一致，未改动任何功能代码。",
+  "pub_date": "2026-07-28T11:23:46Z",
   "platforms": {
     "windows-x86_64": {
-      "url": "https://github.com/bkywksj/knowledge-base-release/raw/main/releases/v1.31.0/Knowledge.Base_1.31.0_x64-setup.exe",
-      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVRYnFxUU55WW1IYTlTYXhtK0Q2cUNxMCt4dGVRNWZib1dneHIram00eWI1M3ZjQUxSc3VIQmk0c2hsNDVidmYweGdHT0VLK3BwU0xoOVFLTG1hVEdWeXNBV0JpdjR2RGdRPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzg1MTcwOTM2CWZpbGU6S25vd2xlZGdlIEJhc2VfMS4zMS4wX3g2NC1zZXR1cC5leGUKUnNiOTRnNXJ4aGFmRER5YzZkK0tiSEVORkd6SHpvS0ZPL2E3Z2ZwWWg3U25JU0JvdHJ6a0V5V0g4U0s3dVdOOHBKZjVpSm5MYVc2Nnh0aSs4ZCtHQ3c9PQo="
+      "url": "https://github.com/bkywksj/knowledge-base-release/raw/main/releases/v1.31.1/Knowledge.Base_1.31.1_x64-setup.exe",
+      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVRYnFxUU55WW1IYSszYWU0ZWY0d25aUSt2TEZIU2E0dmYvOVJQNWlaNkVzYUk2VDk3aVhBL3Nqd0NIU3RQQlYraE5tUWJwNUlDTjAveUd3ZHoyeW4weVRNRU0zNEJXcnc0PQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzg1MjIzNzQxCWZpbGU6S25vd2xlZGdlIEJhc2VfMS4zMS4xX3g2NC1zZXR1cC5leGUKeU95R3Y5QkJ0eTNiREZGc2pwVWVTeXJaNTN6OGFaK21PZHhCWlM4YjdCV1lhMjRMeUs5NWlPZWs1N2F3SUt5cmFvRk15YjNJRTEvS0xWbzR4NVNWRHc9PQo="
     },
     "darwin-aarch64": {
       "url": "https://github.com/bkywksj/knowledge-base-release/raw/main/releases/v1.31.0/Knowledge.Base_aarch64.app.tar.gz",

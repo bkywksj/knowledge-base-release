@@ -2,15 +2,18 @@
 
 本地优先的知识库桌面应用（Tauri 2.x + React 19）的安装包与自动更新端点仓库。
 
-## 最新版本: v1.31.0
+## 最新版本: v1.31.1
 
 | 平台 | 下载链接 |
 |------|---------|
-| Windows x64 | [Knowledge.Base_1.31.0_x64-setup.exe](releases/v1.31.0/Knowledge.Base_1.31.0_x64-setup.exe) |
-| macOS Apple Silicon | [Knowledge.Base_1.31.0_aarch64.dmg](releases/v1.31.0/Knowledge.Base_1.31.0_aarch64.dmg) |
-| macOS Intel | [Knowledge.Base_1.31.0_x64.dmg](releases/v1.31.0/Knowledge.Base_1.31.0_x64.dmg) |
-| Linux x64 (deb) | [Knowledge.Base_1.31.0_amd64.deb](releases/v1.31.0/Knowledge.Base_1.31.0_amd64.deb) |
-| Linux x64 (AppImage) | [Knowledge.Base_1.31.0_amd64.AppImage](https://pub-9d9e6c0cb6934fb0a0c505e3c64f39b2.r2.dev/knowledge-base/v1.31.0/Knowledge.Base_1.31.0_amd64.AppImage)（R2 CDN，>100MB 未入 git） |
+| Windows x64 | [Knowledge.Base_1.31.1_x64-setup.exe](releases/v1.31.1/Knowledge.Base_1.31.1_x64-setup.exe) |
+| macOS Apple Silicon | [Knowledge.Base_1.31.1_aarch64.dmg](releases/v1.31.1/Knowledge.Base_1.31.1_aarch64.dmg) |
+| macOS Intel | [Knowledge.Base_1.31.1_x64.dmg](releases/v1.31.1/Knowledge.Base_1.31.1_x64.dmg) |
+| Linux x64 (deb) | [Knowledge.Base_1.31.1_amd64.deb](releases/v1.31.1/Knowledge.Base_1.31.1_amd64.deb) |
+| Linux x64 (AppImage) | [Knowledge.Base_1.31.1_amd64.AppImage](https://pub-9d9e6c0cb6934fb0a0c505e3c64f39b2.r2.dev/knowledge-base/v1.31.1/Knowledge.Base_1.31.1_amd64.AppImage)（R2 CDN，>100MB 未入 git） |
+
+> ⚠️ **v1.31.0 的 Windows 用户请升级到 v1.31.1**：v1.31.0 所用的代码签名证书被 ESET 等杀软列入证书黑名单
+> （报 `Win32/CertBL`），可能导致应用文件被误删。v1.31.1 已更换签名证书，功能与 v1.31.0 完全一致。
 
 > 📱 **Android（移动端）走独立版本线**（从 0.1.0 起，与桌面 1.x 解耦），下载与版本历史见下方「[移动端（Android）](#移动端android)」。
 
@@ -48,6 +51,17 @@ APK 用固定 keystore（`kb-release.jks`）正式签名，CI（`android.yml`，
 独立 APK 可侧载，App 内「检查更新」自助升级（读 `update-mobile.json`）。功能覆盖：Markdown 编辑（源码 ↔ 渲染预览切换）/ 全文搜索 / 双向链接 / 标签 / 回收站 / AI 问答（含「针对当前笔记问 AI」）/ 闪卡复习 / 任务 / 闪念捕获 / 每日笔记热力图 / 相机扫码 / WebDAV 手动推拉 / 单文件导入 / 网页剪藏；跨设备配置分享（WebDAV 源 / AI 模型 / ASR 配置，可 PIN 加密 PBKDF2+AES-GCM-256）。kb-release.jks 正式签名，`android.yml` 自动构建。
 
 ## 版本历史
+
+### v1.31.1 (2026-07-28)
+
+**更换 Windows 代码签名证书（功能与 v1.31.0 完全一致）**
+
+v1.31.0 所用的代码签名证书被 ESET 等杀软列入**证书黑名单**（检测名 `Win32/CertBL`），
+命中的用户会看到「威胁已删除」提示、应用文件被直接删除，导致程序无法启动或部分功能失效
+（PDF 预览、OCR、MCP 服务）。这不是应用本身的问题，而是签名证书被整体封禁所致。
+
+v1.31.1 已更换为新的 EV 代码签名证书重新签名，**未改动任何功能代码**。
+受影响的 Windows 用户请下载安装本版本；若杀软此前删过文件，重新安装即可恢复。
 
 ### v1.31.0 (2026-07-28)
 
