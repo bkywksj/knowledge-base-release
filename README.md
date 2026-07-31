@@ -2,15 +2,15 @@
 
 本地优先的知识库桌面应用（Tauri 2.x + React 19）的安装包与自动更新端点仓库。
 
-## 最新版本: v1.31.1
+## 最新版本: v1.32.0
 
 | 平台 | 下载链接 |
 |------|---------|
-| Windows x64 | [Knowledge.Base_1.31.1_x64-setup.exe](releases/v1.31.1/Knowledge.Base_1.31.1_x64-setup.exe) |
-| macOS Apple Silicon | [Knowledge.Base_1.31.1_aarch64.dmg](releases/v1.31.1/Knowledge.Base_1.31.1_aarch64.dmg) |
-| macOS Intel | [Knowledge.Base_1.31.1_x64.dmg](releases/v1.31.1/Knowledge.Base_1.31.1_x64.dmg) |
-| Linux x64 (deb) | [Knowledge.Base_1.31.1_amd64.deb](releases/v1.31.1/Knowledge.Base_1.31.1_amd64.deb) |
-| Linux x64 (AppImage) | [Knowledge.Base_1.31.1_amd64.AppImage](https://pub-9d9e6c0cb6934fb0a0c505e3c64f39b2.r2.dev/knowledge-base/v1.31.1/Knowledge.Base_1.31.1_amd64.AppImage)（R2 CDN，>100MB 未入 git） |
+| Windows x64 | [Knowledge.Base_1.32.0_x64-setup.exe](releases/v1.32.0/Knowledge.Base_1.32.0_x64-setup.exe) |
+| macOS Apple Silicon | [Knowledge.Base_1.32.0_aarch64.dmg](releases/v1.32.0/Knowledge.Base_1.32.0_aarch64.dmg) |
+| macOS Intel | [Knowledge.Base_1.32.0_x64.dmg](releases/v1.32.0/Knowledge.Base_1.32.0_x64.dmg) |
+| Linux x64 (deb) | [Knowledge.Base_1.32.0_amd64.deb](releases/v1.32.0/Knowledge.Base_1.32.0_amd64.deb) |
+| Linux x64 (AppImage) | [Knowledge.Base_1.32.0_amd64.AppImage](https://pub-9d9e6c0cb6934fb0a0c505e3c64f39b2.r2.dev/knowledge-base/v1.32.0/Knowledge.Base_1.32.0_amd64.AppImage)（R2 CDN，>100MB 未入 git） |
 
 > ⚠️ **v1.31.0 的 Windows 用户请升级到 v1.31.1**：v1.31.0 所用的代码签名证书被 ESET 等杀软列入证书黑名单
 > （报 `Win32/CertBL`），可能导致应用文件被误删。v1.31.1 已更换签名证书，功能与 v1.31.0 完全一致。
@@ -51,6 +51,29 @@ APK 用固定 keystore（`kb-release.jks`）正式签名，CI（`android.yml`，
 独立 APK 可侧载，App 内「检查更新」自助升级（读 `update-mobile.json`）。功能覆盖：Markdown 编辑（源码 ↔ 渲染预览切换）/ 全文搜索 / 双向链接 / 标签 / 回收站 / AI 问答（含「针对当前笔记问 AI」）/ 闪卡复习 / 任务 / 闪念捕获 / 每日笔记热力图 / 相机扫码 / WebDAV 手动推拉 / 单文件导入 / 网页剪藏；跨设备配置分享（WebDAV 源 / AI 模型 / ASR 配置，可 PIN 加密 PBKDF2+AES-GCM-256）。kb-release.jks 正式签名，`android.yml` 自动构建。
 
 ## 版本历史
+
+### v1.32.0 (2026-07-31)
+
+**AI 写作不再混入思考过程 + 字体可自定义 + 大笔记打印提速**
+
+编辑器：
+- AI 写作辅助不再把推理模型的「思考过程」替换进笔记 —— deepseek-r1 / qwq / qwen3 这类模型
+  经本地 Ollama / LM Studio 时会把 `<think>…</think>` 混在正文里，此前会被整段插入笔记。
+  现在思考过程单独折叠展示，替换 / 追加只写入正文
+- 标题字体可在设置里单独指定（默认跟随正文）；工具栏新增「字体」下拉，可对选中文字设字体，
+  也能一键清除从 Word / 网页粘进来的内联字体
+- 双链右键菜单加「修改链接」；修复表格内双链点不动、跨节点不识别、日记页点击无响应
+- 修复粘贴 Windows 路径时反斜杠被 Markdown 转义吃掉
+- 修复切换笔记后标题折叠失效、有序列表引线压住编号
+
+导出与打印：
+- 导出 HTML / Word 带上标题编号
+- 导出 HTML / 打印 / Word（装了转换器时）跟随设置里的正文与标题字体
+- 大笔记打印 / 导出提速：砍掉几十 MB 的进程间往返、图片内嵌限并发并封顶，全程带进度提示
+
+其他：
+- MCP HTTP 服务 401 返回可操作提示，设置页支持一键复制连接配置
+- 修复重启后设置丢失（单实例守护 + hydration guard）
 
 ### v1.31.1 (2026-07-28)
 

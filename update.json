@@ -1,23 +1,23 @@
 {
-  "version": "1.31.1",
-  "notes": "更换 Windows 代码签名证书：v1.31.0 所用证书被 ESET 等杀软列入证书黑名单（Win32/CertBL），会导致应用文件被误删、程序无法启动或 PDF 预览 / OCR 失效。本版已换用新证书重新签名，功能与 v1.31.0 完全一致，未改动任何功能代码。",
-  "pub_date": "2026-07-28T11:33:31Z",
+  "version": "1.32.0",
+  "notes": "AI 写作辅助不再把推理模型的思考过程写进笔记；标题字体可单独设置，工具栏新增字体下拉；双链可改链接、修复表格内点不动；导出 HTML/Word 带标题编号并跟随字体；大笔记打印/导出提速。",
+  "pub_date": "2026-07-31T17:30:36Z",
   "platforms": {
     "windows-x86_64": {
-      "url": "https://github.com/bkywksj/knowledge-base-release/raw/main/releases/v1.31.1/Knowledge.Base_1.31.1_x64-setup.exe",
-      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVRYnFxUU55WW1IYSszYWU0ZWY0d25aUSt2TEZIU2E0dmYvOVJQNWlaNkVzYUk2VDk3aVhBL3Nqd0NIU3RQQlYraE5tUWJwNUlDTjAveUd3ZHoyeW4weVRNRU0zNEJXcnc0PQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzg1MjIzNzQxCWZpbGU6S25vd2xlZGdlIEJhc2VfMS4zMS4xX3g2NC1zZXR1cC5leGUKeU95R3Y5QkJ0eTNiREZGc2pwVWVTeXJaNTN6OGFaK21PZHhCWlM4YjdCV1lhMjRMeUs5NWlPZWs1N2F3SUt5cmFvRk15YjNJRTEvS0xWbzR4NVNWRHc9PQo="
+      "url": "https://github.com/bkywksj/knowledge-base-release/raw/main/releases/v1.32.0/Knowledge.Base_1.32.0_x64-setup.exe",
+      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVRYnFxUU55WW1IYTNHYXJSVFE0V05DUnJ4N09VZnJlY3M0UlE0Slo0dTZoYjJDV1ZFRkJvZDMwUHA1bTZsZDFyaDhFMENCejU1UzBtZVMwOCtjMG9GdWlJcmhlQlNqWndzPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzg1NTE4OTM4CWZpbGU6S25vd2xlZGdlIEJhc2VfMS4zMi4wX3g2NC1zZXR1cC5leGUKcGl4UFJXb2JTVWUyV2c3NDYrak9ldEdNeVovMlVKWWFNS0xrVVNkOTlLTjlOQStlSmpCSlYyaUZkM3hJNStFTUEra2Npa0REMUZYMUpkTGtsbHZzRFE9PQo="
     },
     "darwin-aarch64": {
-      "url": "https://github.com/bkywksj/knowledge-base-release/raw/main/releases/v1.31.1/Knowledge.Base_aarch64.app.tar.gz",
-      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVRYnFxUU55WW1IYTQ0T0RKRWlyUGN6OHJZRDdORGUrMjV5RWllTkVXQU5abW9WdDJKSXlYL2NNVGtqOFppZmdXSWE0cmMwajNDYVc2dGp5aGprZVI5THd6c01va0hrQUFvPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzg1MjM2NzM2CWZpbGU6S25vd2xlZGdlIEJhc2UuYXBwLnRhci5negpXM3ZKa1JIMU1UcWgyVE1nV1pkUHpCNU0xcWVoOEdOQzBvd3VGZGovcVhZcGFKTkFYOVM5anVFTGVsZUk1d0tGd2d6eU0rVitqTVNvTUsyTkY2TDFEQT09Cg=="
+      "url": "https://github.com/bkywksj/knowledge-base-release/raw/main/releases/v1.32.0/Knowledge.Base_aarch64.app.tar.gz",
+      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVRYnFxUU55WW1IYXlyNUxzTzNaUmowWDZ0RlNwU0pEZXRrWWJNR0dtMmNyMENsSWNudHVnL2h4c29vVWZRd1laNlptdndCcFVUblZaNXBpM1ZHbmVVOFF0MXlzMXpaMGd3PQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzg1NTA2MDI3CWZpbGU6S25vd2xlZGdlIEJhc2UuYXBwLnRhci5negp5UGZ0M0R4Nkp0eElKZ1U5Z2pnakUwVUZuV0tUSzlFOTVzQ2tCcmpFZW1iVXZxOXV6dCs4ME81VU04OUtxb2hiK1g4bGtWZ2dPTVN6M1cremRHZ21Cdz09Cg=="
     },
     "darwin-x86_64": {
-      "url": "https://github.com/bkywksj/knowledge-base-release/raw/main/releases/v1.31.1/Knowledge.Base_x64.app.tar.gz",
-      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVRYnFxUU55WW1IYTkxYVVOTncxTEtUZDNvUldOYXZKQXY4SVV5d2lwbDhXcytzc0k3Uko3QUNTU1UrMlloakdKVGdPd2Fvb2dxc21KNEVSeG9LRS9DR3RRVW5zUk1ZRlFBPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzg1MjM3MDExCWZpbGU6S25vd2xlZGdlIEJhc2UuYXBwLnRhci5negpGelhoR28xQ0Y3eVpldXF3VHV0Vk1XWC9jWnVXTEgwL1lIMktsU0lRT05EcmdNaWFiZ0VQcHQvN3djbXErSGdkeU16SVc3RnFVR251bXhzL0ZJaDNBdz09Cg=="
+      "url": "https://github.com/bkywksj/knowledge-base-release/raw/main/releases/v1.32.0/Knowledge.Base_x64.app.tar.gz",
+      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVRYnFxUU55WW1IYTI4c1Y4ZFBZdGp3dkxiZzEzMVFpU1JGdkluNExMeEZlT3hyTlJRQkFiS3dLeHV0V0VlNS9idHFZd09KV0VwMWJOMDhiLzIyUjZBZE1Rc1JFN2dLQmc0PQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzg1NTA1OTY3CWZpbGU6S25vd2xlZGdlIEJhc2UuYXBwLnRhci5negpiREh5cWdQTit0TXlzNEsrZHRURDlQVEVKMlhCbE9OSFBudlFrSzZOVDM1TUUrU2RwN1VkcUdsSGhlNGZCbGhXOG5Wdm5UVjE5cnc5eTUxV3VkZUREZz09Cg=="
     },
     "linux-x86_64": {
-      "url": "https://pub-9d9e6c0cb6934fb0a0c505e3c64f39b2.r2.dev/knowledge-base/v1.31.1/Knowledge.Base_1.31.1_amd64.AppImage.tar.gz",
-      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVRYnFxUU55WW1IYXc5ZjhaWG93RHRWT0VzbllwVUY2cjhRd2llb0IvbWIxM1VqSHkzTFdxdU5EY3luV01NWlRMMnRVNXB4QkpiRHdUQUpTM2pwd1I3bVgzY1ZscndTNkE0PQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzg1MjM3MjYxCWZpbGU6S25vd2xlZGdlIEJhc2VfMS4zMS4xX2FtZDY0LkFwcEltYWdlLnRhci5negpsWjIyZXZWRjVZTkFkN1FPMGt5OHF3L1BZbXZiYkFzSkJRV1hRcEJ3eStuSTZyWGdWa2Vvcm03ekxKRDlBTGxuL2tWSGdSb0lvODNuV0dKY0IyM3BCZz09Cg=="
+      "url": "https://pub-9d9e6c0cb6934fb0a0c505e3c64f39b2.r2.dev/knowledge-base/v1.32.0/Knowledge.Base_1.32.0_amd64.AppImage.tar.gz",
+      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVRYnFxUU55WW1IYTRTRkVXUUV3bVZUYVIyYkMwNDdoK1BXNEE4a1QyWHpHQlUzT1k0cWhVRzgyWVZmdnlpZDVXeHlJSnZIN0hpR1ZwTi9sSURtTEpCRkxyenFQckxFYlFVPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzg1NTA2MjM1CWZpbGU6S25vd2xlZGdlIEJhc2VfMS4zMi4wX2FtZDY0LkFwcEltYWdlLnRhci5negp3UC9OSytxbHpPcG43K2J3b2tNanpMakdOZDdIamo5Kys4T29BdjJOQW0yd2NRNmdxWkFCRUFXT01Bdk1vSGlsT2F6WlpyaWRhTWp6UlRUZVJqOHdCdz09Cg=="
     }
   }
 }
