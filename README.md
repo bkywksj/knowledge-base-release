@@ -2,15 +2,15 @@
 
 本地优先的知识库桌面应用（Tauri 2.x + React 19）的安装包与自动更新端点仓库。
 
-## 最新版本: v1.32.0
+## 最新版本: v1.50.0
 
 | 平台 | 下载链接 |
 |------|---------|
-| Windows x64 | [Knowledge.Base_1.32.0_x64-setup.exe](releases/v1.32.0/Knowledge.Base_1.32.0_x64-setup.exe) |
-| macOS Apple Silicon | [Knowledge.Base_1.32.0_aarch64.dmg](releases/v1.32.0/Knowledge.Base_1.32.0_aarch64.dmg) |
-| macOS Intel | [Knowledge.Base_1.32.0_x64.dmg](releases/v1.32.0/Knowledge.Base_1.32.0_x64.dmg) |
-| Linux x64 (deb) | [Knowledge.Base_1.32.0_amd64.deb](releases/v1.32.0/Knowledge.Base_1.32.0_amd64.deb) |
-| Linux x64 (AppImage) | [Knowledge.Base_1.32.0_amd64.AppImage](https://pub-9d9e6c0cb6934fb0a0c505e3c64f39b2.r2.dev/knowledge-base/v1.32.0/Knowledge.Base_1.32.0_amd64.AppImage)（R2 CDN，>100MB 未入 git） |
+| Windows x64 | [Knowledge.Base_1.50.0_x64-setup.exe](releases/v1.50.0/Knowledge.Base_1.50.0_x64-setup.exe) |
+| macOS Apple Silicon | [Knowledge.Base_1.50.0_aarch64.dmg](releases/v1.50.0/Knowledge.Base_1.50.0_aarch64.dmg) |
+| macOS Intel | [Knowledge.Base_1.50.0_x64.dmg](releases/v1.50.0/Knowledge.Base_1.50.0_x64.dmg) |
+| Linux x64 (deb) | [Knowledge.Base_1.50.0_amd64.deb](releases/v1.50.0/Knowledge.Base_1.50.0_amd64.deb) |
+| Linux x64 (AppImage) | [Knowledge.Base_1.50.0_amd64.AppImage](https://pub-9d9e6c0cb6934fb0a0c505e3c64f39b2.r2.dev/knowledge-base/v1.50.0/Knowledge.Base_1.50.0_amd64.AppImage)（R2 CDN，>100MB 未入 git） |
 
 > ⚠️ **v1.31.0 的 Windows 用户请升级到 v1.31.1**：v1.31.0 所用的代码签名证书被 ESET 等杀软列入证书黑名单
 > （报 `Win32/CertBL`），可能导致应用文件被误删。v1.31.1 已更换签名证书，功能与 v1.31.0 完全一致。
@@ -51,6 +51,33 @@ APK 用固定 keystore（`kb-release.jks`）正式签名，CI（`android.yml`，
 独立 APK 可侧载，App 内「检查更新」自助升级（读 `update-mobile.json`）。功能覆盖：Markdown 编辑（源码 ↔ 渲染预览切换）/ 全文搜索 / 双向链接 / 标签 / 回收站 / AI 问答（含「针对当前笔记问 AI」）/ 闪卡复习 / 任务 / 闪念捕获 / 每日笔记热力图 / 相机扫码 / WebDAV 手动推拉 / 单文件导入 / 网页剪藏；跨设备配置分享（WebDAV 源 / AI 模型 / ASR 配置，可 PIN 加密 PBKDF2+AES-GCM-256）。kb-release.jks 正式签名，`android.yml` 自动构建。
 
 ## 版本历史
+
+### v1.50.0 (2026-08-03)
+
+**整页白板 + 笔记内嵌白板块 + 历史日记导入 + 跨平台数据搬迁修复**
+
+新功能：
+- **整页白板**：新建画布类型笔记，基于 Excalidraw（已完全离线化，不连任何外部服务），
+  支持导出图片，在笔记列表里作为独立类型区分显示。
+- **笔记内嵌白板块**：在 Markdown 正文里直接插入画布，平时以图片形式显示，双击展开编辑，
+  改完自动回写。白板内容已接入同步与双向链接体系。
+- **历史日记导入**：支持「日期文件夹 / 笔记.md」这种目录结构直接导入为日记，
+  已导入过的笔记会自动认回对应日期，不重复建条目。
+- **笔记底部常驻链接状态条**：链出 / 链入 / 断链一次看全，替换掉原工具栏里的链接按钮。
+- **窗口大小与位置记忆**：关闭时记住窗口几何，下次原样恢复；设置里提供「恢复默认大小」。
+
+优化：
+- 主窗口启动高度系数从 0.77 提到 0.88 —— 1080p 屏上默认高度从 832 抬到 950。
+- 链接状态条与纸张卡片左右对齐，补上此前缺失的背景层。
+
+修复：
+- **跨平台数据搬迁的裂图与拉取失败**：路径分隔符归一化 + 数据体检自动修复 + 指针守卫，
+  Windows ↔ macOS / Linux 之间搬数据后不再出现图片裂开、同步拉取中断。
+- **`attachments/` 存量附件漏同步**：schema v54 清空附件扫描标记，旧附件会被重新纳入同步。
+- **坏字节拖垮整次同步**：TEXT 列改用 UTF-8 降级读取，个别损坏字节不再让整次同步失败。
+- **日记双链单向失效**：日记此前不同步出链，导致双向链接只有一个方向生效。
+- **设置写盘改增量**：副窗口不再用陈旧状态覆盖主窗口刚改的设置。
+- 单实例插件不再区分 dev / prod，装了正式版也能正常跑 `tauri dev`。
 
 ### v1.32.0 (2026-07-31)
 
@@ -651,20 +678,23 @@ releases/
 │   └── ...
 ├── v1.13.0/
 │   └── ...
-└── v1.14.0/
-    ├── Knowledge.Base_1.14.0_x64-setup.exe         # Windows 安装包
-    ├── Knowledge.Base_1.14.0_x64-setup.exe.sig     # Windows 签名
-    ├── Knowledge.Base_1.14.0_x64-setup.nsis.zip    # Windows updater 压缩包
-    ├── Knowledge.Base_1.14.0_aarch64.dmg           # macOS ARM 安装镜像
-    ├── Knowledge.Base_1.14.0_x64.dmg               # macOS Intel 安装镜像
+├── v1.14.0/
+│   └── ...
+├── ...                                             # v1.20.0 – v1.32.0 同构，略
+└── v1.50.0/
+    ├── Knowledge.Base_1.50.0_x64-setup.exe         # Windows 安装包
+    ├── Knowledge.Base_1.50.0_x64-setup.exe.sig     # Windows 签名
+    ├── Knowledge.Base_1.50.0_x64-setup.nsis.zip    # Windows updater 压缩包
+    ├── Knowledge.Base_1.50.0_aarch64.dmg           # macOS ARM 安装镜像
+    ├── Knowledge.Base_1.50.0_x64.dmg               # macOS Intel 安装镜像
     ├── Knowledge.Base_aarch64.app.tar.gz              # macOS ARM updater
     ├── Knowledge.Base_aarch64.app.tar.gz.sig          # macOS ARM updater 签名
     ├── Knowledge.Base_x64.app.tar.gz                  # macOS Intel updater
     ├── Knowledge.Base_x64.app.tar.gz.sig              # macOS Intel updater 签名
-    ├── Knowledge.Base_1.14.0_amd64.deb             # Linux Debian/Ubuntu 包
-    ├── Knowledge.Base_1.14.0_amd64.AppImage        # Linux 通用 AppImage
-    ├── Knowledge.Base_1.14.0_amd64.AppImage.tar.gz # Linux updater 压缩包
-    └── Knowledge.Base_1.14.0_amd64.AppImage.tar.gz.sig # Linux updater 签名
+    ├── Knowledge.Base_1.50.0_amd64.deb             # Linux Debian/Ubuntu 包
+    ├── Knowledge.Base_1.50.0_amd64.AppImage        # Linux 通用 AppImage（>100MB，仅 R2）
+    ├── Knowledge.Base_1.50.0_amd64.AppImage.tar.gz # Linux updater 压缩包（仅 R2）
+    └── Knowledge.Base_1.50.0_amd64.AppImage.tar.gz.sig # Linux updater 签名
 
 update.json                                         # 自动更新元数据（GitHub 版）
 update-r2.json                                      # 自动更新元数据（R2 版，备档）
