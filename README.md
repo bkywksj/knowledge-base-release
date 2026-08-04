@@ -2,18 +2,21 @@
 
 本地优先的知识库桌面应用（Tauri 2.x + React 19）的安装包与自动更新端点仓库。
 
-## 最新版本: v1.50.0
+## 最新版本: v1.51.0
 
 | 平台 | 下载链接 |
 |------|---------|
-| Windows x64 | [Knowledge.Base_1.50.0_x64-setup.exe](releases/v1.50.0/Knowledge.Base_1.50.0_x64-setup.exe) |
-| macOS Apple Silicon | [Knowledge.Base_1.50.0_aarch64.dmg](releases/v1.50.0/Knowledge.Base_1.50.0_aarch64.dmg) |
-| macOS Intel | [Knowledge.Base_1.50.0_x64.dmg](releases/v1.50.0/Knowledge.Base_1.50.0_x64.dmg) |
-| Linux x64 (deb) | [Knowledge.Base_1.50.0_amd64.deb](releases/v1.50.0/Knowledge.Base_1.50.0_amd64.deb) |
-| Linux x64 (AppImage) | [Knowledge.Base_1.50.0_amd64.AppImage](https://pub-9d9e6c0cb6934fb0a0c505e3c64f39b2.r2.dev/knowledge-base/v1.50.0/Knowledge.Base_1.50.0_amd64.AppImage)（R2 CDN，>100MB 未入 git） |
+| Windows x64 | [Knowledge.Base_1.51.0_x64-setup.exe](releases/v1.51.0/Knowledge.Base_1.51.0_x64-setup.exe) |
+| macOS Apple Silicon | [Knowledge.Base_1.51.0_aarch64.dmg](releases/v1.51.0/Knowledge.Base_1.51.0_aarch64.dmg) |
+| macOS Intel | [Knowledge.Base_1.51.0_x64.dmg](releases/v1.51.0/Knowledge.Base_1.51.0_x64.dmg) |
+| Linux x64 (deb) | [Knowledge.Base_1.51.0_amd64.deb](releases/v1.51.0/Knowledge.Base_1.51.0_amd64.deb) |
+| Linux x64 (AppImage) | [Knowledge.Base_1.51.0_amd64.AppImage](https://pub-9d9e6c0cb6934fb0a0c505e3c64f39b2.r2.dev/knowledge-base/v1.51.0/Knowledge.Base_1.51.0_amd64.AppImage)（R2 CDN，>100MB 未入 git） |
 
-> ⚠️ **v1.31.0 的 Windows 用户请升级到 v1.31.1**：v1.31.0 所用的代码签名证书被 ESET 等杀软列入证书黑名单
-> （报 `Win32/CertBL`），可能导致应用文件被误删。v1.31.1 已更换签名证书，功能与 v1.31.0 完全一致。
+> ⚠️ **v1.50.0 的 macOS 用户请升级到 v1.51.0**：v1.50.0 在 macOS 上打开笔记会卡死
+> （asset 协议跨平台差异导致 observer 死循环），v1.51.0 已修复。
+
+> ⚠️ **v1.31.0 的 Windows 用户请升级**：v1.31.0 所用的代码签名证书被 ESET 等杀软列入证书黑名单
+> （报 `Win32/CertBL`），可能导致应用文件被误删。v1.31.1 起已更换签名证书。
 
 > 📱 **Android（移动端）走独立版本线**（从 0.1.0 起，与桌面 1.x 解耦），下载与版本历史见下方「[移动端（Android）](#移动端android)」。
 
@@ -51,6 +54,30 @@ APK 用固定 keystore（`kb-release.jks`）正式签名，CI（`android.yml`，
 独立 APK 可侧载，App 内「检查更新」自助升级（读 `update-mobile.json`）。功能覆盖：Markdown 编辑（源码 ↔ 渲染预览切换）/ 全文搜索 / 双向链接 / 标签 / 回收站 / AI 问答（含「针对当前笔记问 AI」）/ 闪卡复习 / 任务 / 闪念捕获 / 每日笔记热力图 / 相机扫码 / WebDAV 手动推拉 / 单文件导入 / 网页剪藏；跨设备配置分享（WebDAV 源 / AI 模型 / ASR 配置，可 PIN 加密 PBKDF2+AES-GCM-256）。kb-release.jks 正式签名，`android.yml` 自动构建。
 
 ## 版本历史
+
+### v1.51.0 (2026-08-04)
+
+**修复 macOS 打开笔记即卡死 + 日记不再被日期文件夹拖累 + 新增「清理空文件夹」**
+
+修复：
+- **macOS 打开笔记即卡死**（v1.50.0 受影响）：asset 协议在各平台返回的 URL 形态不同，
+  编辑器里的 observer 因此进入死循环，打开任意笔记就整个界面卡住。
+- **数据目录迁移的自我复制**：把数据目录「迁移」到它自己（源 == 目标）时，
+  复制流程会先截断目标文件再读源文件，结果把文件全部写成 0 字节。现已提前识别并拒绝。
+- **日记被日期文件夹拖累**：导入历史日记后笔记树里会多出一堆日期文件夹，
+  点开显示「暂无数据」（列表本就不显示日记），删除时却提示「还有 1 篇笔记」，
+  确认后当天日记被扫进回收站。现在日记归日记页管，删文件夹不再牵连它。
+- **侧栏树随机跳回顶部 / 滚动条消失**：文件夹数量在虚拟滚动阈值附近来回横跳时，
+  滚动容器被反复切换导致 scrollTop 归零。阈值改为带迟滞的锁存（>200 开、<120 才关）。
+
+新功能：
+- **清理空文件夹**（侧栏「文件夹」标题栏）：扫出子树内没有任何未回收笔记的文件夹，
+  预览路径后批量删除，删除前会重新校验仍为空。导入历史日记留下的大量空日期文件夹可一键清掉。
+- **右键选中反馈**：笔记列表与侧栏树右键时高亮当前行（灰底 + 主色描边），
+  不再「弹了菜单却不知道操作的是哪一篇」；已勾选的行保留勾选色，只叠描边。
+
+性能：
+- 消除三处主线程阻塞：图片读取与路径解析改为异步，附件扫描改批量写入。
 
 ### v1.50.0 (2026-08-03)
 
@@ -681,20 +708,22 @@ releases/
 ├── v1.14.0/
 │   └── ...
 ├── ...                                             # v1.20.0 – v1.32.0 同构，略
-└── v1.50.0/
-    ├── Knowledge.Base_1.50.0_x64-setup.exe         # Windows 安装包
-    ├── Knowledge.Base_1.50.0_x64-setup.exe.sig     # Windows 签名
-    ├── Knowledge.Base_1.50.0_x64-setup.nsis.zip    # Windows updater 压缩包
-    ├── Knowledge.Base_1.50.0_aarch64.dmg           # macOS ARM 安装镜像
-    ├── Knowledge.Base_1.50.0_x64.dmg               # macOS Intel 安装镜像
+├── v1.50.0/
+│   └── ...
+└── v1.51.0/
+    ├── Knowledge.Base_1.51.0_x64-setup.exe         # Windows 安装包
+    ├── Knowledge.Base_1.51.0_x64-setup.exe.sig     # Windows 签名
+    ├── Knowledge.Base_1.51.0_x64-setup.nsis.zip    # Windows updater 压缩包
+    ├── Knowledge.Base_1.51.0_aarch64.dmg           # macOS ARM 安装镜像
+    ├── Knowledge.Base_1.51.0_x64.dmg               # macOS Intel 安装镜像
     ├── Knowledge.Base_aarch64.app.tar.gz              # macOS ARM updater
     ├── Knowledge.Base_aarch64.app.tar.gz.sig          # macOS ARM updater 签名
     ├── Knowledge.Base_x64.app.tar.gz                  # macOS Intel updater
     ├── Knowledge.Base_x64.app.tar.gz.sig              # macOS Intel updater 签名
-    ├── Knowledge.Base_1.50.0_amd64.deb             # Linux Debian/Ubuntu 包
-    ├── Knowledge.Base_1.50.0_amd64.AppImage        # Linux 通用 AppImage（>100MB，仅 R2）
-    ├── Knowledge.Base_1.50.0_amd64.AppImage.tar.gz # Linux updater 压缩包（仅 R2）
-    └── Knowledge.Base_1.50.0_amd64.AppImage.tar.gz.sig # Linux updater 签名
+    ├── Knowledge.Base_1.51.0_amd64.deb             # Linux Debian/Ubuntu 包
+    ├── Knowledge.Base_1.51.0_amd64.AppImage        # Linux 通用 AppImage（>100MB，仅 R2）
+    ├── Knowledge.Base_1.51.0_amd64.AppImage.tar.gz # Linux updater 压缩包（仅 R2）
+    └── Knowledge.Base_1.51.0_amd64.AppImage.tar.gz.sig # Linux updater 签名
 
 update.json                                         # 自动更新元数据（GitHub 版）
 update-r2.json                                      # 自动更新元数据（R2 版，备档）
