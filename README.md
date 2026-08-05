@@ -2,18 +2,18 @@
 
 本地优先的知识库桌面应用（Tauri 2.x + React 19）的安装包与自动更新端点仓库。
 
-## 最新版本: v1.51.0
+## 最新版本: v1.52.0
 
 | 平台 | 下载链接 |
 |------|---------|
-| Windows x64 | [Knowledge.Base_1.51.0_x64-setup.exe](releases/v1.51.0/Knowledge.Base_1.51.0_x64-setup.exe) |
-| macOS Apple Silicon | [Knowledge.Base_1.51.0_aarch64.dmg](releases/v1.51.0/Knowledge.Base_1.51.0_aarch64.dmg) |
-| macOS Intel | [Knowledge.Base_1.51.0_x64.dmg](releases/v1.51.0/Knowledge.Base_1.51.0_x64.dmg) |
-| Linux x64 (deb) | [Knowledge.Base_1.51.0_amd64.deb](releases/v1.51.0/Knowledge.Base_1.51.0_amd64.deb) |
-| Linux x64 (AppImage) | [Knowledge.Base_1.51.0_amd64.AppImage](https://pub-9d9e6c0cb6934fb0a0c505e3c64f39b2.r2.dev/knowledge-base/v1.51.0/Knowledge.Base_1.51.0_amd64.AppImage)（R2 CDN，>100MB 未入 git） |
+| Windows x64 | [Knowledge.Base_1.52.0_x64-setup.exe](releases/v1.52.0/Knowledge.Base_1.52.0_x64-setup.exe) |
+| macOS Apple Silicon | [Knowledge.Base_1.52.0_aarch64.dmg](releases/v1.52.0/Knowledge.Base_1.52.0_aarch64.dmg) |
+| macOS Intel | [Knowledge.Base_1.52.0_x64.dmg](releases/v1.52.0/Knowledge.Base_1.52.0_x64.dmg) |
+| Linux x64 (deb) | [Knowledge.Base_1.52.0_amd64.deb](releases/v1.52.0/Knowledge.Base_1.52.0_amd64.deb) |
+| Linux x64 (AppImage) | [Knowledge.Base_1.52.0_amd64.AppImage](https://pub-9d9e6c0cb6934fb0a0c505e3c64f39b2.r2.dev/knowledge-base/v1.52.0/Knowledge.Base_1.52.0_amd64.AppImage)（R2 CDN，>100MB 未入 git） |
 
-> ⚠️ **v1.50.0 的 macOS 用户请升级到 v1.51.0**：v1.50.0 在 macOS 上打开笔记会卡死
-> （asset 协议跨平台差异导致 observer 死循环），v1.51.0 已修复。
+> ⚠️ **v1.50.0 的 macOS 用户请升级**：v1.50.0 在 macOS 上打开笔记会卡死
+> （asset 协议跨平台差异导致 observer 死循环），v1.51.0 起已修复。
 
 > ⚠️ **v1.31.0 的 Windows 用户请升级**：v1.31.0 所用的代码签名证书被 ESET 等杀软列入证书黑名单
 > （报 `Win32/CertBL`），可能导致应用文件被误删。v1.31.1 起已更换签名证书。
@@ -54,6 +54,29 @@ APK 用固定 keystore（`kb-release.jks`）正式签名，CI（`android.yml`，
 独立 APK 可侧载，App 内「检查更新」自助升级（读 `update-mobile.json`）。功能覆盖：Markdown 编辑（源码 ↔ 渲染预览切换）/ 全文搜索 / 双向链接 / 标签 / 回收站 / AI 问答（含「针对当前笔记问 AI」）/ 闪卡复习 / 任务 / 闪念捕获 / 每日笔记热力图 / 相机扫码 / WebDAV 手动推拉 / 单文件导入 / 网页剪藏；跨设备配置分享（WebDAV 源 / AI 模型 / ASR 配置，可 PIN 加密 PBKDF2+AES-GCM-256）。kb-release.jks 正式签名，`android.yml` 自动构建。
 
 ## 版本历史
+
+### v1.52.0 (2026-08-05)
+
+**Markdown 源码模式 + 打开外部 .md 可选「临时编辑」**
+
+新功能：
+- **Markdown 源码模式**：编辑器顶部新增 `</>` 按钮，切换后直接编辑 Markdown 原文。
+  富文本编辑器会把它不认识的 HTML 标签规范化掉（只有常见标签能存活），
+  写 YAML front-matter、手写 `<kbd>` / `<audio>`、粘贴现成 Markdown 原文这些场景
+  在源码模式下**原样保留、零解析**。带 Tab / Shift+Tab 缩进。
+- **打开外部 .md 时可选打开方式**：
+  - **加入知识库**：参与全文搜索、双向链接、AI 问答，出现在笔记列表里（原有行为）
+  - **临时编辑**：只当 Markdown 编辑器用 —— 改动**照常写回原文件**，
+    但不进笔记列表 / 搜索 / 双链，适合"拿本应用改一份外部 README"的场景
+  - 可勾选「记住我的选择」，也可在 设置 → 自动保存 → 打开外部 .md 文件的方式 里改
+  - 临时文件可在笔记侧栏「打开 md」旁的下拉 →「临时文件」里查看，随时转为正式笔记
+- **待办日期区间筛选**：搜索行右侧新增日期筛选，预设今天 / 昨天 / 最近 7 天 /
+  最近 30 天 / 本周 / 本月 / 上月，也可只填一端做开区间。未完成看截止日期、
+  已完成看完成日期；生效于列表 / 看板 / 四象限。
+
+优化：
+- **标签栏不再把标题压成一个字**：标签多时原本会被压到只剩约 36px 宽，
+  中文只显示 1 个字。现在每个标签有最小宽度，超出部分由标签栏横向滚动。
 
 ### v1.51.0 (2026-08-04)
 
@@ -710,20 +733,22 @@ releases/
 ├── ...                                             # v1.20.0 – v1.32.0 同构，略
 ├── v1.50.0/
 │   └── ...
-└── v1.51.0/
-    ├── Knowledge.Base_1.51.0_x64-setup.exe         # Windows 安装包
-    ├── Knowledge.Base_1.51.0_x64-setup.exe.sig     # Windows 签名
-    ├── Knowledge.Base_1.51.0_x64-setup.nsis.zip    # Windows updater 压缩包
-    ├── Knowledge.Base_1.51.0_aarch64.dmg           # macOS ARM 安装镜像
-    ├── Knowledge.Base_1.51.0_x64.dmg               # macOS Intel 安装镜像
+├── v1.51.0/
+│   └── ...
+└── v1.52.0/
+    ├── Knowledge.Base_1.52.0_x64-setup.exe         # Windows 安装包
+    ├── Knowledge.Base_1.52.0_x64-setup.exe.sig     # Windows 签名
+    ├── Knowledge.Base_1.52.0_x64-setup.nsis.zip    # Windows updater 压缩包
+    ├── Knowledge.Base_1.52.0_aarch64.dmg           # macOS ARM 安装镜像
+    ├── Knowledge.Base_1.52.0_x64.dmg               # macOS Intel 安装镜像
     ├── Knowledge.Base_aarch64.app.tar.gz              # macOS ARM updater
     ├── Knowledge.Base_aarch64.app.tar.gz.sig          # macOS ARM updater 签名
     ├── Knowledge.Base_x64.app.tar.gz                  # macOS Intel updater
     ├── Knowledge.Base_x64.app.tar.gz.sig              # macOS Intel updater 签名
-    ├── Knowledge.Base_1.51.0_amd64.deb             # Linux Debian/Ubuntu 包
-    ├── Knowledge.Base_1.51.0_amd64.AppImage        # Linux 通用 AppImage（>100MB，仅 R2）
-    ├── Knowledge.Base_1.51.0_amd64.AppImage.tar.gz # Linux updater 压缩包（仅 R2）
-    └── Knowledge.Base_1.51.0_amd64.AppImage.tar.gz.sig # Linux updater 签名
+    ├── Knowledge.Base_1.52.0_amd64.deb             # Linux Debian/Ubuntu 包
+    ├── Knowledge.Base_1.52.0_amd64.AppImage        # Linux 通用 AppImage（>100MB，仅 R2）
+    ├── Knowledge.Base_1.52.0_amd64.AppImage.tar.gz # Linux updater 压缩包（仅 R2）
+    └── Knowledge.Base_1.52.0_amd64.AppImage.tar.gz.sig # Linux updater 签名
 
 update.json                                         # 自动更新元数据（GitHub 版）
 update-r2.json                                      # 自动更新元数据（R2 版，备档）
