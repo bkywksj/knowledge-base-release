@@ -2,15 +2,15 @@
 
 本地优先的知识库桌面应用（Tauri 2.x + React 19）的安装包与自动更新端点仓库。
 
-## 最新版本: v1.52.0
+## 最新版本: v1.60.0
 
 | 平台 | 下载链接 |
 |------|---------|
-| Windows x64 | [Knowledge.Base_1.52.0_x64-setup.exe](releases/v1.52.0/Knowledge.Base_1.52.0_x64-setup.exe) |
-| macOS Apple Silicon | [Knowledge.Base_1.52.0_aarch64.dmg](releases/v1.52.0/Knowledge.Base_1.52.0_aarch64.dmg) |
-| macOS Intel | [Knowledge.Base_1.52.0_x64.dmg](releases/v1.52.0/Knowledge.Base_1.52.0_x64.dmg) |
-| Linux x64 (deb) | [Knowledge.Base_1.52.0_amd64.deb](releases/v1.52.0/Knowledge.Base_1.52.0_amd64.deb) |
-| Linux x64 (AppImage) | [Knowledge.Base_1.52.0_amd64.AppImage](https://pub-9d9e6c0cb6934fb0a0c505e3c64f39b2.r2.dev/knowledge-base/v1.52.0/Knowledge.Base_1.52.0_amd64.AppImage)（R2 CDN，>100MB 未入 git） |
+| Windows x64 | [Knowledge.Base_1.60.0_x64-setup.exe](releases/v1.60.0/Knowledge.Base_1.60.0_x64-setup.exe) |
+| macOS Apple Silicon | [Knowledge.Base_1.60.0_aarch64.dmg](releases/v1.60.0/Knowledge.Base_1.60.0_aarch64.dmg) |
+| macOS Intel | [Knowledge.Base_1.60.0_x64.dmg](releases/v1.60.0/Knowledge.Base_1.60.0_x64.dmg) |
+| Linux x64 (deb) | [Knowledge.Base_1.60.0_amd64.deb](releases/v1.60.0/Knowledge.Base_1.60.0_amd64.deb) |
+| Linux x64 (AppImage) | [Knowledge.Base_1.60.0_amd64.AppImage](https://pub-9d9e6c0cb6934fb0a0c505e3c64f39b2.r2.dev/knowledge-base/v1.60.0/Knowledge.Base_1.60.0_amd64.AppImage)（R2 CDN，>100MB 未入 git） |
 
 > ⚠️ **v1.50.0 的 macOS 用户请升级**：v1.50.0 在 macOS 上打开笔记会卡死
 > （asset 协议跨平台差异导致 observer 死循环），v1.51.0 起已修复。
@@ -54,6 +54,54 @@ APK 用固定 keystore（`kb-release.jks`）正式签名，CI（`android.yml`，
 独立 APK 可侧载，App 内「检查更新」自助升级（读 `update-mobile.json`）。功能覆盖：Markdown 编辑（源码 ↔ 渲染预览切换）/ 全文搜索 / 双向链接 / 标签 / 回收站 / AI 问答（含「针对当前笔记问 AI」）/ 闪卡复习 / 任务 / 闪念捕获 / 每日笔记热力图 / 相机扫码 / WebDAV 手动推拉 / 单文件导入 / 网页剪藏；跨设备配置分享（WebDAV 源 / AI 模型 / ASR 配置，可 PIN 加密 PBKDF2+AES-GCM-256）。kb-release.jks 正式签名，`android.yml` 自动构建。
 
 ## 版本历史
+
+### v1.60.0 (2026-08-21)
+
+**检索工程专项 + 白板能力扩展 + AI 设置改进**（v1.52.0 以来 75 个提交）
+
+检索与 AI：
+- **中文搜索改加权 n-gram 召回** —— 修复"词在句子中间就搜不到"。以前搜「知识库」，
+  标题叫《我的知识库计划》能搜到，正文里写「建了个知识库来放笔记」却搜不到；现在都能。
+- **搜索支持筛选** —— 按文件夹 / 标签 / 时间范围 / 笔记类型收窄结果。
+- **RAG 长笔记改多窗口取材** —— 一篇长笔记里分散在多处的相关段落会被一起取出来喂给 AI，
+  命中覆盖率从 15% 提到 87%。以前只截第一处命中附近的一段，后面的内容 AI 看不到。
+- **Excel 表格精确统计** —— AI 现在能对表格做**准确的**计数 / 求和 / 平均 / 分组。
+  以前是把表格转成文字喂给模型让它"数"，几百行以上必然数错；现在模型填一份查询计划，
+  由应用直接查数据库算，20 万行的表也准确。
+- **AI 引用改为模型自报 + 白名单校验**，并防提示注入 —— 笔记内容里写「忽略之前的指令」
+  这类文本不再能操纵 AI。
+- **上下文预算按需分配** —— 多篇笔记一起问时，长的多分、短的少分，不再平均切导致长笔记被腰斩。
+- **可配置单次回答上限（max_tokens）** —— 答案被截断时可以调大；Ollama 支持"不限"。
+- **AI 服务商预置扩到 24 家** + 独立的自定义端点；模型标识旁新增「获取」按钮，
+  可向服务商实时拉取当前可用模型列表（内置预置表追不上各家上新）。
+
+白板：
+- **历史版本** —— 自动留底，可回滚到任意快照。
+- **笔记卡片** —— 把笔记内容摊在画布上，且随笔记更新。
+- **Mermaid 转可编辑图形** —— 粘 Mermaid 代码，转成能直接拖拽编辑的图形。
+- **演示模式** —— 画布全屏只读，适合讲解。
+- **.excalidraw 导入导出 + 素材库**。
+
+安全：
+- **API Key 加密入库**（AES-256-GCM），且保存后不再回显。
+- **网页剪藏与外链图片的 SSRF 防护** —— 恶意链接不能借剪藏功能探测你的内网。
+- **修复 RAG 检索会召回隐藏笔记** —— 隐私笔记的内容曾可能出现在 AI 回答里。
+
+重要修复：
+- **2208 行的表曾只存 51 行** —— 入库时误用了"喂给模型"的截断版本，AI 因此把 2041 答成 47（43 倍误差），
+  且没有任何迹象表明数字是错的。
+- **应用版本低于数据库版本时被误判为「损坏」并清空** —— 装了新版再装回旧版会触发。
+- **切笔记不再继承上一篇的撤销历史** —— 以前切回原笔记按 Ctrl+Z 会用别的笔记内容覆写正文。
+- **WebDAV 同步 MOVE 失败卡死推送** —— 改为非认证失败一律降级 PUT。
+- 导出 Word 首尾消不掉的空白 + 标题重复；导出图片计数把 asset 协议的图当外链丢掉。
+- 窗口还原后可能比屏幕大（换显示器 / 改缩放后）。
+
+其他：
+- **批量导入改右下角悬浮进度条** —— 显示"第几个 / 共几个"和当前文件名，
+  切到别的页面也不会丢；以前是顶部一句"正在导入 N 个文件"，挡正文且切页就没了。
+- **首页卡片可逐张隐藏 + 一键隐私模式**。
+- **平板 / 折叠屏适配** —— ≥600dp 时底部 Tab 换成侧边 Rail。
+- 主窗口默认宽度 1408 → 1500，让编辑器工具栏稳定两行。
 
 ### v1.52.0 (2026-08-05)
 
@@ -735,20 +783,22 @@ releases/
 │   └── ...
 ├── v1.51.0/
 │   └── ...
-└── v1.52.0/
-    ├── Knowledge.Base_1.52.0_x64-setup.exe         # Windows 安装包
-    ├── Knowledge.Base_1.52.0_x64-setup.exe.sig     # Windows 签名
-    ├── Knowledge.Base_1.52.0_x64-setup.nsis.zip    # Windows updater 压缩包
-    ├── Knowledge.Base_1.52.0_aarch64.dmg           # macOS ARM 安装镜像
-    ├── Knowledge.Base_1.52.0_x64.dmg               # macOS Intel 安装镜像
+├── v1.52.0/
+│   └── ...
+└── v1.60.0/
+    ├── Knowledge.Base_1.60.0_x64-setup.exe         # Windows 安装包
+    ├── Knowledge.Base_1.60.0_x64-setup.exe.sig     # Windows 签名
+    ├── Knowledge.Base_1.60.0_x64-setup.nsis.zip    # Windows updater 压缩包
+    ├── Knowledge.Base_1.60.0_aarch64.dmg           # macOS ARM 安装镜像
+    ├── Knowledge.Base_1.60.0_x64.dmg               # macOS Intel 安装镜像
     ├── Knowledge.Base_aarch64.app.tar.gz              # macOS ARM updater
     ├── Knowledge.Base_aarch64.app.tar.gz.sig          # macOS ARM updater 签名
     ├── Knowledge.Base_x64.app.tar.gz                  # macOS Intel updater
     ├── Knowledge.Base_x64.app.tar.gz.sig              # macOS Intel updater 签名
-    ├── Knowledge.Base_1.52.0_amd64.deb             # Linux Debian/Ubuntu 包
-    ├── Knowledge.Base_1.52.0_amd64.AppImage        # Linux 通用 AppImage（>100MB，仅 R2）
-    ├── Knowledge.Base_1.52.0_amd64.AppImage.tar.gz # Linux updater 压缩包（仅 R2）
-    └── Knowledge.Base_1.52.0_amd64.AppImage.tar.gz.sig # Linux updater 签名
+    ├── Knowledge.Base_1.60.0_amd64.deb             # Linux Debian/Ubuntu 包
+    ├── Knowledge.Base_1.60.0_amd64.AppImage        # Linux 通用 AppImage（>100MB，仅 R2）
+    ├── Knowledge.Base_1.60.0_amd64.AppImage.tar.gz # Linux updater 压缩包（仅 R2）
+    └── Knowledge.Base_1.60.0_amd64.AppImage.tar.gz.sig # Linux updater 签名
 
 update.json                                         # 自动更新元数据（GitHub 版）
 update-r2.json                                      # 自动更新元数据（R2 版，备档）
