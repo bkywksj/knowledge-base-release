@@ -2,15 +2,15 @@
 
 本地优先的知识库桌面应用（Tauri 2.x + React 19）的安装包与自动更新端点仓库。
 
-## 最新版本: v1.61.0
+## 最新版本: v1.62.0
 
 | 平台 | 下载链接 |
 |------|---------|
-| Windows x64 | [Knowledge.Base_1.61.0_x64-setup.exe](releases/v1.61.0/Knowledge.Base_1.61.0_x64-setup.exe) |
-| macOS Apple Silicon | [Knowledge.Base_1.61.0_aarch64.dmg](releases/v1.61.0/Knowledge.Base_1.61.0_aarch64.dmg) |
-| macOS Intel | [Knowledge.Base_1.61.0_x64.dmg](releases/v1.61.0/Knowledge.Base_1.61.0_x64.dmg) |
-| Linux x64 (deb) | [Knowledge.Base_1.61.0_amd64.deb](releases/v1.61.0/Knowledge.Base_1.61.0_amd64.deb) |
-| Linux x64 (AppImage) | [Knowledge.Base_1.61.0_amd64.AppImage](https://pub-9d9e6c0cb6934fb0a0c505e3c64f39b2.r2.dev/knowledge-base/v1.61.0/Knowledge.Base_1.61.0_amd64.AppImage)（R2 CDN，>100MB 未入 git） |
+| Windows x64 | [Knowledge.Base_1.62.0_x64-setup.exe](releases/v1.62.0/Knowledge.Base_1.62.0_x64-setup.exe) |
+| macOS Apple Silicon | [Knowledge.Base_1.62.0_aarch64.dmg](releases/v1.62.0/Knowledge.Base_1.62.0_aarch64.dmg) |
+| macOS Intel | [Knowledge.Base_1.62.0_x64.dmg](releases/v1.62.0/Knowledge.Base_1.62.0_x64.dmg) |
+| Linux x64 (deb) | [Knowledge.Base_1.62.0_amd64.deb](releases/v1.62.0/Knowledge.Base_1.62.0_amd64.deb) |
+| Linux x64 (AppImage) | [Knowledge.Base_1.62.0_amd64.AppImage](https://pub-9d9e6c0cb6934fb0a0c505e3c64f39b2.r2.dev/knowledge-base/v1.62.0/Knowledge.Base_1.62.0_amd64.AppImage)（R2 CDN，>100MB 未入 git） |
 
 > ⚠️ **v1.50.0 的 macOS 用户请升级**：v1.50.0 在 macOS 上打开笔记会卡死
 > （asset 协议跨平台差异导致 observer 死循环），v1.51.0 起已修复。
@@ -54,6 +54,31 @@ APK 用固定 keystore（`kb-release.jks`）正式签名，CI（`android.yml`，
 独立 APK 可侧载，App 内「检查更新」自助升级（读 `update-mobile.json`）。功能覆盖：Markdown 编辑（源码 ↔ 渲染预览切换）/ 全文搜索 / 双向链接 / 标签 / 回收站 / AI 问答（含「针对当前笔记问 AI」）/ 闪卡复习 / 任务 / 闪念捕获 / 每日笔记热力图 / 相机扫码 / WebDAV 手动推拉 / 单文件导入 / 网页剪藏；跨设备配置分享（WebDAV 源 / AI 模型 / ASR 配置，可 PIN 加密 PBKDF2+AES-GCM-256）。kb-release.jks 正式签名，`android.yml` 自动构建。
 
 ## 版本历史
+
+### v1.62.0 (2026-09-02)
+
+**网页剪藏在桌面端可用了 + 编辑器两处粘贴/排版修复**
+
+网页剪藏：
+- **桌面端终于有剪藏入口** —— 剪藏弹窗组件早已写好，却没有任何地方引用它，
+  唯一能走到的路径是移动端专用页，桌面端用户在界面上根本找不到入口。
+  现已挂到「新建笔记」下拉菜单的导入组首位，首页大按钮 / 笔记页工具栏 / 侧边栏三处同时生效。
+- **编辑器工具栏也能剪藏** —— 剪藏结果作为内容片段插入当前笔记光标处（而不是新建一篇），
+  图片跟着宿主笔记走，随其一起同步和清理。
+- **粘贴整段分享文本自动认链接** —— 从浏览器/微信/知乎分享出来的
+  「标题 - 站点 - 作者 https://...」可直接粘，不必再手动把链接抠出来；
+  提交前回显「将剪藏：<url>」供确认。全角括号、中文句读不会被吃进 URL。
+- **图多字少的页面不再混入上百张噪音图** —— 设计站作品页这类页面，正文只有一两句简介，
+  反而「相关推荐」区文字更多，于是整个推荐区被当成正文圈进来，连带上百张头像和缩略图被下载落盘。
+  实测某作品页：121 张图里只有 4 张是真正的作品图。现在先摘除导航/推荐/侧栏/评论/播放器再提取，
+  噪音图归零；同时设了信任线兜底，正文被误切时自动回退，MDN / GitHub / 阮一峰等页面 100% 保持原样。
+
+编辑器：
+- **代码块行号不再逐行错位** —— 28 行代码行号能数到 31，越往下偏得越多。
+  根因是行号槽的字号在代码块内被缩了两次，每行少 10%，累积到第 28 行差近 3 行。现已对齐。
+- **粘贴终端日志不再被改坏** —— 粘贴 SSH 终端输出（ASCII 横幅那类）保存后重开会发现
+  星号消失、反斜杠被吃、对齐塌陷、前几行整个不见。成因是整块以 `|` 起头的横幅被误判成
+  Markdown 表格，放行给 Markdown 解析器改写。现在 `|` 需构成真表格才算数。
 
 ### v1.61.0 (2026-08-28)
 
@@ -815,20 +840,22 @@ releases/
 │   └── ...
 ├── v1.60.0/
 │   └── ...
-└── v1.61.0/
-    ├── Knowledge.Base_1.61.0_x64-setup.exe         # Windows 安装包
-    ├── Knowledge.Base_1.61.0_x64-setup.exe.sig     # Windows 签名
-    ├── Knowledge.Base_1.61.0_x64-setup.nsis.zip    # Windows updater 压缩包
-    ├── Knowledge.Base_1.61.0_aarch64.dmg           # macOS ARM 安装镜像
-    ├── Knowledge.Base_1.61.0_x64.dmg               # macOS Intel 安装镜像
+├── v1.61.0/
+│   └── ...
+└── v1.62.0/
+    ├── Knowledge.Base_1.62.0_x64-setup.exe         # Windows 安装包
+    ├── Knowledge.Base_1.62.0_x64-setup.exe.sig     # Windows 签名
+    ├── Knowledge.Base_1.62.0_x64-setup.nsis.zip    # Windows updater 压缩包
+    ├── Knowledge.Base_1.62.0_aarch64.dmg           # macOS ARM 安装镜像
+    ├── Knowledge.Base_1.62.0_x64.dmg               # macOS Intel 安装镜像
     ├── Knowledge.Base_aarch64.app.tar.gz              # macOS ARM updater
     ├── Knowledge.Base_aarch64.app.tar.gz.sig          # macOS ARM updater 签名
     ├── Knowledge.Base_x64.app.tar.gz                  # macOS Intel updater
     ├── Knowledge.Base_x64.app.tar.gz.sig              # macOS Intel updater 签名
-    ├── Knowledge.Base_1.61.0_amd64.deb             # Linux Debian/Ubuntu 包
-    ├── Knowledge.Base_1.61.0_amd64.AppImage        # Linux 通用 AppImage（>100MB，仅 R2）
-    ├── Knowledge.Base_1.61.0_amd64.AppImage.tar.gz # Linux updater 压缩包（仅 R2）
-    └── Knowledge.Base_1.61.0_amd64.AppImage.tar.gz.sig # Linux updater 签名
+    ├── Knowledge.Base_1.62.0_amd64.deb             # Linux Debian/Ubuntu 包
+    ├── Knowledge.Base_1.62.0_amd64.AppImage        # Linux 通用 AppImage（>100MB，仅 R2）
+    ├── Knowledge.Base_1.62.0_amd64.AppImage.tar.gz # Linux updater 压缩包（仅 R2）
+    └── Knowledge.Base_1.62.0_amd64.AppImage.tar.gz.sig # Linux updater 签名
 
 update.json                                         # 自动更新元数据（GitHub 版）
 update-r2.json                                      # 自动更新元数据（R2 版，备档）
