@@ -2,15 +2,15 @@
 
 本地优先的知识库桌面应用（Tauri 2.x + React 19）的安装包与自动更新端点仓库。
 
-## 最新版本: v1.62.0
+## 最新版本: v1.63.0
 
 | 平台 | 下载链接 |
 |------|---------|
-| Windows x64 | [Knowledge.Base_1.62.0_x64-setup.exe](releases/v1.62.0/Knowledge.Base_1.62.0_x64-setup.exe) |
-| macOS Apple Silicon | [Knowledge.Base_1.62.0_aarch64.dmg](releases/v1.62.0/Knowledge.Base_1.62.0_aarch64.dmg) |
-| macOS Intel | [Knowledge.Base_1.62.0_x64.dmg](releases/v1.62.0/Knowledge.Base_1.62.0_x64.dmg) |
-| Linux x64 (deb) | [Knowledge.Base_1.62.0_amd64.deb](releases/v1.62.0/Knowledge.Base_1.62.0_amd64.deb) |
-| Linux x64 (AppImage) | [Knowledge.Base_1.62.0_amd64.AppImage](https://pub-9d9e6c0cb6934fb0a0c505e3c64f39b2.r2.dev/knowledge-base/v1.62.0/Knowledge.Base_1.62.0_amd64.AppImage)（R2 CDN，>100MB 未入 git） |
+| Windows x64 | [Knowledge.Base_1.63.0_x64-setup.exe](releases/v1.63.0/Knowledge.Base_1.63.0_x64-setup.exe) |
+| macOS Apple Silicon | [Knowledge.Base_1.63.0_aarch64.dmg](releases/v1.63.0/Knowledge.Base_1.63.0_aarch64.dmg) |
+| macOS Intel | [Knowledge.Base_1.63.0_x64.dmg](releases/v1.63.0/Knowledge.Base_1.63.0_x64.dmg) |
+| Linux x64 (deb) | [Knowledge.Base_1.63.0_amd64.deb](releases/v1.63.0/Knowledge.Base_1.63.0_amd64.deb) |
+| Linux x64 (AppImage) | [Knowledge.Base_1.63.0_amd64.AppImage](https://pub-9d9e6c0cb6934fb0a0c505e3c64f39b2.r2.dev/knowledge-base/v1.63.0/Knowledge.Base_1.63.0_amd64.AppImage)（R2 CDN，>100MB 未入 git） |
 
 > ⚠️ **v1.50.0 的 macOS 用户请升级**：v1.50.0 在 macOS 上打开笔记会卡死
 > （asset 协议跨平台差异导致 observer 死循环），v1.51.0 起已修复。
@@ -54,6 +54,55 @@ APK 用固定 keystore（`kb-release.jks`）正式签名，CI（`android.yml`，
 独立 APK 可侧载，App 内「检查更新」自助升级（读 `update-mobile.json`）。功能覆盖：Markdown 编辑（源码 ↔ 渲染预览切换）/ 全文搜索 / 双向链接 / 标签 / 回收站 / AI 问答（含「针对当前笔记问 AI」）/ 闪卡复习 / 任务 / 闪念捕获 / 每日笔记热力图 / 相机扫码 / WebDAV 手动推拉 / 单文件导入 / 网页剪藏；跨设备配置分享（WebDAV 源 / AI 模型 / ASR 配置，可 PIN 加密 PBKDF2+AES-GCM-256）。kb-release.jks 正式签名，`android.yml` 自动构建。
 
 ## 版本历史
+
+### v1.63.0 (2026-09-16)
+
+**待办提醒音可自定义 + 导出入口补齐（含一处静默丢笔记的修复）+ 三个稳定性修复**
+
+待办提醒：
+- **提示音可换、可自带** —— 原来只有一个固定的双音蜂鸣，用户反馈"不够明显"。
+  现内置 9 个预设音（叮咚/风铃/钟声/闹铃/电子哔/警笛/木琴/水滴/敲击，按柔和→刺耳排序），
+  普通提醒与紧急提醒可分别设音；也能导入自己的 mp3/wav/ogg/m4a 等（单个 8MB 内）。
+  预设音用 Web Audio 实时合成，不占安装包体积，各平台音色一致。
+- **音量和连响次数可调** —— 主音量默认 0.8（原来固定 0.35 且无法调），
+  普通提醒可设连响 1/2/3/5 遍；也可一键关掉声音，只弹窗闪任务栏。
+- **顺带修了循环响铃切音** —— 原来固定每 1.5 秒起一次，钟声（1.75 秒）会被下一声压上来糊成噪音，
+  导入的长音频更是每 1.5 秒被砍一刀。改成等上一声报完再起下一声，多长的音都不会被切。
+
+导出：
+- **修复递归导出静默丢笔记（本次最要紧的一条）** —— 在设置页选一个父文件夹导出，
+  子目录里的笔记**一篇都不会导出，且没有任何提示** —— 以为备份好了，其实丢了。
+  现已改为整棵子树导出，并加「包含子文件夹」勾选框（默认勾上）。
+- **侧边栏右键终于有导出了** —— 此前文件夹右键有 4 个「导入」却 0 个「导出」。
+  现在文件夹右键可「导出此文件夹…」，笔记右键可直接导出 MD / Word / HTML，
+  多选时可「导出选中的 N 篇…」。
+- **新增合并导出** —— 把一个文件夹的笔记合成**一份**带目录和章节层级的文档（md / html / word），
+  用于交付（发同事 / 打印 / 存档）；原来那种"一堆散 .md + assets/"仍在，用于备份 / 迁移。
+  正文里的标题会按所在层级自动下推（h6 封顶），图片内嵌。
+
+稳定性：
+- **修复 Alt 键导致的白屏卡死** —— 用微信输入法语音输入（长按 Alt）时一晚上能卡死四五次，
+  卡死后键鼠全无反应、窗口也关不掉。根因是 Alt 抬起后 Windows 会进入系统菜单模态循环，
+  而本应用是无边框窗口、没有菜单可弹，于是干耗在里面：输入被截走、WebView 停止重绘。
+  现已在窗口层拦掉该消息（与 Chromium / Electron 无边框窗口的做法一致）。
+  唯一行为变化：Alt+Space 不再调出系统菜单（Alt+F4、Alt+←/→ 均不受影响）。
+- **WebView 死了也能关掉进程** —— 此前所有退出路径（标题栏关闭按钮、Alt+F4、托盘退出）
+  都要经过前端，WebView 一死进程就成了关不掉的僵尸，只能去任务管理器杀。
+  现加两道兜底：关闭后 5 秒内前端无响应即由 Rust 侧直接退出；托盘新增「强制退出（不保存）」。
+- **修复混合 DPI 双屏插拔后窗口缩放漂移** —— 主屏 100% + 副屏 150%，软件全程待在主屏，
+  但开关一次副屏之后窗口就按 150% 渲染、内容区缩水，且重启也回不来（错误几何被存盘固化）。
+  现由应用自己维护「用户意图的逻辑尺寸」作基准，DPI 事件后按实时缩放重算并自愈。
+
+编辑器：
+- **修复复制图片报 NotAllowedError** —— 右键「复制图片」常常直接失败。
+  根因是浏览器的剪贴板 API 要求用户手势未过期（约 5 秒），而原实现要先取字节、解码、再编码 PNG，
+  大图走完这套手势早已失效。现改由 Rust 侧读盘并直接写系统剪贴板，图片字节不过 IPC，
+  不再受手势时限约束（仍保留两级降级）。
+- **复制为纯文本不再多出空行** —— 笔记里连着敲 Enter 换行，粘到记事本 / 微信却每行之间多一个空行。
+  现在跟随编辑器所见：只在标题前、以及正文与列表/表格之间空一行，其余单换行；
+  「我敲了空行」和「我没敲空行」粘出来不再一模一样。粘到 Word / WPS / 飞书走的是富文本通道，行为不变。
+- **编辑器工具栏钉回 2 行** —— 按钮加到现在这个量之后，默认窗口宽 1500 已压线压不住、掉成 3 行。
+  默认窗口宽度改为 1524（已保存过窗口大小的用户不受影响）。
 
 ### v1.62.0 (2026-09-02)
 
@@ -842,20 +891,22 @@ releases/
 │   └── ...
 ├── v1.61.0/
 │   └── ...
-└── v1.62.0/
-    ├── Knowledge.Base_1.62.0_x64-setup.exe         # Windows 安装包
-    ├── Knowledge.Base_1.62.0_x64-setup.exe.sig     # Windows 签名
-    ├── Knowledge.Base_1.62.0_x64-setup.nsis.zip    # Windows updater 压缩包
-    ├── Knowledge.Base_1.62.0_aarch64.dmg           # macOS ARM 安装镜像
-    ├── Knowledge.Base_1.62.0_x64.dmg               # macOS Intel 安装镜像
+├── v1.62.0/
+│   └── ...
+└── v1.63.0/
+    ├── Knowledge.Base_1.63.0_x64-setup.exe         # Windows 安装包
+    ├── Knowledge.Base_1.63.0_x64-setup.exe.sig     # Windows 签名
+    ├── Knowledge.Base_1.63.0_x64-setup.nsis.zip    # Windows updater 压缩包
+    ├── Knowledge.Base_1.63.0_aarch64.dmg           # macOS ARM 安装镜像
+    ├── Knowledge.Base_1.63.0_x64.dmg               # macOS Intel 安装镜像
     ├── Knowledge.Base_aarch64.app.tar.gz              # macOS ARM updater
     ├── Knowledge.Base_aarch64.app.tar.gz.sig          # macOS ARM updater 签名
     ├── Knowledge.Base_x64.app.tar.gz                  # macOS Intel updater
     ├── Knowledge.Base_x64.app.tar.gz.sig              # macOS Intel updater 签名
-    ├── Knowledge.Base_1.62.0_amd64.deb             # Linux Debian/Ubuntu 包
-    ├── Knowledge.Base_1.62.0_amd64.AppImage        # Linux 通用 AppImage（>100MB，仅 R2）
-    ├── Knowledge.Base_1.62.0_amd64.AppImage.tar.gz # Linux updater 压缩包（仅 R2）
-    └── Knowledge.Base_1.62.0_amd64.AppImage.tar.gz.sig # Linux updater 签名
+    ├── Knowledge.Base_1.63.0_amd64.deb             # Linux Debian/Ubuntu 包
+    ├── Knowledge.Base_1.63.0_amd64.AppImage        # Linux 通用 AppImage（>100MB，仅 R2）
+    ├── Knowledge.Base_1.63.0_amd64.AppImage.tar.gz # Linux updater 压缩包（仅 R2）
+    └── Knowledge.Base_1.63.0_amd64.AppImage.tar.gz.sig # Linux updater 签名
 
 update.json                                         # 自动更新元数据（GitHub 版）
 update-r2.json                                      # 自动更新元数据（R2 版，备档）

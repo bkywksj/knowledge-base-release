@@ -1,23 +1,23 @@
 {
-  "version": "1.62.0",
-  "notes": "网页剪藏桌面端入口 + 编辑器工具栏剪藏；修复剪藏噪音图、代码块行号错位、粘贴终端日志被改坏",
-  "pub_date": "2026-09-01T17:08:47Z",
+  "version": "1.63.0",
+  "notes": "待办提醒音可换可自带 + 侧边栏右键导出/合并导出；修复递归导出丢笔记、Alt 键白屏卡死、复制图片失败、复制纯文本多空行、双屏 DPI 漂移",
+  "pub_date": "2026-09-15T17:26:57Z",
   "platforms": {
     "windows-x86_64": {
-      "url": "https://pub-9d9e6c0cb6934fb0a0c505e3c64f39b2.r2.dev/knowledge-base/v1.62.0/Knowledge.Base_1.62.0_x64-setup.exe",
-      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVRYnFxUU55WW1IYTM3MnozamxRL2RSZldYM2QzQWhDR080UWRiMmRMU3czTUxkbnBBdzI2NFVaQWM0SDlvUU10dG9qU1N5WDkvSkNWNEZqN2xIMmpubHVVWUJwMExMOEFvPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzg4MjgyMDA4CWZpbGU6S25vd2xlZGdlIEJhc2VfMS42Mi4wX3g2NC1zZXR1cC5leGUKb1VQK3MzQk81UkNqOVhYcHorYSszb0NIbFpTOGlpU0VtUHMvWCtXSnduQTR2ZjBocTEwVUNnZkViVU1RaklObHNxOUh0bWFBR2M2MzBqbEU1c2xSQ2c9PQo="
+      "url": "https://pub-9d9e6c0cb6934fb0a0c505e3c64f39b2.r2.dev/knowledge-base/v1.63.0/Knowledge.Base_1.63.0_x64-setup.exe",
+      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVRYnFxUU55WW1IYTZBWkZoSjJFVVFSYTBsVjVDRGZpNjJCVVFzUHcySnBBQ1ZJTzhUdGxmWFhIZHFLT2NOUGxrQWdqNGtsQ0Zza1RoZEJCTEhscGM1S2lFaHVkMGxOdnc0PQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzg5NDkwNjU4CWZpbGU6S25vd2xlZGdlIEJhc2VfMS42My4wX3g2NC1zZXR1cC5leGUKTGVCU2Jrdm9wcXMyWGZ3N2dTMXpnNGJkVFBuc2lhQ29nVTR6RXBUWXVlVVprQ0F5Y25jYjdUZ1J0RmFzL1c5eTV5dUp2bWtnUTdZeGk2VnZpSWZYQ2c9PQo="
     },
     "darwin-aarch64": {
-      "url": "https://pub-9d9e6c0cb6934fb0a0c505e3c64f39b2.r2.dev/knowledge-base/v1.62.0/Knowledge.Base_aarch64.app.tar.gz",
-      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVRYnFxUU55WW1IYTU2aSt3RHEzUUMwSEhLb1FMa0pLUDJQNExWVGNaaFA5OHpCcmZLQ1BtYmRzcG9INlVDYjkvejRrVC9VWXJJeWYwRWkwbWl3NkdDTXZVOVFGMmpGcEFjPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzg4MjgxODM5CWZpbGU6S25vd2xlZGdlIEJhc2UuYXBwLnRhci5negpYdmFoVFNhR2YvOEJkelVNd1dzTmV3N1BtM2tEMnJyL3VtdTdDOTNxNkVHeU9WcXlVY1cydzNDemxyTlFXZmRuT2VoMzNzc0xuTURyczhzMmN2N1RCZz09Cg=="
+      "url": "https://pub-9d9e6c0cb6934fb0a0c505e3c64f39b2.r2.dev/knowledge-base/v1.63.0/Knowledge.Base_aarch64.app.tar.gz",
+      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVRYnFxUU55WW1IYXh1LzY3cURqYTFKNnRkUGxEMS91dW9PQzlJczNlWUZ5Y3hPcG96VjF0WFVxeHRwTnRobHhNZmRrbk0wUE80SEhib3diY0s2OFVhajYwalE1ZU5BV2c0PQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzg5NDkwODkwCWZpbGU6S25vd2xlZGdlIEJhc2UuYXBwLnRhci5negpTRDdMTnJMZ1FyTXpONVdKQXllV3cwRnRQY1huNUFFTTN5UDJFR3RyTmZSODdBNmZ4UWMzLzlXZE5mTmt0dEVPMS9lcDZwQmZIdUUvcVllaUVoWktCQT09Cg=="
     },
     "darwin-x86_64": {
-      "url": "https://pub-9d9e6c0cb6934fb0a0c505e3c64f39b2.r2.dev/knowledge-base/v1.62.0/Knowledge.Base_x64.app.tar.gz",
-      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVRYnFxUU55WW1IYXdzRXUrMkhOMDJXbTVZSitPTmNFVDJwNHVhc3BkWUVVLzY5OEQ1ZlZWdkJCQ1M0bUdBS3BuenF1aFZZUmNCTk5yL0ZaQzdzL2VLZVFSb2ZWYnFtc3dvPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzg4MjgxNjUxCWZpbGU6S25vd2xlZGdlIEJhc2UuYXBwLnRhci5negpjeXljRlpORS9MMlRsV2dlQ290Y2ZjZTg3SFg4UDVmREJuZzZWM1FxeWVpU2hpRDZod0NEdHRVNk44d25FMWxERFV6T0ZaWU9sSjNFN050RHJ0bExBQT09Cg=="
+      "url": "https://pub-9d9e6c0cb6934fb0a0c505e3c64f39b2.r2.dev/knowledge-base/v1.63.0/Knowledge.Base_x64.app.tar.gz",
+      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVRYnFxUU55WW1IYXl6aEhHVENaRVp1elhZOVlwNS9DNlc4RXVVWnhwTllsbzZ2SkRuV2NaMzlMQjBHTThyUnZiQjhuOHBVSUlUSEVCTXB6VzlTYWtGK2FyYjVCQm5jUWc4PQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzg5NDkwOTk5CWZpbGU6S25vd2xlZGdlIEJhc2UuYXBwLnRhci5negpVUzN0WnlNUXAwbG5tV0dhQmpUa21JNUw4WXcvZXhnZE1oK1hVaE1Wd0taYlI2WDdoajZIcFl2ZDQvOWhCK0prUmJqLzRDOTFiMEFOZ0VkekVlblZCZz09Cg=="
     },
     "linux-x86_64": {
-      "url": "https://pub-9d9e6c0cb6934fb0a0c505e3c64f39b2.r2.dev/knowledge-base/v1.62.0/Knowledge.Base_1.62.0_amd64.AppImage.tar.gz",
-      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVRYnFxUU55WW1IYTgycnNPNEZrQ1gyZUlOU3o1RU9TWWhudmhrL01GeVc3OTRSbDBYRjJhQ2VBRzY3eVZuRDFiNVVGb2dwLzNuZ2FpMWpmWlp2QzJ1TGplTXJ0L3IvdEE4PQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzg4MjgxNDM2CWZpbGU6S25vd2xlZGdlIEJhc2VfMS42Mi4wX2FtZDY0LkFwcEltYWdlLnRhci5negp5QnkveDZ5MUpRbTd3NythNXA0eExUbXRZd0tCVmNQZzdKeFhjbkhLbUxEVmY2RS82a3diRWhwdDh0QW0zR05NMkc0MktyL05IR1RrdjYvNXBubEdEdz09Cg=="
+      "url": "https://pub-9d9e6c0cb6934fb0a0c505e3c64f39b2.r2.dev/knowledge-base/v1.63.0/Knowledge.Base_1.63.0_amd64.AppImage.tar.gz",
+      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVRYnFxUU55WW1IYTkvejU4SHBHRlJpWklvVWUxRTYzdVRYdW5xZ3MwQTc5R05vVldrN21GbkIrTURZeFdQZHB4amRxOTQzVGRxRnkzL0NZWEx5S0NTUXZUU3JQaEg2Y0FZPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzg5NDkxMDM0CWZpbGU6S25vd2xlZGdlIEJhc2VfMS42My4wX2FtZDY0LkFwcEltYWdlLnRhci5negpsUTRlWlpIeW5kL2FDS2JFOFV4ZFR0MnIwS2E2RkhZS3Bla3FWZlNwVlZOV1JBUDk5YUpwYkVHSmlZS3NwSndoV3ZubVcxayt2MzN2NVFMdzZpaTVCZz09Cg=="
     }
   }
 }
