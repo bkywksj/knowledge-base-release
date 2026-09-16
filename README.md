@@ -40,7 +40,7 @@ APK 用固定 keystore（`kb-release.jks`）正式签名，CI（`android.yml`，
 | 移动版本 | 下载 |
 |------|------|
 | **0.2.0** (2026-09-16) ⭐ | [Knowledge.Base_0.2.0_android-arm64.apk](https://pub-9d9e6c0cb6934fb0a0c505e3c64f39b2.r2.dev/knowledge-base/mobile-v0.2.0/Knowledge.Base_0.2.0_android-arm64.apk) ｜ [.aab](https://pub-9d9e6c0cb6934fb0a0c505e3c64f39b2.r2.dev/knowledge-base/mobile-v0.2.0/Knowledge.Base_0.2.0_android-arm64.aab) ｜ [R2 稳定链接（mobile-latest.apk）](https://pub-9d9e6c0cb6934fb0a0c505e3c64f39b2.r2.dev/knowledge-base/mobile-latest.apk) |
-| 0.1.0 (2026-05-12) | [Knowledge.Base_0.1.0_android-arm64.apk](releases/mobile-v0.1.0/Knowledge.Base_0.1.0_android-arm64.apk) ｜ [.aab](releases/mobile-v0.1.0/Knowledge.Base_0.1.0_android-arm64.aab) |
+| 0.1.0 (2026-05-12) | [Knowledge.Base_0.1.0_android-arm64.apk](https://pub-9d9e6c0cb6934fb0a0c505e3c64f39b2.r2.dev/knowledge-base/mobile-v0.1.0/Knowledge.Base_0.1.0_android-arm64.apk) ｜ [.aab](https://pub-9d9e6c0cb6934fb0a0c505e3c64f39b2.r2.dev/knowledge-base/mobile-v0.1.0/Knowledge.Base_0.1.0_android-arm64.aab) |
 
 应用内「检查更新」：「我的 → 检查更新」读 `update-mobile.json`，发现新版本给出 APK 直链 → 浏览器下载 → 点一下进系统安装器（首次需在系统设置里允许「安装未知应用」）。
 
