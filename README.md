@@ -39,13 +39,33 @@ APK 用固定 keystore（`kb-release.jks`）正式签名，CI（`android.yml`，
 
 | 移动版本 | 下载 |
 |------|------|
-| **0.1.0** (2026-05-12) | [Knowledge.Base_0.1.0_android-arm64.apk](releases/mobile-v0.1.0/Knowledge.Base_0.1.0_android-arm64.apk) ｜ [.aab](releases/mobile-v0.1.0/Knowledge.Base_0.1.0_android-arm64.aab) ｜ [R2 稳定链接（mobile-latest.apk）](https://pub-9d9e6c0cb6934fb0a0c505e3c64f39b2.r2.dev/knowledge-base/mobile-latest.apk) |
+| **0.2.0** (2026-09-16) ⭐ | [Knowledge.Base_0.2.0_android-arm64.apk](https://pub-9d9e6c0cb6934fb0a0c505e3c64f39b2.r2.dev/knowledge-base/mobile-v0.2.0/Knowledge.Base_0.2.0_android-arm64.apk) ｜ [.aab](https://pub-9d9e6c0cb6934fb0a0c505e3c64f39b2.r2.dev/knowledge-base/mobile-v0.2.0/Knowledge.Base_0.2.0_android-arm64.aab) ｜ [R2 稳定链接（mobile-latest.apk）](https://pub-9d9e6c0cb6934fb0a0c505e3c64f39b2.r2.dev/knowledge-base/mobile-latest.apk) |
+| 0.1.0 (2026-05-12) | [Knowledge.Base_0.1.0_android-arm64.apk](releases/mobile-v0.1.0/Knowledge.Base_0.1.0_android-arm64.apk) ｜ [.aab](releases/mobile-v0.1.0/Knowledge.Base_0.1.0_android-arm64.aab) |
 
 应用内「检查更新」：「我的 → 检查更新」读 `update-mobile.json`，发现新版本给出 APK 直链 → 浏览器下载 → 点一下进系统安装器（首次需在系统设置里允许「安装未知应用」）。
 
 > ⚠️ 同一条版本线的 APK 必须用同一个签名 keystore，否则「检查更新→装新 APK」会因签名不匹配失败（`INSTALL_FAILED_UPDATE_INCOMPATIBLE`，只能卸载重装）。
 
 ### 移动端版本历史
+
+#### mobile-v0.2.0 (2026-09-16)
+
+**累计 194 个提交，移动端第二个正式版**
+
+移动端专属：
+- **AI 对话管理** —— 顶部「管理」接上批量删除 / 按天清理（7 / 30 / 90 天），长按单条可重命名 / 删除。0.1.0 的「管理」按钮指向本页自身，点了没有任何反应，历史只增不减
+- 待办：新建入口 + 本地搜索
+- 平板 / 折叠屏：≥600dp 底部 Tab 换侧边 NavigationRail
+- AI 对话：发送后显示占位、防连点重复发送
+
+双端共享（移动端有入口的部分）：
+- 搜索：中文加权 n-gram 召回（修「词在中间搜不到」）+ 按文件夹 / 标签 / 时间 / 类型筛选
+- AI：RAG 长笔记改多窗口取材（覆盖率 15% → 87%）、上下文预算按模型窗口算、可配 max_tokens
+- 同步：S3 兼容后端接入、WebDAV 三处加固、TEXT 列 UTF-8 降级读取（坏字节不再拖垮整次同步）
+- 安全：API Key 加密入库、网页剪藏与外链图片 SSRF 防护
+- 稳定性：消除三处主线程阻塞、数据库降级误判清空已修
+
+数据库 schema v48 → v61，首次启动自动迁移。签名 keystore 与 0.1.0 一致（SHA-256 `16e61d83…4fbbe2`），可直接通过「检查更新」覆盖升级。
 
 #### mobile-v0.1.0 (2026-05-12)
 

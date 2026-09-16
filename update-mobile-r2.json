@@ -1,6 +1,6 @@
 {
-  "version": "0.1.0",
-  "notes": "移动端（Android）首个正式版。独立 APK 可侧载，App 内「检查更新」自助升级。功能：Markdown 编辑（源码↔渲染预览切换）/ 全文搜索 / 双向链接 / 标签 / 回收站 / AI 问答（含针对当前笔记问 AI）/ 闪卡复习 / 任务 / 闪念捕获 / 每日笔记热力图 / 相机扫码 / WebDAV 手动推拉 / 单文件导入 / 网页剪藏；跨设备配置分享（WebDAV 源 / AI 模型 / ASR 配置，可 PIN 加密）。",
-  "pub_date": "2026-05-12T00:36:28Z",
-  "url": "https://pub-9d9e6c0cb6934fb0a0c505e3c64f39b2.r2.dev/knowledge-base/mobile-v0.1.0/Knowledge.Base_0.1.0_android-arm64.apk"
+  "version": "0.2.0",
+  "notes": "移动端从 0.1.0 以来累计 194 个提交。\n\n移动端专属\n· AI 对话管理：顶部「管理」接上批量删除 / 按天清理，长按单条可重命名 / 删除（0.1.0 点了没反应）\n· 待办：新建入口 + 本地搜索\n· 平板 / 折叠屏：≥600dp 底部 Tab 换侧边 Rail\n· AI 对话：发送后显示占位、防连点重复发送\n\n双端共享\n· 搜索：中文加权 n-gram 召回（修「词在中间搜不到」）+ 按文件夹 / 标签 / 时间 / 类型筛选\n· AI：RAG 长笔记改多窗口取材（覆盖率 15% → 87%）、上下文预算按模型窗口算、可配 max_tokens\n· 同步：S3 兼容后端接入、WebDAV 三处加固、TEXT 列 UTF-8 降级读取\n· 安全：API Key 加密入库、网页剪藏与外链图片 SSRF 防护\n· 稳定性：消除三处主线程阻塞、数据库降级误判清空已修\n\n数据库 schema v48 → v61，首次启动自动迁移。",
+  "pub_date": "2026-09-16T06:14:05Z",
+  "url": "https://pub-9d9e6c0cb6934fb0a0c505e3c64f39b2.r2.dev/knowledge-base/mobile-v0.2.0/Knowledge.Base_0.2.0_android-arm64.apk"
 }
