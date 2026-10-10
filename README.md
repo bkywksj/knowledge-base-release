@@ -2,15 +2,15 @@
 
 本地优先的知识库桌面应用（Tauri 2.x + React 19）的安装包与自动更新端点仓库。
 
-## 最新版本: v1.64.0
+## 最新版本: v1.65.0
 
 | 平台 | 下载链接 |
 |------|---------|
-| Windows x64 | [Knowledge.Base_1.64.0_x64-setup.exe](releases/v1.64.0/Knowledge.Base_1.64.0_x64-setup.exe) |
-| macOS Apple Silicon | [Knowledge.Base_1.64.0_aarch64.dmg](releases/v1.64.0/Knowledge.Base_1.64.0_aarch64.dmg) |
-| macOS Intel | [Knowledge.Base_1.64.0_x64.dmg](releases/v1.64.0/Knowledge.Base_1.64.0_x64.dmg) |
-| Linux x64 (deb) | [Knowledge.Base_1.64.0_amd64.deb](releases/v1.64.0/Knowledge.Base_1.64.0_amd64.deb) |
-| Linux x64 (AppImage) | [Knowledge.Base_1.64.0_amd64.AppImage](https://pub-9d9e6c0cb6934fb0a0c505e3c64f39b2.r2.dev/knowledge-base/v1.64.0/Knowledge.Base_1.64.0_amd64.AppImage)（R2 CDN，>100MB 未入 git） |
+| Windows x64 | [Knowledge.Base_1.65.0_x64-setup.exe](releases/v1.65.0/Knowledge.Base_1.65.0_x64-setup.exe) |
+| macOS Apple Silicon | [Knowledge.Base_1.65.0_aarch64.dmg](releases/v1.65.0/Knowledge.Base_1.65.0_aarch64.dmg) |
+| macOS Intel | [Knowledge.Base_1.65.0_x64.dmg](releases/v1.65.0/Knowledge.Base_1.65.0_x64.dmg) |
+| Linux x64 (deb) | [Knowledge.Base_1.65.0_amd64.deb](releases/v1.65.0/Knowledge.Base_1.65.0_amd64.deb) |
+| Linux x64 (AppImage) | [Knowledge.Base_1.65.0_amd64.AppImage](https://pub-9d9e6c0cb6934fb0a0c505e3c64f39b2.r2.dev/knowledge-base/v1.65.0/Knowledge.Base_1.65.0_amd64.AppImage)（R2 CDN，>100MB 未入 git） |
 
 > ⚠️ **v1.50.0 的 macOS 用户请升级**：v1.50.0 在 macOS 上打开笔记会卡死
 > （asset 协议跨平台差异导致 observer 死循环），v1.51.0 起已修复。
@@ -74,6 +74,24 @@ APK 用固定 keystore（`kb-release.jks`）正式签名，CI（`android.yml`，
 独立 APK 可侧载，App 内「检查更新」自助升级（读 `update-mobile.json`）。功能覆盖：Markdown 编辑（源码 ↔ 渲染预览切换）/ 全文搜索 / 双向链接 / 标签 / 回收站 / AI 问答（含「针对当前笔记问 AI」）/ 闪卡复习 / 任务 / 闪念捕获 / 每日笔记热力图 / 相机扫码 / WebDAV 手动推拉 / 单文件导入 / 网页剪藏；跨设备配置分享（WebDAV 源 / AI 模型 / ASR 配置，可 PIN 加密 PBKDF2+AES-GCM-256）。kb-release.jks 正式签名，`android.yml` 自动构建。
 
 ## 版本历史
+
+### v1.65.0 (2026-10-10)
+
+**导入 Excel、笔记列表更好用、搜索更细、AI 模型服务升级**
+
+- **导入 Excel / CSV 为笔记** —— 支持 xlsx / xls / xlsm / xlsb / ods / csv / tsv，一个文件一篇笔记，
+  每个工作表一张表格（大表正文只放前 500 行并注明总行数），原文件一并保存，可一键用系统应用打开。
+- **笔记列表** —— 新增「标签」列；列宽可拖动；可在「列」菜单里选择显示哪些列；
+  批量打标签时输入新名字即可直接新建标签，不用再跳去标签页。
+- **目录树** —— 新增「按层级展开」下拉（显示 N 级目录）；设置里可开启层级连线（点线，类似资源管理器），默认关闭。
+- **搜索** —— 新增「仅搜标题」和「创建时间」筛选。
+- **AI** —— 支持 Anthropic 协议（/v1/messages）；模型服务改用统一预置，可获取模型列表、导入导出 ai.profile；
+  AI 助手回复改为一轮一张卡片，停止 / 失败不再丢内容，流式失败时保留已显示的半截回复；
+  选 Claude 时系统提示词不再丢失。
+- **待办** —— 标题输入框随字数自动增高（5 行封顶）；详情页标题 / 备注 / 子任务加复制按钮。
+- **修复** —— MCP 创建的笔记 / 任务永不同步；标签重名给出可读提示（不再报原始约束错误）；
+  macOS 双击 .md 文件只启动应用不打开文件；编辑器切换编辑模式报「keyed plugin」错误；
+  同一秒内更新的笔记排序不稳定。
 
 ### v1.64.0 (2026-09-17)
 
@@ -928,20 +946,22 @@ releases/
 │   └── ...
 ├── v1.63.0/
 │   └── ...
-└── v1.64.0/
-    ├── Knowledge.Base_1.64.0_x64-setup.exe         # Windows 安装包
-    ├── Knowledge.Base_1.64.0_x64-setup.exe.sig     # Windows 签名
-    ├── Knowledge.Base_1.64.0_x64-setup.nsis.zip    # Windows updater 压缩包
-    ├── Knowledge.Base_1.64.0_aarch64.dmg           # macOS ARM 安装镜像
-    ├── Knowledge.Base_1.64.0_x64.dmg               # macOS Intel 安装镜像
+├── v1.64.0/
+│   └── ...
+└── v1.65.0/
+    ├── Knowledge.Base_1.65.0_x64-setup.exe         # Windows 安装包
+    ├── Knowledge.Base_1.65.0_x64-setup.exe.sig     # Windows 签名
+    ├── Knowledge.Base_1.65.0_x64-setup.nsis.zip    # Windows updater 压缩包
+    ├── Knowledge.Base_1.65.0_aarch64.dmg           # macOS ARM 安装镜像
+    ├── Knowledge.Base_1.65.0_x64.dmg               # macOS Intel 安装镜像
     ├── Knowledge.Base_aarch64.app.tar.gz              # macOS ARM updater
     ├── Knowledge.Base_aarch64.app.tar.gz.sig          # macOS ARM updater 签名
     ├── Knowledge.Base_x64.app.tar.gz                  # macOS Intel updater
     ├── Knowledge.Base_x64.app.tar.gz.sig              # macOS Intel updater 签名
-    ├── Knowledge.Base_1.64.0_amd64.deb             # Linux Debian/Ubuntu 包
-    ├── Knowledge.Base_1.64.0_amd64.AppImage        # Linux 通用 AppImage（>100MB，仅 R2）
-    ├── Knowledge.Base_1.64.0_amd64.AppImage.tar.gz # Linux updater 压缩包（仅 R2）
-    └── Knowledge.Base_1.64.0_amd64.AppImage.tar.gz.sig # Linux updater 签名
+    ├── Knowledge.Base_1.65.0_amd64.deb             # Linux Debian/Ubuntu 包
+    ├── Knowledge.Base_1.65.0_amd64.AppImage        # Linux 通用 AppImage（>100MB，仅 R2）
+    ├── Knowledge.Base_1.65.0_amd64.AppImage.tar.gz # Linux updater 压缩包（仅 R2）
+    └── Knowledge.Base_1.65.0_amd64.AppImage.tar.gz.sig # Linux updater 签名
 
 update.json                                         # 自动更新元数据（GitHub 版）
 update-r2.json                                      # 自动更新元数据（R2 版，备档）
