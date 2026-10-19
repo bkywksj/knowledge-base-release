@@ -1,23 +1,23 @@
 {
-  "version": "1.65.0",
-  "notes": "新增：导入 Excel / CSV 为笔记；笔记列表新增标签列、列宽可拖动、可选择显示哪些列；搜索新增「仅搜标题」「创建时间」筛选；笔记目录树支持按层级展开、可选显示层级连线；批量打标签时可直接新建标签；AI 支持 Anthropic 协议，模型服务改用统一预置并可导入导出配置；AI 助手回复改为一轮一张卡片，停止 / 失败不再丢内容；待办标题输入框自适应高度、详情可一键复制。修复：MCP 创建的笔记 / 任务无法同步；标签重名给出可读提示；macOS 双击 .md 文件无法打开；编辑器切换模式报错；选 Claude 时系统提示词丢失。",
-  "pub_date": "2026-10-10T08:02:55Z",
+  "version": "2.0.0",
+  "notes": "新功能\n· 待办支持图片 / 文件附件，可粘贴截图、拖入文件\n· 粘贴一段通知，自动识别标题、截止时间和子任务（本地规则优先，可选 AI）\n· 待办分类支持多级目录，侧栏「+」和右键可直接新建\n· 笔记 / 待办删除后可一键撤销\n· 选中文字后可直接加粗、高亮、转行内代码\n· 右上角常驻版本号，点击即可检查更新；可关闭自动检查\n\n修复与改进\n· 循环任务提醒不再提前跳到下一期，推迟只改提醒时间\n· 新安装默认开启自动保存，标题为空时用正文首行\n· AI 写作出错时，不会再把错误文字写进正文\n· 整包导入先校验再替换，导入前二次确认，避免丢附件\n· WebDAV 测试连接时会提示远端有没有同步数据\n· 启动更快（首屏体积减半），待办页更流畅",
+  "pub_date": "2026-10-19T17:15:27Z",
   "platforms": {
     "windows-x86_64": {
-      "url": "https://github.com/bkywksj/knowledge-base-release/raw/main/releases/v1.65.0/Knowledge.Base_1.65.0_x64-setup.exe",
-      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVRYnFxUU55WW1IYXdGT0h5L29hR0lvMGpCYUZjU1dKZWxtd2FaWUt6dzdJRGFaenJLQVRiNUU5Y1ZtWllld1JUa3pxOGo5dDlYRmoxMXBjMVZFbFpxOWdBdDN1aFRDT0FzPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzkxNjE5MDkwCWZpbGU6S25vd2xlZGdlIEJhc2VfMS42NS4wX3g2NC1zZXR1cC5leGUKSGFNaFJjSnFUT0E0dlIzYTROMnR6UmJjNXBrRjVreS9qNXp3TEZldFdFTW9NUktqR3o5b1hleHBvY3ltOTdDSWlmZVhqOGI1TnBRb2VHcDVkTHNHREE9PQo="
+      "url": "https://github.com/bkywksj/knowledge-base-release/raw/main/releases/v2.0.0/Knowledge.Base_2.0.0_x64-setup.exe",
+      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVRYnFxUU55WW1IYXhmeExuWjNZY2xmU1k1Tlowc1JYdEoxUW5OeXJ3dkcwNW4zbGU2K3h1SlpuS2tqYzhrMUhVSGdPMVNCOExZZG9wYnJKSHMxSFpsaG9OODE2RjdFaXdZPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzkyNDI1MDU3CWZpbGU6S25vd2xlZGdlIEJhc2VfMi4wLjBfeDY0LXNldHVwLmV4ZQp1UkVCV1pEaFFEZi9sSVRkUG0vTlZuMGtpQ1hURHdsYXN2NWNoM1l1QjMyeUt3bWR6bFJxL2VZQVcrdnIveGU3UndoMXpubWdTdFhxTUQ3Q0xoRDJEUT09Cg=="
     },
     "darwin-aarch64": {
-      "url": "https://github.com/bkywksj/knowledge-base-release/raw/main/releases/v1.65.0/Knowledge.Base_aarch64.app.tar.gz",
-      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVRYnFxUU55WW1IYTcrL3NZM21vdHdYM01sTSs4b3p4VDV2Rmk4QWJ4ZHNROEtPTFBaWUlOYllqOWR6U3p2eXNaZmc4NXI0dzNUdTM0QkpLOEU4MzVhK01WbU9aRDNEOGdzPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzkxNjE3ODg4CWZpbGU6S25vd2xlZGdlIEJhc2UuYXBwLnRhci5negpyV0Yvc1Rvbjk2MEsyQlZSOHhNeHVpRnozUDVBbkY2VDZldVo1OG9OejA5a1Eramx0aCsyQkJvUmpBMXBCYlRrOXMrQVdFUkZ2bEF4L0xZblUrdEJBQT09Cg=="
+      "url": "https://github.com/bkywksj/knowledge-base-release/raw/main/releases/v2.0.0/Knowledge.Base_aarch64.app.tar.gz",
+      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVRYnFxUU55WW1IYTdiNGpYSGxzeXJ0UnRORy9tVkZNcFpOY0VkRmJ5cVZkcFEzTHg2OGk3QmR4b3VGdzY2eDd6RkUrVlVnbTd3N0NnVHA4aDdGQnJZbzJjNGJWVHk5cXc4PQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzkyNDI1NTk0CWZpbGU6S25vd2xlZGdlIEJhc2UuYXBwLnRhci5negpCQ2pNM0prY0FXbFVmM04yVTg4UnhlbWIzOXJlTjM1S3JiNUt3UVYvVjBhQ3M0Yyt1bEhxNm5Pbi9UbUh2eDhTMjhERkR3Ums3YVBMNlJBa3pqN05DZz09Cg=="
     },
     "darwin-x86_64": {
-      "url": "https://github.com/bkywksj/knowledge-base-release/raw/main/releases/v1.65.0/Knowledge.Base_x64.app.tar.gz",
-      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVRYnFxUU55WW1IYS9xUElpVkNPZlpxRElRK2RRT24vbDVhZzBPV3ByQVJ3cXZkakg4bU4rci9tWWRBQVdSMVIxZ2xNV2MwLzVwM3JheUloZHFNNmFHK1RlTS9PNm1UbWdjPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzkxNjE3ODcxCWZpbGU6S25vd2xlZGdlIEJhc2UuYXBwLnRhci5negptdkMwMXNBSVJFc2JYZkJ5ZmNmdjRXb2lOdGI0RjE3SnlwR1JDVVo4MERTbVhGSFY4Ukk2RE15SkR0Z29FK1FlV2prTzQ4OXBLWC9YTnk5cmFSa2NBdz09Cg=="
+      "url": "https://github.com/bkywksj/knowledge-base-release/raw/main/releases/v2.0.0/Knowledge.Base_x64.app.tar.gz",
+      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVRYnFxUU55WW1IYTFOZHdqcUlKUzFEcFZEZXlSUVFQNEM0OVhWOGZQRDN6ek94UXhQazBLZ2Y1YjRZTFJCNUFaT0ltSEorNElkcVBSVnJIUk1pT3c3N3lsUGlVbWQ4WXd3PQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzkyNDI4MTk3CWZpbGU6S25vd2xlZGdlIEJhc2UuYXBwLnRhci5negpMSm1QbEtSWGlic3M5WTA2QmEzMkdSdzVSYkJ1cVF0UGk3S09mNm5WblkrYUExdnpreVhWdVdUc0RWdDl0di9ObkxrT25DQTBNVmJMTXdmWGJ0MFdCUT09Cg=="
     },
     "linux-x86_64": {
-      "url": "https://github.com/bkywksj/knowledge-base-release/raw/main/releases/v1.65.0/Knowledge.Base_1.65.0_amd64.AppImage.tar.gz",
-      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVRYnFxUU55WW1IYTM3TmppVFd6TlhOU25hMDk0YytUWmtCTGpTNVdhUXNQSHpDS0xLNGdrYTdaOXJVRUpOc2RZbS9UV1RrN1JYSkpMZ3g0K0hMcXp0aVg1UnBOaitiSEFFPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzkxNjE3ODA1CWZpbGU6S25vd2xlZGdlIEJhc2VfMS42NS4wX2FtZDY0LkFwcEltYWdlLnRhci5negpHQjNOSGk0ZnpSWk9XcXNpcm9DeSt4MWdJaUhKbW52cmFEWEtXWFpXOGxrdFlxcnZhT2orYjNCd0xYNjhHQnBFZ0lYaHdSWWtOVC9DaTlab1VGaVpDdz09Cg=="
+      "url": "https://github.com/bkywksj/knowledge-base-release/raw/main/releases/v2.0.0/Knowledge.Base_2.0.0_amd64.AppImage.tar.gz",
+      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVRYnFxUU55WW1IYThTcmJXSFFka1pVdGs4bEhCdWdzYUZMeXFDSkFJZVAxcFAvQWxMZHFyem9sMGxTZktLSWNhMk04ZnV6bDVHTzMySUhQUnBwVXozUXZUU2FnRTE0TWdBPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzkyNDI1MTg0CWZpbGU6S25vd2xlZGdlIEJhc2VfMi4wLjBfYW1kNjQuQXBwSW1hZ2UudGFyLmd6CnE1eVJ5aUp2TFhtUHJrOVIrRDdhRjFRZ0NOamEwMXRzVEZ5Nm04MFNxSjBRSnhXQjZEYmJUN0xHSDl3ZERkOTlRUUlCSi9XUUtaNk9vK1dvZkQwd0FnPT0K"
     }
   }
 }

@@ -2,15 +2,15 @@
 
 本地优先的知识库桌面应用（Tauri 2.x + React 19）的安装包与自动更新端点仓库。
 
-## 最新版本: v1.65.0
+## 最新版本: v2.0.0
 
 | 平台 | 下载链接 |
 |------|---------|
-| Windows x64 | [Knowledge.Base_1.65.0_x64-setup.exe](releases/v1.65.0/Knowledge.Base_1.65.0_x64-setup.exe) |
-| macOS Apple Silicon | [Knowledge.Base_1.65.0_aarch64.dmg](releases/v1.65.0/Knowledge.Base_1.65.0_aarch64.dmg) |
-| macOS Intel | [Knowledge.Base_1.65.0_x64.dmg](releases/v1.65.0/Knowledge.Base_1.65.0_x64.dmg) |
-| Linux x64 (deb) | [Knowledge.Base_1.65.0_amd64.deb](releases/v1.65.0/Knowledge.Base_1.65.0_amd64.deb) |
-| Linux x64 (AppImage) | [Knowledge.Base_1.65.0_amd64.AppImage](https://pub-9d9e6c0cb6934fb0a0c505e3c64f39b2.r2.dev/knowledge-base/v1.65.0/Knowledge.Base_1.65.0_amd64.AppImage)（R2 CDN，>100MB 未入 git） |
+| Windows x64 | [Knowledge.Base_2.0.0_x64-setup.exe](releases/v2.0.0/Knowledge.Base_2.0.0_x64-setup.exe) |
+| macOS Apple Silicon | [Knowledge.Base_2.0.0_aarch64.dmg](releases/v2.0.0/Knowledge.Base_2.0.0_aarch64.dmg) |
+| macOS Intel | [Knowledge.Base_2.0.0_x64.dmg](releases/v2.0.0/Knowledge.Base_2.0.0_x64.dmg) |
+| Linux x64 (deb) | [Knowledge.Base_2.0.0_amd64.deb](releases/v2.0.0/Knowledge.Base_2.0.0_amd64.deb) |
+| Linux x64 (AppImage) | [Knowledge.Base_2.0.0_amd64.AppImage](https://pub-9d9e6c0cb6934fb0a0c505e3c64f39b2.r2.dev/knowledge-base/v2.0.0/Knowledge.Base_2.0.0_amd64.AppImage)（R2 CDN，>100MB 未入 git） |
 
 > ⚠️ **v1.50.0 的 macOS 用户请升级**：v1.50.0 在 macOS 上打开笔记会卡死
 > （asset 协议跨平台差异导致 observer 死循环），v1.51.0 起已修复。
@@ -18,7 +18,7 @@
 > ⚠️ **v1.31.0 的 Windows 用户请升级**：v1.31.0 所用的代码签名证书被 ESET 等杀软列入证书黑名单
 > （报 `Win32/CertBL`），可能导致应用文件被误删。v1.31.1 起已更换签名证书。
 
-> 📱 **Android（移动端）走独立版本线**（从 0.1.0 起，与桌面 1.x 解耦），下载与版本历史见下方「[移动端（Android）](#移动端android)」。
+> 📱 **Android（移动端）走独立版本线**（从 0.1.0 起，与桌面版本号解耦），下载与版本历史见下方「[移动端（Android）](#移动端android)」。
 
 ## 自动更新
 
@@ -34,12 +34,13 @@
 
 ## 移动端（Android）
 
-Android 版有**独立版本线**（从 0.1.0 起），与桌面 1.x 解耦——可单独发布、单独「检查更新」。
+Android 版有**独立版本线**（从 0.1.0 起），与桌面版本号解耦——可单独发布、单独「检查更新」。
 APK 用固定 keystore（`kb-release.jks`）正式签名，CI（`android.yml`，推 `mobile-v*.*.*` tag 触发）自动构建（侧载 APK + Google Play AAB）。
 
 | 移动版本 | 下载 |
 |------|------|
-| **0.2.0** (2026-09-16) ⭐ | [Knowledge.Base_0.2.0_android-arm64.apk](https://pub-9d9e6c0cb6934fb0a0c505e3c64f39b2.r2.dev/knowledge-base/mobile-v0.2.0/Knowledge.Base_0.2.0_android-arm64.apk) ｜ [.aab](https://pub-9d9e6c0cb6934fb0a0c505e3c64f39b2.r2.dev/knowledge-base/mobile-v0.2.0/Knowledge.Base_0.2.0_android-arm64.aab) ｜ [R2 稳定链接（mobile-latest.apk）](https://pub-9d9e6c0cb6934fb0a0c505e3c64f39b2.r2.dev/knowledge-base/mobile-latest.apk) |
+| **0.3.0** (2026-10-20) ⭐ | [Knowledge.Base_0.3.0_android-arm64.apk](https://pub-9d9e6c0cb6934fb0a0c505e3c64f39b2.r2.dev/knowledge-base/mobile-v0.3.0/Knowledge.Base_0.3.0_android-arm64.apk) ｜ [.aab](https://pub-9d9e6c0cb6934fb0a0c505e3c64f39b2.r2.dev/knowledge-base/mobile-v0.3.0/Knowledge.Base_0.3.0_android-arm64.aab) ｜ [R2 稳定链接（mobile-latest.apk）](https://pub-9d9e6c0cb6934fb0a0c505e3c64f39b2.r2.dev/knowledge-base/mobile-latest.apk) |
+| 0.2.0 (2026-09-16) | [Knowledge.Base_0.2.0_android-arm64.apk](https://pub-9d9e6c0cb6934fb0a0c505e3c64f39b2.r2.dev/knowledge-base/mobile-v0.2.0/Knowledge.Base_0.2.0_android-arm64.apk) ｜ [.aab](https://pub-9d9e6c0cb6934fb0a0c505e3c64f39b2.r2.dev/knowledge-base/mobile-v0.2.0/Knowledge.Base_0.2.0_android-arm64.aab) |
 | 0.1.0 (2026-05-12) | [Knowledge.Base_0.1.0_android-arm64.apk](https://pub-9d9e6c0cb6934fb0a0c505e3c64f39b2.r2.dev/knowledge-base/mobile-v0.1.0/Knowledge.Base_0.1.0_android-arm64.apk) ｜ [.aab](https://pub-9d9e6c0cb6934fb0a0c505e3c64f39b2.r2.dev/knowledge-base/mobile-v0.1.0/Knowledge.Base_0.1.0_android-arm64.aab) |
 
 应用内「检查更新」：「我的 → 检查更新」读 `update-mobile.json`，发现新版本给出 APK 直链 → 浏览器下载 → 点一下进系统安装器（首次需在系统设置里允许「安装未知应用」）。
@@ -47,6 +48,23 @@ APK 用固定 keystore（`kb-release.jks`）正式签名，CI（`android.yml`，
 > ⚠️ 同一条版本线的 APK 必须用同一个签名 keystore，否则「检查更新→装新 APK」会因签名不匹配失败（`INSTALL_FAILED_UPDATE_INCOMPATIBLE`，只能卸载重装）。
 
 ### 移动端版本历史
+
+#### mobile-v0.3.0 (2026-10-20)
+
+**累计 86 个提交**
+
+移动端专属：
+- **App 内更新** —— 直接下载并安装新版 APK，启动时静默检查更新
+- 待办：勾选循环任务只完成本次，下一期照常出现
+- 同步：拉取不到数据时弹出原因（目录空 / 只有快照归档 / 目录填错），不再只显示「下载 0」
+
+双端共享（移动端有入口的部分）：
+- 循环任务提醒不再提前跳到下一期，推迟只改提醒时间
+- 新安装默认开启自动保存，标题为空时用正文首行
+- WebDAV 测试连接时提示远端有没有同步数据
+- AI 助手回复改为一轮一张卡片，停止 / 失败不再丢内容
+
+数据库 schema 升到 v67，首次启动自动迁移。签名 keystore 与 0.2.0 一致，可直接通过「检查更新」覆盖升级。
 
 #### mobile-v0.2.0 (2026-09-16)
 
@@ -74,6 +92,31 @@ APK 用固定 keystore（`kb-release.jks`）正式签名，CI（`android.yml`，
 独立 APK 可侧载，App 内「检查更新」自助升级（读 `update-mobile.json`）。功能覆盖：Markdown 编辑（源码 ↔ 渲染预览切换）/ 全文搜索 / 双向链接 / 标签 / 回收站 / AI 问答（含「针对当前笔记问 AI」）/ 闪卡复习 / 任务 / 闪念捕获 / 每日笔记热力图 / 相机扫码 / WebDAV 手动推拉 / 单文件导入 / 网页剪藏；跨设备配置分享（WebDAV 源 / AI 模型 / ASR 配置，可 PIN 加密 PBKDF2+AES-GCM-256）。kb-release.jks 正式签名，`android.yml` 自动构建。
 
 ## 版本历史
+
+### v2.0.0 (2026-10-19)
+
+**大版本：待办附件与粘贴识别、多级分类、删除可撤销、启动提速**
+
+> 版本号规则调整：从 2.0.0 起，第二位满十进一（2.9.x 之后是 3.0.0），第三位用于修复版。
+
+新功能
+- **待办附件** —— 待办 / 子任务支持图片与文件附件，可粘贴截图、拖入文件；粘贴图文混合内容时文字进描述、图片自动变附件。
+- **粘贴识别** —— 粘贴一段通知，自动识别标题、截止时间和子任务（本地规则优先，可选 AI 兜底）；结果卡片可换时间、可撤销。
+- **多级分类** —— 待办分类支持多级目录，侧栏「+」新建顶级分类，右键分类可新建子分类。
+- **删除可撤销** —— 笔记移到回收站、待办删除后，提示条里一键撤销。
+- **选中文字格式条** —— 选中文字后可直接加粗、斜体、下划线、删除线、高亮、转行内代码。
+- **检查更新** —— 右上角常驻版本号，点击即可检查更新；设置里可关闭自动检查与后台下载。
+
+修复与改进
+- 循环任务提醒不再提前跳到下一期，推迟只改提醒时间、不动截止日期。
+- 新安装默认开启自动保存，标题为空时用正文首行；编辑器顶部常驻保存状态。
+- AI 写作出错时，不会再把错误文字写进正文；中途中断会标注内容不完整。
+- 整包导入先校验再替换附件目录，导入前二次确认，旧目录保留一份可找回。
+- WebDAV 测试连接时会提示远端有没有同步数据；拉取不到时说明原因（目录空 / 只有快照归档 / 目录填错）。
+- 启动更快（首屏 JS 8.86MB → 3.77MB），待办页静默刷新、搜索防抖、勾选即时响应。
+- 文件夹超过 100 篇笔记可加载更多；搜索条件保留在地址里，返回不丢筛选。
+
+数据库 schema 升到 v67（新增待办推迟提醒字段），首次启动自动迁移。
 
 ### v1.65.0 (2026-10-10)
 
@@ -948,20 +991,22 @@ releases/
 │   └── ...
 ├── v1.64.0/
 │   └── ...
-└── v1.65.0/
-    ├── Knowledge.Base_1.65.0_x64-setup.exe         # Windows 安装包
-    ├── Knowledge.Base_1.65.0_x64-setup.exe.sig     # Windows 签名
-    ├── Knowledge.Base_1.65.0_x64-setup.nsis.zip    # Windows updater 压缩包
-    ├── Knowledge.Base_1.65.0_aarch64.dmg           # macOS ARM 安装镜像
-    ├── Knowledge.Base_1.65.0_x64.dmg               # macOS Intel 安装镜像
+├── v1.65.0/
+│   └── ...
+└── v2.0.0/
+    ├── Knowledge.Base_2.0.0_x64-setup.exe         # Windows 安装包
+    ├── Knowledge.Base_2.0.0_x64-setup.exe.sig     # Windows 签名
+    ├── Knowledge.Base_2.0.0_x64-setup.nsis.zip    # Windows updater 压缩包
+    ├── Knowledge.Base_2.0.0_aarch64.dmg           # macOS ARM 安装镜像
+    ├── Knowledge.Base_2.0.0_x64.dmg               # macOS Intel 安装镜像
     ├── Knowledge.Base_aarch64.app.tar.gz              # macOS ARM updater
     ├── Knowledge.Base_aarch64.app.tar.gz.sig          # macOS ARM updater 签名
     ├── Knowledge.Base_x64.app.tar.gz                  # macOS Intel updater
     ├── Knowledge.Base_x64.app.tar.gz.sig              # macOS Intel updater 签名
-    ├── Knowledge.Base_1.65.0_amd64.deb             # Linux Debian/Ubuntu 包
-    ├── Knowledge.Base_1.65.0_amd64.AppImage        # Linux 通用 AppImage（>100MB，仅 R2）
-    ├── Knowledge.Base_1.65.0_amd64.AppImage.tar.gz # Linux updater 压缩包（仅 R2）
-    └── Knowledge.Base_1.65.0_amd64.AppImage.tar.gz.sig # Linux updater 签名
+    ├── Knowledge.Base_2.0.0_amd64.deb             # Linux Debian/Ubuntu 包
+    ├── Knowledge.Base_2.0.0_amd64.AppImage        # Linux 通用 AppImage（>100MB，仅 R2）
+    ├── Knowledge.Base_2.0.0_amd64.AppImage.tar.gz # Linux updater 压缩包（仅 R2）
+    └── Knowledge.Base_2.0.0_amd64.AppImage.tar.gz.sig # Linux updater 签名
 
 update.json                                         # 自动更新元数据（GitHub 版）
 update-r2.json                                      # 自动更新元数据（R2 版，备档）
