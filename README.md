@@ -2,15 +2,15 @@
 
 本地优先的知识库桌面应用（Tauri 2.x + React 19）的安装包与自动更新端点仓库。
 
-## 最新版本: v2.0.0
+## 最新版本: v2.1.0
 
 | 平台 | 下载链接 |
 |------|---------|
-| Windows x64 | [Knowledge.Base_2.0.0_x64-setup.exe](releases/v2.0.0/Knowledge.Base_2.0.0_x64-setup.exe) |
-| macOS Apple Silicon | [Knowledge.Base_2.0.0_aarch64.dmg](releases/v2.0.0/Knowledge.Base_2.0.0_aarch64.dmg) |
-| macOS Intel | [Knowledge.Base_2.0.0_x64.dmg](releases/v2.0.0/Knowledge.Base_2.0.0_x64.dmg) |
-| Linux x64 (deb) | [Knowledge.Base_2.0.0_amd64.deb](releases/v2.0.0/Knowledge.Base_2.0.0_amd64.deb) |
-| Linux x64 (AppImage) | [Knowledge.Base_2.0.0_amd64.AppImage](https://pub-9d9e6c0cb6934fb0a0c505e3c64f39b2.r2.dev/knowledge-base/v2.0.0/Knowledge.Base_2.0.0_amd64.AppImage)（R2 CDN，>100MB 未入 git） |
+| Windows x64 | [Knowledge.Base_2.1.0_x64-setup.exe](releases/v2.1.0/Knowledge.Base_2.1.0_x64-setup.exe) |
+| macOS Apple Silicon | [Knowledge.Base_2.1.0_aarch64.dmg](releases/v2.1.0/Knowledge.Base_2.1.0_aarch64.dmg) |
+| macOS Intel | [Knowledge.Base_2.1.0_x64.dmg](releases/v2.1.0/Knowledge.Base_2.1.0_x64.dmg) |
+| Linux x64 (deb) | [Knowledge.Base_2.1.0_amd64.deb](releases/v2.1.0/Knowledge.Base_2.1.0_amd64.deb) |
+| Linux x64 (AppImage) | [Knowledge.Base_2.1.0_amd64.AppImage](https://pub-9d9e6c0cb6934fb0a0c505e3c64f39b2.r2.dev/knowledge-base/v2.1.0/Knowledge.Base_2.1.0_amd64.AppImage)（R2 CDN，>100MB 未入 git） |
 
 > ⚠️ **v1.50.0 的 macOS 用户请升级**：v1.50.0 在 macOS 上打开笔记会卡死
 > （asset 协议跨平台差异导致 observer 死循环），v1.51.0 起已修复。
@@ -92,6 +92,24 @@ APK 用固定 keystore（`kb-release.jks`）正式签名，CI（`android.yml`，
 独立 APK 可侧载，App 内「检查更新」自助升级（读 `update-mobile.json`）。功能覆盖：Markdown 编辑（源码 ↔ 渲染预览切换）/ 全文搜索 / 双向链接 / 标签 / 回收站 / AI 问答（含「针对当前笔记问 AI」）/ 闪卡复习 / 任务 / 闪念捕获 / 每日笔记热力图 / 相机扫码 / WebDAV 手动推拉 / 单文件导入 / 网页剪藏；跨设备配置分享（WebDAV 源 / AI 模型 / ASR 配置，可 PIN 加密 PBKDF2+AES-GCM-256）。kb-release.jks 正式签名，`android.yml` 自动构建。
 
 ## 版本历史
+
+### v2.1.0 (2026-10-27)
+
+**macOS 签名公证、局域网同步与系统代理修复**
+
+新功能
+- **AI 发起本地文件夹导入** —— AI 可帮你发起本地文件夹导入，由你在预览窗确认后执行。
+- **复制图片** —— 待办附件的图片预览新增「复制图片」按钮。
+- **macOS 签名与公证** —— macOS 版接入 Apple 开发者签名与公证，首次打开不再被系统拦截。
+
+修复与改进
+- 修复 Mac 上 WebDAV 连接局域网 NAS 失败（本地网络权限）；首次同步时会请求一次「本地网络」授权，请点「允许」。若之前被拒绝过，可到「系统设置 → 隐私与安全性 → 本地网络」打开。
+- 修复应用未使用系统代理的问题：Clash 等「系统代理」模式现已生效，局域网与本机地址自动直连。
+- 同步失败会在设置页显示原因并附处理建议；连续失败时自动拉长重试间隔，不再每分钟重试。
+- 同步密码改为加密存储（更换电脑后需重新填写一次）。
+- 主窗口记住所在显示器，插拔副屏后回到上次的屏幕。
+
+数据库 schema 升到 v68（同步后端记录失败原因、同步密码加密），首次启动自动迁移。
 
 ### v2.0.0 (2026-10-19)
 
@@ -993,20 +1011,22 @@ releases/
 │   └── ...
 ├── v1.65.0/
 │   └── ...
-└── v2.0.0/
-    ├── Knowledge.Base_2.0.0_x64-setup.exe         # Windows 安装包
-    ├── Knowledge.Base_2.0.0_x64-setup.exe.sig     # Windows 签名
-    ├── Knowledge.Base_2.0.0_x64-setup.nsis.zip    # Windows updater 压缩包
-    ├── Knowledge.Base_2.0.0_aarch64.dmg           # macOS ARM 安装镜像
-    ├── Knowledge.Base_2.0.0_x64.dmg               # macOS Intel 安装镜像
+├── v2.0.0/
+│   └── ...
+└── v2.1.0/
+    ├── Knowledge.Base_2.1.0_x64-setup.exe         # Windows 安装包
+    ├── Knowledge.Base_2.1.0_x64-setup.exe.sig     # Windows 签名
+    ├── Knowledge.Base_2.1.0_x64-setup.nsis.zip    # Windows updater 压缩包
+    ├── Knowledge.Base_2.1.0_aarch64.dmg           # macOS ARM 安装镜像
+    ├── Knowledge.Base_2.1.0_x64.dmg               # macOS Intel 安装镜像
     ├── Knowledge.Base_aarch64.app.tar.gz              # macOS ARM updater
     ├── Knowledge.Base_aarch64.app.tar.gz.sig          # macOS ARM updater 签名
     ├── Knowledge.Base_x64.app.tar.gz                  # macOS Intel updater
     ├── Knowledge.Base_x64.app.tar.gz.sig              # macOS Intel updater 签名
-    ├── Knowledge.Base_2.0.0_amd64.deb             # Linux Debian/Ubuntu 包
-    ├── Knowledge.Base_2.0.0_amd64.AppImage        # Linux 通用 AppImage（>100MB，仅 R2）
-    ├── Knowledge.Base_2.0.0_amd64.AppImage.tar.gz # Linux updater 压缩包（仅 R2）
-    └── Knowledge.Base_2.0.0_amd64.AppImage.tar.gz.sig # Linux updater 签名
+    ├── Knowledge.Base_2.1.0_amd64.deb             # Linux Debian/Ubuntu 包
+    ├── Knowledge.Base_2.1.0_amd64.AppImage        # Linux 通用 AppImage（>100MB，仅 R2）
+    ├── Knowledge.Base_2.1.0_amd64.AppImage.tar.gz # Linux updater 压缩包（仅 R2）
+    └── Knowledge.Base_2.1.0_amd64.AppImage.tar.gz.sig # Linux updater 签名
 
 update.json                                         # 自动更新元数据（GitHub 版）
 update-r2.json                                      # 自动更新元数据（R2 版，备档）
