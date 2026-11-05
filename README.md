@@ -2,15 +2,15 @@
 
 本地优先的知识库桌面应用（Tauri 2.x + React 19）的安装包与自动更新端点仓库。
 
-## 最新版本: v3.0.1
+## 最新版本: v3.0.2
 
 | 平台 | 下载链接 |
 |------|---------|
-| Windows x64 | [Knowledge.Base_3.0.1_x64-setup.exe](releases/v3.0.1/Knowledge.Base_3.0.1_x64-setup.exe) |
-| macOS Apple Silicon | [Knowledge.Base_3.0.1_aarch64.dmg](releases/v3.0.1/Knowledge.Base_3.0.1_aarch64.dmg) |
-| macOS Intel | [Knowledge.Base_3.0.1_x64.dmg](releases/v3.0.1/Knowledge.Base_3.0.1_x64.dmg) |
-| Linux x64 (deb) | [Knowledge.Base_3.0.1_amd64.deb](releases/v3.0.1/Knowledge.Base_3.0.1_amd64.deb) |
-| Linux x64 (AppImage) | [Knowledge.Base_3.0.1_amd64.AppImage](https://pub-9d9e6c0cb6934fb0a0c505e3c64f39b2.r2.dev/knowledge-base/v3.0.1/Knowledge.Base_3.0.1_amd64.AppImage)（R2 CDN，>100MB 未入 git） |
+| Windows x64 | [Knowledge.Base_3.0.2_x64-setup.exe](releases/v3.0.2/Knowledge.Base_3.0.2_x64-setup.exe) |
+| macOS Apple Silicon | [Knowledge.Base_3.0.2_aarch64.dmg](releases/v3.0.2/Knowledge.Base_3.0.2_aarch64.dmg) |
+| macOS Intel | [Knowledge.Base_3.0.2_x64.dmg](releases/v3.0.2/Knowledge.Base_3.0.2_x64.dmg) |
+| Linux x64 (deb) | [Knowledge.Base_3.0.2_amd64.deb](releases/v3.0.2/Knowledge.Base_3.0.2_amd64.deb) |
+| Linux x64 (AppImage) | [Knowledge.Base_3.0.2_amd64.AppImage](https://pub-9d9e6c0cb6934fb0a0c505e3c64f39b2.r2.dev/knowledge-base/v3.0.2/Knowledge.Base_3.0.2_amd64.AppImage)（R2 CDN，>100MB 未入 git） |
 
 > ⚠️ **v1.50.0 的 macOS 用户请升级**：v1.50.0 在 macOS 上打开笔记会卡死
 > （asset 协议跨平台差异导致 observer 死循环），v1.51.0 起已修复。
@@ -92,6 +92,17 @@ APK 用固定 keystore（`kb-release.jks`）正式签名，CI（`android.yml`，
 独立 APK 可侧载，App 内「检查更新」自助升级（读 `update-mobile.json`）。功能覆盖：Markdown 编辑（源码 ↔ 渲染预览切换）/ 全文搜索 / 双向链接 / 标签 / 回收站 / AI 问答（含「针对当前笔记问 AI」）/ 闪卡复习 / 任务 / 闪念捕获 / 每日笔记热力图 / 相机扫码 / WebDAV 手动推拉 / 单文件导入 / 网页剪藏；跨设备配置分享（WebDAV 源 / AI 模型 / ASR 配置，可 PIN 加密 PBKDF2+AES-GCM-256）。kb-release.jks 正式签名，`android.yml` 自动构建。
 
 ## 版本历史
+
+### v3.0.2 (2026-11-06)
+
+**数据保护补全**
+
+修复
+- **同步不再跟着云端批量删笔记** —— 云端一次要求删除大量笔记（≥ 20 篇且超过本机 30%）时先暂停询问；确认后才进回收站。
+- **快照推送前先做安全检查** —— 本机笔记为空或比上次推送少一半以上时先提醒，避免盖掉云端备份。
+- 导入备份时自动暂停 MCP HTTP 服务，完成后按原配置恢复，不用再手动关。
+- 资产目录备份从 1 份增加到 3 份。
+- 数据库恢复时如果文件被占用，不再删除未保存的内容，并弹窗说明。
 
 ### v3.0.1 (2026-11-05)
 
@@ -1053,20 +1064,22 @@ releases/
 │   └── ...
 ├── v3.0.0/
 │   └── ...
-└── v3.0.1/
-    ├── Knowledge.Base_3.0.1_x64-setup.exe         # Windows 安装包
-    ├── Knowledge.Base_3.0.1_x64-setup.exe.sig     # Windows 签名
-    ├── Knowledge.Base_3.0.1_x64-setup.nsis.zip    # Windows updater 压缩包
-    ├── Knowledge.Base_3.0.1_aarch64.dmg           # macOS ARM 安装镜像
-    ├── Knowledge.Base_3.0.1_x64.dmg               # macOS Intel 安装镜像
+├── v3.0.1/
+│   └── ...
+└── v3.0.2/
+    ├── Knowledge.Base_3.0.2_x64-setup.exe         # Windows 安装包
+    ├── Knowledge.Base_3.0.2_x64-setup.exe.sig     # Windows 签名
+    ├── Knowledge.Base_3.0.2_x64-setup.nsis.zip    # Windows updater 压缩包
+    ├── Knowledge.Base_3.0.2_aarch64.dmg           # macOS ARM 安装镜像
+    ├── Knowledge.Base_3.0.2_x64.dmg               # macOS Intel 安装镜像
     ├── Knowledge.Base_aarch64.app.tar.gz              # macOS ARM updater
     ├── Knowledge.Base_aarch64.app.tar.gz.sig          # macOS ARM updater 签名
     ├── Knowledge.Base_x64.app.tar.gz                  # macOS Intel updater
     ├── Knowledge.Base_x64.app.tar.gz.sig              # macOS Intel updater 签名
-    ├── Knowledge.Base_3.0.1_amd64.deb             # Linux Debian/Ubuntu 包
-    ├── Knowledge.Base_3.0.1_amd64.AppImage        # Linux 通用 AppImage（>100MB，仅 R2）
-    ├── Knowledge.Base_3.0.1_amd64.AppImage.tar.gz # Linux updater 压缩包（仅 R2）
-    └── Knowledge.Base_3.0.1_amd64.AppImage.tar.gz.sig # Linux updater 签名
+    ├── Knowledge.Base_3.0.2_amd64.deb             # Linux Debian/Ubuntu 包
+    ├── Knowledge.Base_3.0.2_amd64.AppImage        # Linux 通用 AppImage（>100MB，仅 R2）
+    ├── Knowledge.Base_3.0.2_amd64.AppImage.tar.gz # Linux updater 压缩包（仅 R2）
+    └── Knowledge.Base_3.0.2_amd64.AppImage.tar.gz.sig # Linux updater 签名
 
 update.json                                         # 自动更新元数据（GitHub 版）
 update-r2.json                                      # 自动更新元数据（R2 版，备档）
