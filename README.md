@@ -2,15 +2,15 @@
 
 本地优先的知识库桌面应用（Tauri 2.x + React 19）的安装包与自动更新端点仓库。
 
-## 最新版本: v3.0.2
+## 最新版本: v3.1.0
 
 | 平台 | 下载链接 |
 |------|---------|
-| Windows x64 | [Knowledge.Base_3.0.2_x64-setup.exe](releases/v3.0.2/Knowledge.Base_3.0.2_x64-setup.exe) |
-| macOS Apple Silicon | [Knowledge.Base_3.0.2_aarch64.dmg](releases/v3.0.2/Knowledge.Base_3.0.2_aarch64.dmg) |
-| macOS Intel | [Knowledge.Base_3.0.2_x64.dmg](releases/v3.0.2/Knowledge.Base_3.0.2_x64.dmg) |
-| Linux x64 (deb) | [Knowledge.Base_3.0.2_amd64.deb](releases/v3.0.2/Knowledge.Base_3.0.2_amd64.deb) |
-| Linux x64 (AppImage) | [Knowledge.Base_3.0.2_amd64.AppImage](https://pub-9d9e6c0cb6934fb0a0c505e3c64f39b2.r2.dev/knowledge-base/v3.0.2/Knowledge.Base_3.0.2_amd64.AppImage)（R2 CDN，>100MB 未入 git） |
+| Windows x64 | [Knowledge.Base_3.1.0_x64-setup.exe](releases/v3.1.0/Knowledge.Base_3.1.0_x64-setup.exe) |
+| macOS Apple Silicon | [Knowledge.Base_3.1.0_aarch64.dmg](releases/v3.1.0/Knowledge.Base_3.1.0_aarch64.dmg) |
+| macOS Intel | [Knowledge.Base_3.1.0_x64.dmg](releases/v3.1.0/Knowledge.Base_3.1.0_x64.dmg) |
+| Linux x64 (deb) | [Knowledge.Base_3.1.0_amd64.deb](releases/v3.1.0/Knowledge.Base_3.1.0_amd64.deb) |
+| Linux x64 (AppImage) | [Knowledge.Base_3.1.0_amd64.AppImage](https://pub-9d9e6c0cb6934fb0a0c505e3c64f39b2.r2.dev/knowledge-base/v3.1.0/Knowledge.Base_3.1.0_amd64.AppImage)（R2 CDN，>100MB 未入 git） |
 
 > ⚠️ **v1.50.0 的 macOS 用户请升级**：v1.50.0 在 macOS 上打开笔记会卡死
 > （asset 协议跨平台差异导致 observer 死循环），v1.51.0 起已修复。
@@ -92,6 +92,19 @@ APK 用固定 keystore（`kb-release.jks`）正式签名，CI（`android.yml`，
 独立 APK 可侧载，App 内「检查更新」自助升级（读 `update-mobile.json`）。功能覆盖：Markdown 编辑（源码 ↔ 渲染预览切换）/ 全文搜索 / 双向链接 / 标签 / 回收站 / AI 问答（含「针对当前笔记问 AI」）/ 闪卡复习 / 任务 / 闪念捕获 / 每日笔记热力图 / 相机扫码 / WebDAV 手动推拉 / 单文件导入 / 网页剪藏；跨设备配置分享（WebDAV 源 / AI 模型 / ASR 配置，可 PIN 加密 PBKDF2+AES-GCM-256）。kb-release.jks 正式签名，`android.yml` 自动构建。
 
 ## 版本历史
+
+### v3.1.0 (2026-11-06)
+
+**搜索与列表更好用 + Markdown 属性不再被改坏**
+
+新功能
+- **搜索页三列浏览** —— 不输入关键词时显示标签、文件夹、文件三列，点一下右边就切到对应笔记，不用跳页；方向键选、回车打开。
+- **搜索结果一屏翻倍** —— 范围胶囊并进筛选条，摘要改为一行并对准命中词。
+- **列表行距可调** —— 笔记列表、回收站、隐藏笔记、标签页、搜索页可选紧凑 / 标准 / 宽松（笔记页「列」按钮或设置里切换），每页默认 30 条。
+- **YAML 属性卡片** —— 打开带 front-matter 的 .md 不再多出分割线和标题，属性显示为卡片可直接编辑，保存原样写回；导出 HTML / Word 时不再带出这段。
+
+修复
+- 标题里换行（Shift+Enter）保存后不再错乱。
 
 ### v3.0.2 (2026-11-06)
 
@@ -1066,20 +1079,22 @@ releases/
 │   └── ...
 ├── v3.0.1/
 │   └── ...
-└── v3.0.2/
-    ├── Knowledge.Base_3.0.2_x64-setup.exe         # Windows 安装包
-    ├── Knowledge.Base_3.0.2_x64-setup.exe.sig     # Windows 签名
-    ├── Knowledge.Base_3.0.2_x64-setup.nsis.zip    # Windows updater 压缩包
-    ├── Knowledge.Base_3.0.2_aarch64.dmg           # macOS ARM 安装镜像
-    ├── Knowledge.Base_3.0.2_x64.dmg               # macOS Intel 安装镜像
+├── v3.0.2/
+│   └── ...
+└── v3.1.0/
+    ├── Knowledge.Base_3.1.0_x64-setup.exe         # Windows 安装包
+    ├── Knowledge.Base_3.1.0_x64-setup.exe.sig     # Windows 签名
+    ├── Knowledge.Base_3.1.0_x64-setup.nsis.zip    # Windows updater 压缩包
+    ├── Knowledge.Base_3.1.0_aarch64.dmg           # macOS ARM 安装镜像
+    ├── Knowledge.Base_3.1.0_x64.dmg               # macOS Intel 安装镜像
     ├── Knowledge.Base_aarch64.app.tar.gz              # macOS ARM updater
     ├── Knowledge.Base_aarch64.app.tar.gz.sig          # macOS ARM updater 签名
     ├── Knowledge.Base_x64.app.tar.gz                  # macOS Intel updater
     ├── Knowledge.Base_x64.app.tar.gz.sig              # macOS Intel updater 签名
-    ├── Knowledge.Base_3.0.2_amd64.deb             # Linux Debian/Ubuntu 包
-    ├── Knowledge.Base_3.0.2_amd64.AppImage        # Linux 通用 AppImage（>100MB，仅 R2）
-    ├── Knowledge.Base_3.0.2_amd64.AppImage.tar.gz # Linux updater 压缩包（仅 R2）
-    └── Knowledge.Base_3.0.2_amd64.AppImage.tar.gz.sig # Linux updater 签名
+    ├── Knowledge.Base_3.1.0_amd64.deb             # Linux Debian/Ubuntu 包
+    ├── Knowledge.Base_3.1.0_amd64.AppImage        # Linux 通用 AppImage（>100MB，仅 R2）
+    ├── Knowledge.Base_3.1.0_amd64.AppImage.tar.gz # Linux updater 压缩包（仅 R2）
+    └── Knowledge.Base_3.1.0_amd64.AppImage.tar.gz.sig # Linux updater 签名
 
 update.json                                         # 自动更新元数据（GitHub 版）
 update-r2.json                                      # 自动更新元数据（R2 版，备档）
