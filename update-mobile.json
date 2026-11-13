@@ -1,6 +1,6 @@
 {
-  "version": "0.4.0",
-  "notes": "移动端从 0.3.0 起累计 224 个提交：\n\n• 全新 v4 界面：首页、笔记、编辑器、待办、日记、搜索、AI 问答、我的全部重做，深色模式逐页适配\n• 编辑器与电脑版同一套富文本，支持大纲、历史版本、标签、思维导图、演示、查找替换\n• AI 对话一轮一张卡片，可附加笔记、用提示词和智能模式；长回答自动续写\n• 补齐提示词、隐藏笔记、关于手机版等页面，回收站支持全部还原\n\n数据库 schema 升到 v71，首次启动自动迁移。签名与 0.3.0 一致，可直接覆盖升级。",
-  "pub_date": "2026-11-11T15:14:47Z",
-  "url": "https://github.com/bkywksj/knowledge-base-release/raw/main/releases/mobile-v0.4.0/Knowledge.Base_0.4.0_android-arm64.apk"
+  "version": "0.5.0",
+  "notes": "• 闪卡页可新建闪卡，笔记里选中文字可直接转为闪卡\n• 闪卡、复习进度、提示词、笔记模板随 WebDAV / S3 与电脑端同步（两端都升级后开始同步）\n\n数据库 schema 升到 v72，首次启动自动迁移。签名与 0.4.0 一致，可直接覆盖升级。",
+  "pub_date": "2026-11-13T12:58:13Z",
+  "url": "https://github.com/bkywksj/knowledge-base-release/raw/main/releases/mobile-v0.5.0/Knowledge.Base_0.5.0_android-arm64.apk"
 }
