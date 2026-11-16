@@ -1,6 +1,6 @@
 {
-  "version": "0.5.0",
-  "notes": "• 闪卡页可新建闪卡，笔记里选中文字可直接转为闪卡\n• 闪卡、复习进度、提示词、笔记模板随 WebDAV / S3 与电脑端同步（两端都升级后开始同步）\n\n数据库 schema 升到 v72，首次启动自动迁移。签名与 0.4.0 一致，可直接覆盖升级。",
-  "pub_date": "2026-11-13T12:58:13Z",
-  "url": "https://github.com/bkywksj/knowledge-base-release/raw/main/releases/mobile-v0.5.0/Knowledge.Base_0.5.0_android-arm64.apk"
+  "version": "0.6.0",
+  "notes": "• 局域网同步：扫电脑上的二维码配对，同一网络直接同步，电脑换 IP 自动找回\n• 思维导图可直接编辑：点选改字、长按出操作面板、双指缩放，文件夹菜单可新建导图\n• 修复编辑同步源后已保存的令牌 / 密码被清空\n\n数据库 schema 仍为 v72。签名与 0.5.0 一致，可直接覆盖升级。",
+  "pub_date": "2026-11-16T11:18:41Z",
+  "url": "https://github.com/bkywksj/knowledge-base-release/raw/main/releases/mobile-v0.6.0/Knowledge.Base_0.6.0_android-arm64.apk"
 }
