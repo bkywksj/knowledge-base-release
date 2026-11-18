@@ -2,15 +2,15 @@
 
 本地优先的知识库桌面应用（Tauri 2.x + React 19）的安装包与自动更新端点仓库。
 
-## 最新版本: v3.4.0
+## 最新版本: v3.5.0
 
 | 平台 | 下载链接 |
 |------|---------|
-| Windows x64 | [Knowledge.Base_3.4.0_x64-setup.exe](releases/v3.4.0/Knowledge.Base_3.4.0_x64-setup.exe) |
-| macOS Apple Silicon | [Knowledge.Base_3.4.0_aarch64.dmg](releases/v3.4.0/Knowledge.Base_3.4.0_aarch64.dmg) |
-| macOS Intel | [Knowledge.Base_3.4.0_x64.dmg](releases/v3.4.0/Knowledge.Base_3.4.0_x64.dmg) |
-| Linux x64 (deb) | [Knowledge.Base_3.4.0_amd64.deb](releases/v3.4.0/Knowledge.Base_3.4.0_amd64.deb) |
-| Linux x64 (AppImage) | [Knowledge.Base_3.4.0_amd64.AppImage](https://pub-9d9e6c0cb6934fb0a0c505e3c64f39b2.r2.dev/knowledge-base/v3.4.0/Knowledge.Base_3.4.0_amd64.AppImage)（R2 CDN，>100MB 未入 git） |
+| Windows x64 | [Knowledge.Base_3.5.0_x64-setup.exe](releases/v3.5.0/Knowledge.Base_3.5.0_x64-setup.exe) |
+| macOS Apple Silicon | [Knowledge.Base_3.5.0_aarch64.dmg](releases/v3.5.0/Knowledge.Base_3.5.0_aarch64.dmg) |
+| macOS Intel | [Knowledge.Base_3.5.0_x64.dmg](releases/v3.5.0/Knowledge.Base_3.5.0_x64.dmg) |
+| Linux x64 (deb) | [Knowledge.Base_3.5.0_amd64.deb](releases/v3.5.0/Knowledge.Base_3.5.0_amd64.deb) |
+| Linux x64 (AppImage) | [Knowledge.Base_3.5.0_amd64.AppImage](https://pub-9d9e6c0cb6934fb0a0c505e3c64f39b2.r2.dev/knowledge-base/v3.5.0/Knowledge.Base_3.5.0_amd64.AppImage)（R2 CDN，>100MB 未入 git） |
 
 > ⚠️ **v1.50.0 的 macOS 用户请升级**：v1.50.0 在 macOS 上打开笔记会卡死
 > （asset 协议跨平台差异导致 observer 死循环），v1.51.0 起已修复。
@@ -39,7 +39,8 @@ APK 用固定 keystore（`kb-release.jks`）正式签名，CI（`android.yml`，
 
 | 移动版本 | 下载 |
 |------|------|
-| **0.6.0** (2026-11-16) ⭐ | [Knowledge.Base_0.6.0_android-arm64.apk](https://pub-9d9e6c0cb6934fb0a0c505e3c64f39b2.r2.dev/knowledge-base/mobile-v0.6.0/Knowledge.Base_0.6.0_android-arm64.apk) ｜ [.aab](https://pub-9d9e6c0cb6934fb0a0c505e3c64f39b2.r2.dev/knowledge-base/mobile-v0.6.0/Knowledge.Base_0.6.0_android-arm64.aab) ｜ [R2 稳定链接（mobile-latest.apk）](https://pub-9d9e6c0cb6934fb0a0c505e3c64f39b2.r2.dev/knowledge-base/mobile-latest.apk) |
+| **0.7.0** (2026-11-18) ⭐ | [Knowledge.Base_0.7.0_android-arm64.apk](https://pub-9d9e6c0cb6934fb0a0c505e3c64f39b2.r2.dev/knowledge-base/mobile-v0.7.0/Knowledge.Base_0.7.0_android-arm64.apk) ｜ [.aab](https://pub-9d9e6c0cb6934fb0a0c505e3c64f39b2.r2.dev/knowledge-base/mobile-v0.7.0/Knowledge.Base_0.7.0_android-arm64.aab) ｜ [R2 稳定链接（mobile-latest.apk）](https://pub-9d9e6c0cb6934fb0a0c505e3c64f39b2.r2.dev/knowledge-base/mobile-latest.apk) |
+| 0.6.0 (2026-11-16) | [Knowledge.Base_0.6.0_android-arm64.apk](https://pub-9d9e6c0cb6934fb0a0c505e3c64f39b2.r2.dev/knowledge-base/mobile-v0.6.0/Knowledge.Base_0.6.0_android-arm64.apk) ｜ [.aab](https://pub-9d9e6c0cb6934fb0a0c505e3c64f39b2.r2.dev/knowledge-base/mobile-v0.6.0/Knowledge.Base_0.6.0_android-arm64.aab) |
 | 0.5.0 (2026-11-13) | [Knowledge.Base_0.5.0_android-arm64.apk](https://pub-9d9e6c0cb6934fb0a0c505e3c64f39b2.r2.dev/knowledge-base/mobile-v0.5.0/Knowledge.Base_0.5.0_android-arm64.apk) ｜ [.aab](https://pub-9d9e6c0cb6934fb0a0c505e3c64f39b2.r2.dev/knowledge-base/mobile-v0.5.0/Knowledge.Base_0.5.0_android-arm64.aab) |
 | 0.4.0 (2026-11-12) | [Knowledge.Base_0.4.0_android-arm64.apk](https://pub-9d9e6c0cb6934fb0a0c505e3c64f39b2.r2.dev/knowledge-base/mobile-v0.4.0/Knowledge.Base_0.4.0_android-arm64.apk) ｜ [.aab](https://pub-9d9e6c0cb6934fb0a0c505e3c64f39b2.r2.dev/knowledge-base/mobile-v0.4.0/Knowledge.Base_0.4.0_android-arm64.aab) |
 | 0.3.0 (2026-10-20) | [Knowledge.Base_0.3.0_android-arm64.apk](https://pub-9d9e6c0cb6934fb0a0c505e3c64f39b2.r2.dev/knowledge-base/mobile-v0.3.0/Knowledge.Base_0.3.0_android-arm64.apk) ｜ [.aab](https://pub-9d9e6c0cb6934fb0a0c505e3c64f39b2.r2.dev/knowledge-base/mobile-v0.3.0/Knowledge.Base_0.3.0_android-arm64.aab) |
@@ -51,6 +52,21 @@ APK 用固定 keystore（`kb-release.jks`）正式签名，CI（`android.yml`，
 > ⚠️ 同一条版本线的 APK 必须用同一个签名 keystore，否则「检查更新→装新 APK」会因签名不匹配失败（`INSTALL_FAILED_UPDATE_INCOMPATIBLE`，只能卸载重装）。
 
 ### 移动端版本历史
+
+#### mobile-v0.7.0 (2026-11-18)
+
+**本地视频能播了，状态栏不再压页面**
+
+移动端专属：
+- **修复本地视频一直转圈** —— 笔记里插入的本地视频（尤其手机相机录的）一直转圈、拖不动进度条。根因是框架在安卓上分段读取文件的缺陷，升级 Tauri 到 2.12 后修复
+- **修复页面顶部与状态栏重叠** —— 部分机型（如澎湃 OS 3）页面头部画在时间 / 信号图标底下，现在按系统状态栏的真实高度留出顶部空间
+- **「我的 → 模型服务」可管理模型** —— 列出全部模型，点一项可编辑、设为默认、测试连接、删除。此前手机上只能新增、改不了也删不掉
+- 笔记页文件夹篇数包含子文件夹里的笔记，「未分类」也显示篇数
+
+双端共享（移动端有入口的部分）：
+- 模型服务鉴权失败时提示更准确，不再一律说「密钥无效或已过期」
+
+数据库 schema 仍为 v72，无需迁移。签名 keystore 与 0.6.0 一致，可直接通过「检查更新」覆盖升级。
 
 #### mobile-v0.6.0 (2026-11-16)
 
@@ -141,6 +157,25 @@ APK 用固定 keystore（`kb-release.jks`）正式签名，CI（`android.yml`，
 独立 APK 可侧载，App 内「检查更新」自助升级（读 `update-mobile.json`）。功能覆盖：Markdown 编辑（源码 ↔ 渲染预览切换）/ 全文搜索 / 双向链接 / 标签 / 回收站 / AI 问答（含「针对当前笔记问 AI」）/ 闪卡复习 / 任务 / 闪念捕获 / 每日笔记热力图 / 相机扫码 / WebDAV 手动推拉 / 单文件导入 / 网页剪藏；跨设备配置分享（WebDAV 源 / AI 模型 / ASR 配置，可 PIN 加密 PBKDF2+AES-GCM-256）。kb-release.jks 正式签名，`android.yml` 自动构建。
 
 ## 版本历史
+
+### v3.5.0 (2026-11-18)
+
+**窄窗口固定侧栏 + 打开外部 md 更快**
+
+新功能
+- **窄窗口可固定笔记侧栏** —— 窗口宽度不足时侧栏是浮层、用完自动收起；现在浮层打开时标题栏多一个图钉，固定后侧栏常驻左侧（可拖宽度），再点一次取消。
+
+改进
+- **快捷键「记一笔」与首页随手记写法统一** —— 都是加粗时间 + 正文，不再写成蓝色提示框；已记下的旧条目不受影响。
+- **双击打开 .md 更快** —— 文中网络图片改为并发下载，并显示「正在打开…」提示，不再长时间没反应。
+- 模型服务鉴权失败时提示更准确，不再一律说「密钥无效或已过期」。
+- 删除模型时提醒使用该模型的对话会一并删除。
+- 升级 Tauri 框架到 2.12。
+
+修复
+- 编辑外部 md 保存后，原文里的图片链接被改写。
+
+数据库 schema 仍为 v72，无需迁移。
 
 ### v3.4.0 (2026-11-16)
 

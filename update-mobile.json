@@ -1,6 +1,6 @@
 {
-  "version": "0.6.0",
-  "notes": "• 局域网同步：扫电脑上的二维码配对，同一网络直接同步，电脑换 IP 自动找回\n• 思维导图可直接编辑：点选改字、长按出操作面板、双指缩放，文件夹菜单可新建导图\n• 修复编辑同步源后已保存的令牌 / 密码被清空\n\n数据库 schema 仍为 v72。签名与 0.5.0 一致，可直接覆盖升级。",
-  "pub_date": "2026-11-16T11:18:41Z",
-  "url": "https://github.com/bkywksj/knowledge-base-release/raw/main/releases/mobile-v0.6.0/Knowledge.Base_0.6.0_android-arm64.apk"
+  "version": "0.7.0",
+  "notes": "• 修复本地视频一直转圈、拖不动进度条\n• 修复部分机型（如澎湃 OS 3）页面顶部与状态栏重叠\n• 「我的 → 模型服务」可以编辑、设为默认、测试连接、删除模型\n• 笔记页文件夹篇数包含子文件夹，「未分类」显示篇数\n\n数据库 schema 仍为 v72。签名与 0.6.0 一致，可直接覆盖升级。",
+  "pub_date": "2026-11-18T06:30:27Z",
+  "url": "https://github.com/bkywksj/knowledge-base-release/raw/main/releases/mobile-v0.7.0/Knowledge.Base_0.7.0_android-arm64.apk"
 }
