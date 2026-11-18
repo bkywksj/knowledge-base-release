@@ -1,6 +1,6 @@
 {
-  "version": "0.8.0",
-  "notes": "• 手机之间局域网同步：「同步 → 让本机当主机」，另一台手机扫码即可直接同步，不用电脑、不经云端\n• 日记页新增「当天待办」，可勾选、可添加\n• 修复同步时反复提示「.md 文件丢失」，已有的问题条目会自动修复\n• 修复两台设备各建当天日记后，同步出现同一天两篇\n\n数据库 schema 仍为 v72。签名与 0.7.0 一致，可直接覆盖升级。",
-  "pub_date": "2026-11-18T10:07:48Z",
-  "url": "https://github.com/bkywksj/knowledge-base-release/raw/main/releases/mobile-v0.8.0/Knowledge.Base_0.8.0_android-arm64.apk"
+  "version": "0.9.0",
+  "notes": "• 文件夹可排序（按名称 / 创建时间 / 更新时间），首页日期旁显示农历、节日、节气\n• 底部菜单可下滑收起；日记日历上下滑展开 / 收起；日记条目可左滑 / 长按编辑、删除\n• 长标题换行显示完整，笔记列表标题最多两行\n• 修复点进子文件夹会弹出「新建文件夹」、部分表格列被挤成一个字一行\n• 修复外部 md 改了一级标题后再打开，笔记标题还是旧的\n\n数据库 schema 仍为 v72。签名与 0.8.0 一致，可直接覆盖升级。",
+  "pub_date": "2026-11-18T14:08:02Z",
+  "url": "https://github.com/bkywksj/knowledge-base-release/raw/main/releases/mobile-v0.9.0/Knowledge.Base_0.9.0_android-arm64.apk"
 }

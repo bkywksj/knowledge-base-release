@@ -39,7 +39,8 @@ APK 用固定 keystore（`kb-release.jks`）正式签名，CI（`android.yml`，
 
 | 移动版本 | 下载 |
 |------|------|
-| **0.8.0** (2026-11-18) ⭐ | [Knowledge.Base_0.8.0_android-arm64.apk](https://pub-9d9e6c0cb6934fb0a0c505e3c64f39b2.r2.dev/knowledge-base/mobile-v0.8.0/Knowledge.Base_0.8.0_android-arm64.apk) ｜ [.aab](https://pub-9d9e6c0cb6934fb0a0c505e3c64f39b2.r2.dev/knowledge-base/mobile-v0.8.0/Knowledge.Base_0.8.0_android-arm64.aab) ｜ [R2 稳定链接（mobile-latest.apk）](https://pub-9d9e6c0cb6934fb0a0c505e3c64f39b2.r2.dev/knowledge-base/mobile-latest.apk) |
+| **0.9.0** (2026-11-18) ⭐ | [Knowledge.Base_0.9.0_android-arm64.apk](https://pub-9d9e6c0cb6934fb0a0c505e3c64f39b2.r2.dev/knowledge-base/mobile-v0.9.0/Knowledge.Base_0.9.0_android-arm64.apk) ｜ [.aab](https://pub-9d9e6c0cb6934fb0a0c505e3c64f39b2.r2.dev/knowledge-base/mobile-v0.9.0/Knowledge.Base_0.9.0_android-arm64.aab) ｜ [R2 稳定链接（mobile-latest.apk）](https://pub-9d9e6c0cb6934fb0a0c505e3c64f39b2.r2.dev/knowledge-base/mobile-latest.apk) |
+| 0.8.0 (2026-11-18) | [Knowledge.Base_0.8.0_android-arm64.apk](https://pub-9d9e6c0cb6934fb0a0c505e3c64f39b2.r2.dev/knowledge-base/mobile-v0.8.0/Knowledge.Base_0.8.0_android-arm64.apk) ｜ [.aab](https://pub-9d9e6c0cb6934fb0a0c505e3c64f39b2.r2.dev/knowledge-base/mobile-v0.8.0/Knowledge.Base_0.8.0_android-arm64.aab) |
 | 0.7.0 (2026-11-18) | [Knowledge.Base_0.7.0_android-arm64.apk](https://pub-9d9e6c0cb6934fb0a0c505e3c64f39b2.r2.dev/knowledge-base/mobile-v0.7.0/Knowledge.Base_0.7.0_android-arm64.apk) ｜ [.aab](https://pub-9d9e6c0cb6934fb0a0c505e3c64f39b2.r2.dev/knowledge-base/mobile-v0.7.0/Knowledge.Base_0.7.0_android-arm64.aab) |
 | 0.6.0 (2026-11-16) | [Knowledge.Base_0.6.0_android-arm64.apk](https://pub-9d9e6c0cb6934fb0a0c505e3c64f39b2.r2.dev/knowledge-base/mobile-v0.6.0/Knowledge.Base_0.6.0_android-arm64.apk) ｜ [.aab](https://pub-9d9e6c0cb6934fb0a0c505e3c64f39b2.r2.dev/knowledge-base/mobile-v0.6.0/Knowledge.Base_0.6.0_android-arm64.aab) |
 | 0.5.0 (2026-11-13) | [Knowledge.Base_0.5.0_android-arm64.apk](https://pub-9d9e6c0cb6934fb0a0c505e3c64f39b2.r2.dev/knowledge-base/mobile-v0.5.0/Knowledge.Base_0.5.0_android-arm64.apk) ｜ [.aab](https://pub-9d9e6c0cb6934fb0a0c505e3c64f39b2.r2.dev/knowledge-base/mobile-v0.5.0/Knowledge.Base_0.5.0_android-arm64.aab) |
@@ -53,6 +54,24 @@ APK 用固定 keystore（`kb-release.jks`）正式签名，CI（`android.yml`，
 > ⚠️ 同一条版本线的 APK 必须用同一个签名 keystore，否则「检查更新→装新 APK」会因签名不匹配失败（`INSTALL_FAILED_UPDATE_INCOMPATIBLE`，只能卸载重装）。
 
 ### 移动端版本历史
+
+#### mobile-v0.9.0 (2026-11-18)
+
+**文件夹排序、农历，手势更顺手**
+
+移动端专属：
+- **文件夹排序** —— 文件夹列表上方「排序」，或长按文件夹 →「排序子文件夹」：按名称 / 最近更新 / 最近创建，排好后电脑端同步生效
+- **首页显示农历** —— 日期旁显示农历日期，碰上节日、节气显示节日名（如「立冬」「重阳节」）
+- **底部菜单可下滑收起** —— 长按菜单、「…」菜单等按住小横条或面板往下拉即可关闭
+- **日记页手势** —— 日历区上下滑展开 / 收起整月；日记列表左滑出现「编辑 / 删除」，长按出菜单
+- **长标题看得全** —— 编辑页标题自动换行显示完整，笔记列表标题最多两行
+- 修复点进子文件夹会弹出「新建文件夹」
+- 修复部分表格（电脑上调过某列宽度的）在手机上除第一列外都被挤成一个字一行，现在可以横向滑动查看
+
+双端共享（移动端有入口的部分）：
+- 修复外部 md 改了一级标题后再打开，笔记标题还是旧的
+
+数据库 schema 仍为 v72，无需迁移。签名 keystore 与 0.8.0 一致，可直接通过「检查更新」覆盖升级。
 
 #### mobile-v0.8.0 (2026-11-18)
 
