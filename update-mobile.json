@@ -1,6 +1,6 @@
 {
-  "version": "0.7.0",
-  "notes": "• 修复本地视频一直转圈、拖不动进度条\n• 修复部分机型（如澎湃 OS 3）页面顶部与状态栏重叠\n• 「我的 → 模型服务」可以编辑、设为默认、测试连接、删除模型\n• 笔记页文件夹篇数包含子文件夹，「未分类」显示篇数\n\n数据库 schema 仍为 v72。签名与 0.6.0 一致，可直接覆盖升级。",
-  "pub_date": "2026-11-18T06:30:27Z",
-  "url": "https://github.com/bkywksj/knowledge-base-release/raw/main/releases/mobile-v0.7.0/Knowledge.Base_0.7.0_android-arm64.apk"
+  "version": "0.8.0",
+  "notes": "• 手机之间局域网同步：「同步 → 让本机当主机」，另一台手机扫码即可直接同步，不用电脑、不经云端\n• 日记页新增「当天待办」，可勾选、可添加\n• 修复同步时反复提示「.md 文件丢失」，已有的问题条目会自动修复\n• 修复两台设备各建当天日记后，同步出现同一天两篇\n\n数据库 schema 仍为 v72。签名与 0.7.0 一致，可直接覆盖升级。",
+  "pub_date": "2026-11-18T10:07:48Z",
+  "url": "https://github.com/bkywksj/knowledge-base-release/raw/main/releases/mobile-v0.8.0/Knowledge.Base_0.8.0_android-arm64.apk"
 }
