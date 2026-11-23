@@ -1,6 +1,6 @@
 {
-  "version": "0.9.0",
-  "notes": "• 文件夹可排序（按名称 / 创建时间 / 更新时间），首页日期旁显示农历、节日、节气\n• 底部菜单可下滑收起；日记日历上下滑展开 / 收起；日记条目可左滑 / 长按编辑、删除\n• 长标题换行显示完整，笔记列表标题最多两行\n• 修复点进子文件夹会弹出「新建文件夹」、部分表格列被挤成一个字一行\n• 修复外部 md 改了一级标题后再打开，笔记标题还是旧的\n\n数据库 schema 仍为 v72。签名与 0.8.0 一致，可直接覆盖升级。",
-  "pub_date": "2026-11-18T14:08:02Z",
-  "url": "https://github.com/bkywksj/knowledge-base-release/raw/main/releases/mobile-v0.9.0/Knowledge.Base_0.9.0_android-arm64.apk"
+  "version": "1.0.0",
+  "notes": "版本号满十进一：0.9.0 之后升为 1.0.0。\n• 文件夹单独同步：空文件夹、改名、删除、排序、颜色都能同步到其他设备\n• 选中文字后可一键放大 / 缩小字号（浮动工具栏 A↑ / A↓）\n• 修复同步后笔记的修改时间、创建时间变成同步时间（已受影响的笔记再同步一次自动恢复）\n• 修复待办的提前提醒不跟着同步、其他设备到点不弹窗\n\n文件夹同步和待办提醒同步需要各设备都升级（桌面端 v3.5.2）后生效。数据库 schema 升至 v73。签名与 0.9.0 一致，可直接覆盖升级。",
+  "pub_date": "2026-11-23T06:26:29Z",
+  "url": "https://github.com/bkywksj/knowledge-base-release/raw/main/releases/mobile-v1.0.0/Knowledge.Base_1.0.0_android-arm64.apk"
 }

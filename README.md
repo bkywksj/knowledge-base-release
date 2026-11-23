@@ -2,15 +2,15 @@
 
 本地优先的知识库桌面应用（Tauri 2.x + React 19）的安装包与自动更新端点仓库。
 
-## 最新版本: v3.5.1
+## 最新版本: v3.5.2
 
 | 平台 | 下载链接 |
 |------|---------|
-| Windows x64 | [Knowledge.Base_3.5.1_x64-setup.exe](releases/v3.5.1/Knowledge.Base_3.5.1_x64-setup.exe) |
-| macOS Apple Silicon | [Knowledge.Base_3.5.1_aarch64.dmg](releases/v3.5.1/Knowledge.Base_3.5.1_aarch64.dmg) |
-| macOS Intel | [Knowledge.Base_3.5.1_x64.dmg](releases/v3.5.1/Knowledge.Base_3.5.1_x64.dmg) |
-| Linux x64 (deb) | [Knowledge.Base_3.5.1_amd64.deb](releases/v3.5.1/Knowledge.Base_3.5.1_amd64.deb) |
-| Linux x64 (AppImage) | [Knowledge.Base_3.5.1_amd64.AppImage](https://pub-9d9e6c0cb6934fb0a0c505e3c64f39b2.r2.dev/knowledge-base/v3.5.1/Knowledge.Base_3.5.1_amd64.AppImage)（R2 CDN，>100MB 未入 git） |
+| Windows x64 | [Knowledge.Base_3.5.2_x64-setup.exe](releases/v3.5.2/Knowledge.Base_3.5.2_x64-setup.exe) |
+| macOS Apple Silicon | [Knowledge.Base_3.5.2_aarch64.dmg](releases/v3.5.2/Knowledge.Base_3.5.2_aarch64.dmg) |
+| macOS Intel | [Knowledge.Base_3.5.2_x64.dmg](releases/v3.5.2/Knowledge.Base_3.5.2_x64.dmg) |
+| Linux x64 (deb) | [Knowledge.Base_3.5.2_amd64.deb](releases/v3.5.2/Knowledge.Base_3.5.2_amd64.deb) |
+| Linux x64 (AppImage) | [Knowledge.Base_3.5.2_amd64.AppImage](https://pub-9d9e6c0cb6934fb0a0c505e3c64f39b2.r2.dev/knowledge-base/v3.5.2/Knowledge.Base_3.5.2_amd64.AppImage)（R2 CDN，>100MB 未入 git） |
 
 > ⚠️ **v1.50.0 的 macOS 用户请升级**：v1.50.0 在 macOS 上打开笔记会卡死
 > （asset 协议跨平台差异导致 observer 死循环），v1.51.0 起已修复。
@@ -39,7 +39,8 @@ APK 用固定 keystore（`kb-release.jks`）正式签名，CI（`android.yml`，
 
 | 移动版本 | 下载 |
 |------|------|
-| **0.9.0** (2026-11-18) ⭐ | [Knowledge.Base_0.9.0_android-arm64.apk](https://pub-9d9e6c0cb6934fb0a0c505e3c64f39b2.r2.dev/knowledge-base/mobile-v0.9.0/Knowledge.Base_0.9.0_android-arm64.apk) ｜ [.aab](https://pub-9d9e6c0cb6934fb0a0c505e3c64f39b2.r2.dev/knowledge-base/mobile-v0.9.0/Knowledge.Base_0.9.0_android-arm64.aab) ｜ [R2 稳定链接（mobile-latest.apk）](https://pub-9d9e6c0cb6934fb0a0c505e3c64f39b2.r2.dev/knowledge-base/mobile-latest.apk) |
+| **1.0.0** (2026-11-23) ⭐ | [Knowledge.Base_1.0.0_android-arm64.apk](https://pub-9d9e6c0cb6934fb0a0c505e3c64f39b2.r2.dev/knowledge-base/mobile-v1.0.0/Knowledge.Base_1.0.0_android-arm64.apk) ｜ [.aab](https://pub-9d9e6c0cb6934fb0a0c505e3c64f39b2.r2.dev/knowledge-base/mobile-v1.0.0/Knowledge.Base_1.0.0_android-arm64.aab) ｜ [R2 稳定链接（mobile-latest.apk）](https://pub-9d9e6c0cb6934fb0a0c505e3c64f39b2.r2.dev/knowledge-base/mobile-latest.apk) |
+| 0.9.0 (2026-11-18) | [Knowledge.Base_0.9.0_android-arm64.apk](https://pub-9d9e6c0cb6934fb0a0c505e3c64f39b2.r2.dev/knowledge-base/mobile-v0.9.0/Knowledge.Base_0.9.0_android-arm64.apk) ｜ [.aab](https://pub-9d9e6c0cb6934fb0a0c505e3c64f39b2.r2.dev/knowledge-base/mobile-v0.9.0/Knowledge.Base_0.9.0_android-arm64.aab) |
 | 0.8.0 (2026-11-18) | [Knowledge.Base_0.8.0_android-arm64.apk](https://pub-9d9e6c0cb6934fb0a0c505e3c64f39b2.r2.dev/knowledge-base/mobile-v0.8.0/Knowledge.Base_0.8.0_android-arm64.apk) ｜ [.aab](https://pub-9d9e6c0cb6934fb0a0c505e3c64f39b2.r2.dev/knowledge-base/mobile-v0.8.0/Knowledge.Base_0.8.0_android-arm64.aab) |
 | 0.7.0 (2026-11-18) | [Knowledge.Base_0.7.0_android-arm64.apk](https://pub-9d9e6c0cb6934fb0a0c505e3c64f39b2.r2.dev/knowledge-base/mobile-v0.7.0/Knowledge.Base_0.7.0_android-arm64.apk) ｜ [.aab](https://pub-9d9e6c0cb6934fb0a0c505e3c64f39b2.r2.dev/knowledge-base/mobile-v0.7.0/Knowledge.Base_0.7.0_android-arm64.aab) |
 | 0.6.0 (2026-11-16) | [Knowledge.Base_0.6.0_android-arm64.apk](https://pub-9d9e6c0cb6934fb0a0c505e3c64f39b2.r2.dev/knowledge-base/mobile-v0.6.0/Knowledge.Base_0.6.0_android-arm64.apk) ｜ [.aab](https://pub-9d9e6c0cb6934fb0a0c505e3c64f39b2.r2.dev/knowledge-base/mobile-v0.6.0/Knowledge.Base_0.6.0_android-arm64.aab) |
@@ -54,6 +55,20 @@ APK 用固定 keystore（`kb-release.jks`）正式签名，CI（`android.yml`，
 > ⚠️ 同一条版本线的 APK 必须用同一个签名 keystore，否则「检查更新→装新 APK」会因签名不匹配失败（`INSTALL_FAILED_UPDATE_INCOMPATIBLE`，只能卸载重装）。
 
 ### 移动端版本历史
+
+#### mobile-v1.0.0 (2026-11-23)
+
+**文件夹单独同步 + 两个同步修复**
+
+版本号满十进一：0.9.0 之后升为 1.0.0，功能上是常规更新。
+
+双端共享：
+- **文件夹单独同步** —— 空文件夹、改名、删除、排序、颜色都能同步到其他设备（以前只能靠笔记带过去，空文件夹、改名、删除都传不过去）
+- **选中文字快速调字号** —— 选中后浮动工具栏里的 A↑ / A↓ 放大 / 缩小一档
+- 修复同步后笔记的修改时间、创建时间变成同步那一刻；已受影响的笔记再同步一次自动恢复
+- 修复待办的提前提醒不跟着同步、其他设备到点不弹窗；同步前已经过期的提醒不会补弹
+
+文件夹同步和待办提醒同步需要各设备都升级（桌面端 v3.5.2）后生效。数据库 schema 升至 v73（自动迁移）。签名 keystore 与 0.9.0 一致，可直接通过「检查更新」覆盖升级。
 
 #### mobile-v0.9.0 (2026-11-18)
 
@@ -191,6 +206,24 @@ APK 用固定 keystore（`kb-release.jks`）正式签名，CI（`android.yml`，
 独立 APK 可侧载，App 内「检查更新」自助升级（读 `update-mobile.json`）。功能覆盖：Markdown 编辑（源码 ↔ 渲染预览切换）/ 全文搜索 / 双向链接 / 标签 / 回收站 / AI 问答（含「针对当前笔记问 AI」）/ 闪卡复习 / 任务 / 闪念捕获 / 每日笔记热力图 / 相机扫码 / WebDAV 手动推拉 / 单文件导入 / 网页剪藏；跨设备配置分享（WebDAV 源 / AI 模型 / ASR 配置，可 PIN 加密 PBKDF2+AES-GCM-256）。kb-release.jks 正式签名，`android.yml` 自动构建。
 
 ## 版本历史
+
+### v3.5.2 (2026-11-23)
+
+**文件夹单独同步 + 选中文字调字号 + 两个同步修复**
+
+新功能
+- **文件夹单独同步** —— 空文件夹、改名、删除、排序、颜色都能同步到其他设备（以前只能靠笔记带过去，空文件夹、改名、删除都传不过去）。
+- **选中文字快速调字号** —— 选中后浮动工具栏里的 A↑ / A↓ 放大 / 缩小一档，或用 Ctrl+Shift+> / Ctrl+Shift+<（同 Word）。
+
+改进
+- 笔记侧栏分成「文件夹 / 标签」两张卡片，左上角标题改为「知识库」。
+
+修复
+- 同步后笔记的修改时间、创建时间变成同步那一刻（第一次同步到新设备时所有笔记都像刚改过）。已受影响的笔记再同步一次自动恢复。
+- 待办的提前提醒不跟着同步，其他设备到点不弹窗。同步前已经过期的提醒不会补弹。
+- MCP 一键接入改写客户端配置时可能清空原文件：现在解析失败直接报错不写入，写之前先备份，已有条目改为合并；CLAUDE.md 模板里的条目名跟随开发版 / 正式版。
+
+文件夹同步和待办提醒同步需要各设备都升级（手机端 1.0.0）后生效。数据库 schema 升至 v73（自动迁移）。
 
 ### v3.5.1 (2026-11-18)
 
